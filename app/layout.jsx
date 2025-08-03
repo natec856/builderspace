@@ -1,0 +1,29 @@
+import { Geist, Geist_Mono, Inter } from "next/font/google";
+import "./globals.css";
+import Logout from "@/components/generalComponents/Logout";
+import Footer from "@/components/generalComponents/Footer";
+import Header from "@/components/generalComponents/Header";
+import Head from "./head";
+import MobileNav from "@/components/generalComponents/MobileNav";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "BuilderSpace",
+  description: "Fast, easy networking for creators and entrepreneurs",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <Head />
+        <body className={'min-h-screen w-full mx-auto text-sm sm:text-base flex flex-col ' + inter.className}>
+          <Header />
+          <MobileNav />
+          {children}
+          <div className="flex-grow bg-slate-50"></div>
+          <Footer />
+        </body>
+    </html>
+  );
+}

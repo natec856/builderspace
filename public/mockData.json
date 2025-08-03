@@ -1,0 +1,85 @@
+[
+    {
+      "groupId": "abc123",
+      "groupName": "Frat Buddies of PMD",
+      "lastMessage": "Don’t forget the meeting! It's really important everyone shows up, we'll be voting.",
+      "lastMessageDate": "2025-07-02T12:12:00Z",
+      "messages": [
+    {
+      "id": 1,
+      "text": "Hey guys what’s up?",
+      "sender": "Alex",
+      "timestamp": "2025-07-21T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "text": "Not much, you?",
+      "sender": "You",
+      "timestamp": "2025-07-21T10:05:00Z"
+    },
+    {
+      "id": 3,
+      "text": "I'm working on marketing my saas app, any tips that have been working well for you?",
+      "sender": "Alex",
+      "timestamp": "2025-07-22T11:09:00Z"
+    }
+  ],
+      "groupMembers": [
+        {
+          "userId": 1,
+          "username": "Alex5",
+          "name": "Alex",
+          "bio": "Sharing my projects and ideas 💡, looking to learn and contribute as much as possible",
+          "categories": ["E-commerce",
+  "Music",
+  "Fashion"]
+        },
+        {
+          "userId": 2,
+          "username": "NateC32",
+          "name": "Nate Colavolpe testing the overflow feature",
+          "bio": "Sharing my apps and ideas 💡, looking to learn and contribute as much as possible",
+          "categories": ["E-commerce",
+  "Education",
+  "Fashion"]
+        },
+        {
+          "userId": 3,
+          "username": "PMilly",
+          "name": "Peter Miller 69",
+          "bio": "Sharing my tunes and ideas 💡, looking to learn and contribute as much as possible"
+        }
+      ]
+    },
+    {
+      "groupId": "tyz789",
+      "groupName": "Marketing Team",
+      "lastMessage": "New campaign is live.",
+      "lastMessageDate": "2025-07-15T13:45:00Z"
+    },
+    {
+      "groupId": "agc123",
+      "groupName": "Study Group",
+      "lastMessage": "Don’t forget the meeting!",
+      "lastMessageDate": "2025-07-21T12:12:00Z"
+    },
+    {
+      "groupId": "x1z789",
+      "groupName": "Finance Team",
+      "lastMessage": "New campaign is live.",
+      "lastMessageDate": "2025-07-15T13:45:00Z"
+    },
+    {
+      "groupId": "bbc123",
+      "groupName": "Drinking Buddies",
+      "lastMessage": "Don’t forget the meeting!",
+      "lastMessageDate": "2025-07-21T12:12:00Z"
+    },
+    {
+      "groupId": "xyy789",
+      "groupName": "Dev Team",
+      "lastMessage": "New campaign is live.",
+      "lastMessageDate": "2025-07-15T13:45:00Z"
+    }
+  ]
+  
