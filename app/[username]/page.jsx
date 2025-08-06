@@ -1,27 +1,25 @@
 import Main from "@/components/Main";
 import ProfileContainer from "@/components/profileComponents/ProfileContainer";
-import mockData from '@/public/mockData.json';
 import { notFound } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
 
 export const metadata = {
   title: "BuilderSpace",
 };
 
 export default async function ProfilePage({ params }) {
-
   const { username } = await params;
 
-  // Search all groupMembers across all groups to find the user
-  let user = null;
-  for (const group of mockData) {
-    const foundUser = group.groupMembers?.find((member) => member.username === username);
-    if (foundUser) {
-      user = foundUser;
-      break;
-    }
-  }
+  const supabase = await createClient();
 
-  if (!user) {
+  const { data: user, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("username", username)
+    .single();
+
+  if (error || !user) {
+    console.error("User not found or error:", error);
     return notFound();
   }
 

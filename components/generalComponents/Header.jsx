@@ -59,7 +59,7 @@ export default function Header() {
             </Link>
           </div>
           <div className="w-full">
-            <Link href="/auth/sign-up" onClick={() => setMenuOpen(false)}>
+            <Link href="/auth/signup" onClick={() => setMenuOpen(false)}>
               <Button text="Sign Up" dark full header />
             </Link>
           </div>

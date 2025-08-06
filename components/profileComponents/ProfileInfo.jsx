@@ -1,7 +1,7 @@
 "use client"
 import React, { useRef, useEffect } from "react";
 
-export default function ProfileInfo({ username, name, profilePic, isEditing, onChange, onImageUpload }) {
+export default function ProfileInfo({ username, name, avatar_url, isEditing, onChange, onImageUpload }) {
   const textareaRef = useRef(null)
 
   // Auto-expand when isEditing becomes true
@@ -21,9 +21,9 @@ export default function ProfileInfo({ username, name, profilePic, isEditing, onC
       {/* Profile Picture */}
       <div className="flex flex-col items-center">
         <div className="w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center relative">
-        {profilePic ? (
+        {avatar_url ? (
             <img
-                src={profilePic}
+                src={avatar_url}
                 alt="Profile"
                 className="w-full h-full object-cover"
             />
@@ -49,8 +49,9 @@ export default function ProfileInfo({ username, name, profilePic, isEditing, onC
         {isEditing ? (
           <textarea
             ref={textareaRef}
-            value={name}
+            value={name ?? ''}
             maxLength={30}
+            placeholder="Enter name"
             onChange={(e) => {
               onChange("name", e.target.value);
               e.target.style.height = 'auto';

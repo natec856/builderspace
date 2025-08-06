@@ -1,68 +1,123 @@
-"use client"
-import React, { useState, useEffect } from "react";
-import ProfileInfo from "./ProfileInfo";
-import CategorySection from "./CategorySection";
-import BioSection from "./BioSection";
-import ProfileButtons from "./ProfileButtons";
-import ProfileVisitorBtns from "./ProfileVisitorBtns";
+'use client'
 
-export default function Profile({ user }) {
+import React, { useState, useEffect } from "react"
+import ProfileInfo from "./ProfileInfo"
+import CategorySection from "./CategorySection"
+import BioSection from "./BioSection"
+import ProfileButtons from "./ProfileButtons"
+import ProfileVisitorBtns from "./ProfileVisitorBtns"
+import { createClient } from "@/utils/supabase/client"
+import { useSearchParams } from "next/navigation"
 
-  const currentUser = { username: "NateC32" }; // Hardcoded current user for testing
+export default function ProfileContainer({ user }) {
+  const supabase = createClient()
+  const searchParams = useSearchParams()
+  const editParam = searchParams.get('edit')
 
   const defaultUser = {
-    username: "",
-    name: "",
-    bio: "",
-    profilePic: "",
+    id: '',
+    username: '',
+    name: '',
+    bio: "Click the edit profile button to set a name, bio, and categories you're interested in.",
     categories: [],
+    avatar_url: '',
     connections: [],
     invites: [],
-  };
+  }
 
-  const [profileData, setProfileData] = useState(user || defaultUser);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false)
+  const [currentUser, setCurrentUser] = useState(null)
+  const [profileData, setProfileData] = useState(user || defaultUser)
+
+  const isOwner = currentUser?.id === profileData.id
+
+  useEffect(() => {
+    if (editParam === 'true') {
+      setIsEditing(true)
+    }
+  }, [editParam])
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data: { user: authUser } } = await supabase.auth.getUser()
+      setCurrentUser(authUser)
+    }
+    fetchUser()
+  }, [])
+
+  useEffect(() => {
+    if (!isEditing) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [isEditing])
 
   const handleChange = (field, value) => {
     setProfileData((prev) => ({
       ...prev,
       [field]: value,
-    }));
-  };
+    }))
+  }
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      handleChange("profilePic", imageUrl);
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0]
+    if (!file || !profileData.id) return
+
+    const fileExt = file.name.split('.').pop()
+    const filePath = `${profileData.id}/avatar.${fileExt}`
+
+    // Upload to Supabase 'avatars' bucket
+    const { error: uploadError } = await supabase.storage
+      .from('avatars')
+      .upload(filePath, file, { upsert: true })
+
+    if (uploadError) {
+      console.error('Upload error:', uploadError.message)
+      return
     }
-  };
+
+    // Get public URL
+    const { data } = supabase.storage.from('avatars').getPublicUrl(filePath)
+    if (data?.publicUrl) {
+      handleChange("avatar_url", data.publicUrl)
+    }
+  }
 
   const handleShare = () => {
     const shareData = {
       title: 'Check out this profile',
       text: `See what ${profileData.name} is up to on BuilderSpace`,
       url: window.location.href,
-    };
+    }
 
     if (navigator.share) {
       navigator.share(shareData).catch((err) => {
-        console.error("Sharing failed:", err);
-      });
+        console.error("Sharing failed:", err)
+      })
     } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert("Profile link copied to clipboard!");
+      navigator.clipboard.writeText(window.location.href)
+      alert("Profile link copied to clipboard!")
     }
-  };
+  }
 
-  const isOwner = currentUser?.username === user.username;
+  const handleSaveToSupabase = async () => {
+    if (!profileData.id) return console.error("No user ID to update")
 
-  // Auto-scroll when editing finishes
-  useEffect(() => {
-    if (!isEditing) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    const { error } = await supabase
+      .from('users')
+      .update({
+        name: profileData.name,
+        bio: profileData.bio,
+        categories: profileData.categories,
+        avatar_url: profileData.avatar_url,
+      })
+      .eq('id', profileData.id)
+
+    if (error) {
+      console.error('Error saving user profile:', error.message)
+    } else {
+      console.log('Profile updated successfully')
     }
-  }, [isEditing]);
+  }
 
   return (
     <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-full mx-2 mt-4 px-4 py-6 mb-35 flex-1">
@@ -70,17 +125,18 @@ export default function Profile({ user }) {
         <ProfileInfo
           username={profileData.username}
           name={profileData.name}
-          profilePic={profileData.profilePic}
+          avatar_url={profileData.avatar_url}
           isEditing={isEditing}
           onChange={handleChange}
           onImageUpload={handleImageUpload}
         />
 
         <ProfileVisitorBtns
-          onChange={(newInvites)=>
-            setProfileData((prev) => ({...prev, invites: newInvites }))
+          onChange={(newInvites) =>
+            setProfileData((prev) => ({ ...prev, invites: newInvites }))
           }
-          isOwner={isOwner} />
+          isOwner={isOwner}
+        />
 
         <CategorySection
           categories={profileData.categories}
@@ -99,12 +155,14 @@ export default function Profile({ user }) {
         <ProfileButtons
           isEditing={isEditing}
           onEdit={() => setIsEditing(true)}
-          onDone={() => setIsEditing(false)}
+          onDone={async () => {
+            await handleSaveToSupabase()
+            setIsEditing(false)
+          }}
           onShare={handleShare}
           isOwner={isOwner}
         />
-
       </div>
     </div>
-  );
+  )
 }

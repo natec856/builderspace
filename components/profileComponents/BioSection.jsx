@@ -7,7 +7,7 @@ export default function BioSection({ bio, isEditing, onChange }) {
       {isEditing ? (
         <>
           <textarea 
-            value={bio}
+            value={bio || ''}
             onChange={(e) => onChange(e.target.value)}
             maxLength={150}
             rows={5}

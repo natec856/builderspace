@@ -45,7 +45,7 @@ export default function CategorySection({ categories = [], isEditing, onChange }
   };
 
   return (
-    <div className="mt-3 border-t-2 border-t-slate-200 pt-3">
+    <div className="mt-3">
       <div className="flex flex-wrap gap-2 mb-2">
         {safeCategories.map((cat, index) => (
           <span

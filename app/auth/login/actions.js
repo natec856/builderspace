@@ -1,42 +1,36 @@
-'use server';
+'use server'
 
-import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
-
-import { createClient } from '@/utils/supabase/server';
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
+import { createClient } from '@/utils/supabase/server'
 
 export async function login(formData) {
-  const supabase = await createClient();
+  const supabase = createClient()
 
-  const data = {
-    email: formData.get('email'),
-    password: formData.get('password'),
-  };
+  const email = formData.get('email')
+  const password = formData.get('password')
 
-  const { error } = await supabase.auth.signInWithPassword(data);
+  const { error, data: authData } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  })
 
-  if (error) {
-    redirect('/error');
+  if (error || !authData?.user) {
+    redirect('/error')
   }
 
-  revalidatePath('/', 'layout');
-  redirect('/');
-}
+  // Important: only now the cookie has the session
+  // so we can query the DB using .from()
+  const { data: userData, error: userError } = await supabase
+    .from('users')
+    .select('username')
+    .eq('id', authData.user.id)
+    .single()
 
-export async function signup(formData) {
-  const supabase = await createClient();
-
-  const data = {
-    email: formData.get('email'),
-    password: formData.get('password'),
-  };
-
-  const { error } = await supabase.auth.signUp(data);
-
-  if (error) {
-    redirect('/error');
+  if (userError || !userData?.username) {
+    redirect('/error')
   }
 
-  revalidatePath('/', 'layout');
-  redirect('/');
+  revalidatePath('/', 'layout')
+  redirect(`/${userData.username}`)
 }

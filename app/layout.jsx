@@ -1,10 +1,10 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import Logout from "@/components/generalComponents/Logout";
-import Footer from "@/components/generalComponents/Footer";
 import Header from "@/components/generalComponents/Header";
 import Head from "./head";
 import MobileNav from "@/components/generalComponents/MobileNav";
+import Footer from "@/components/generalComponents/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
