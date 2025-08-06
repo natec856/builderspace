@@ -45,7 +45,7 @@ export default function ProfileInfo({ username, name, avatar_url, isEditing, onC
       </div>
       {/* Info */}
       <div className="flex-1 w-full">
-        <h2 className="text-xl sm:text-2xl font-semibold">@{username}</h2>
+        <h2 className="text-lg sm:text-2xl font-semibold">@{username}</h2>
         {isEditing ? (
           <textarea
             ref={textareaRef}
@@ -57,7 +57,7 @@ export default function ProfileInfo({ username, name, avatar_url, isEditing, onC
               e.target.style.height = 'auto';
               e.target.style.height = `${e.target.scrollHeight}px`;
             }}
-            className="mt-1 block w-full border-2 border-slate-300 rounded px-2 py-1 text-sm sm:text-xl overflow-hidden resize-none leading-tight"
+            className="mt-1 block w-full border-2 border-slate-300 rounded px-2 py-1 text-sm sm:text-xl overflow-hidden resize-none leading-tight focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
             rows={1}
           />
         ) : (

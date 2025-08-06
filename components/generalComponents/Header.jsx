@@ -1,14 +1,12 @@
 'use client'
 
 import React, { useState } from 'react'
-import Button from '../landingPageComponents/Button'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 
 export default function Header() {
   const username = "NateC32"
   const [menuOpen, setMenuOpen] = useState(false)
-  const loggedIn = true
 
   return (
     <header className="w-full px-3 lg:px-6 text-white bg-slate-900">
@@ -52,15 +50,14 @@ export default function Header() {
         }`}
         style={{ willChange: 'max-height, opacity' }}
       >
-        <div className="flex flex-col space-y-3 px-3 py-4">
+        <div className="flex flex-col items-center space-y-3 px-3 py-4">
           <div className="w-full">
-            <Link href="/auth/login" onClick={() => setMenuOpen(false)}>
-              <Button text="Login" full header />
+            <Link href="/auth/login" onClick={() => setMenuOpen(false)} className='block bg-white text-blue-600 text-center py-2 font-semibold rounded-md text-base max-w-[300px]'>Login
             </Link>
           </div>
           <div className="w-full">
-            <Link href="/auth/signup" onClick={() => setMenuOpen(false)}>
-              <Button text="Sign Up" dark full header />
+            <Link href="/auth/signup" onClick={() => setMenuOpen(false)} className='block bg-blue-600 text-white text-center py-2 font-semibold rounded-md text-base max-w-[300px]'>
+              Sign Up
             </Link>
           </div>
         </div>

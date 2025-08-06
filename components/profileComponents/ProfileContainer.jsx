@@ -130,14 +130,12 @@ export default function ProfileContainer({ user }) {
           onChange={handleChange}
           onImageUpload={handleImageUpload}
         />
-
         <ProfileVisitorBtns
           onChange={(newInvites) =>
             setProfileData((prev) => ({ ...prev, invites: newInvites }))
           }
           isOwner={isOwner}
         />
-
         <CategorySection
           categories={profileData.categories}
           isEditing={isEditing}
@@ -145,13 +143,11 @@ export default function ProfileContainer({ user }) {
             setProfileData((prev) => ({ ...prev, categories: newCategories }))
           }
         />
-
         <BioSection
           bio={profileData.bio}
           isEditing={isEditing}
           onChange={(newBio) => handleChange("bio", newBio)}
         />
-
         <ProfileButtons
           isEditing={isEditing}
           onEdit={() => setIsEditing(true)}

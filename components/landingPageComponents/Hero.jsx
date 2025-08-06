@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Hero() {
   return (
-    <div className='h-fit max-w-full mx-2 mt-4 px-4 py-6 mb-35 flex-1 gap-4'>
+    <div className='h-fit max-w-full mx-2 mt-4 py-6 mb-35 flex-1 gap-4'>
       <h1 className={'text-2xl sm:text-6xl md:text-7xl text-center mb-4 ' + inter.className}>
         Instantly connect with serious creators and entrepreneurs.
       </h1>
@@ -22,7 +22,7 @@ export default function Hero() {
 
         <div className="grid sm:grid-cols-3 gap-8">
           {/* <!-- Step 1 --> */}
-          <div className="flex flex-col items-center text-center">
+          <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-full mx-1 mt-4 px-4 py-6 flex flex-col items-center text-center">
             <div className="text-white bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-4">
               1
             </div>
@@ -33,7 +33,7 @@ export default function Hero() {
           </div>
 
           {/* <!-- Step 2 --> */}
-          <div className="flex flex-col items-center text-center">
+          <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-full mx-2 mt-4 px-4 py-6 flex flex-col items-center text-center">
             <div className="text-white bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-4">
               2
             </div>
@@ -44,7 +44,7 @@ export default function Hero() {
           </div>
 
           {/* <!-- Step 3 --> */}
-          <div className="flex flex-col items-center text-center">
+          <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-full mx-1 mt-4 px-4 py-6 flex flex-col items-center text-center">
             <div className="text-white bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-4">
               3
             </div>
@@ -55,7 +55,7 @@ export default function Hero() {
           </div>
 
           {/* <!-- Step 4 --> */}
-          <div className="flex flex-col items-center text-center">
+          <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-full mx-1 mt-4 px-4 py-6 flex flex-col items-center text-center">
             <div className="text-white bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-4">
               4
             </div>
