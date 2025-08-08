@@ -12,10 +12,10 @@ export default function GroupMemberPreview({ userId, username, name }) {
       </div>
 
       <div className="flex flex-col min-w-0">
-        <div className="font-bold sm:text-xl text-slate-900 truncate whitespace-nowrap overflow-hidden">
+        <div className="font-bold test-base sm:text-lg md:text-xl lg:text-2xl xl:test-3xl text-slate-900 truncate whitespace-nowrap overflow-hidden">
           {name}
         </div>
-        <div className="text-sm text-slate-600 truncate whitespace-nowrap overflow-hidden">
+        <div className="test-sm sm:text-base md:text-lg lg:text-xl xl:test-2xl text-slate-600 truncate whitespace-nowrap overflow-hidden">
           @{username}
         </div>
       </div>

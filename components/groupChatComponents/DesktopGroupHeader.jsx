@@ -2,18 +2,18 @@ import React from 'react'
 import Link from 'next/link'
 import GroupButtons from './GroupButtons'
 
-export default function GroupHeader({groupId, groupName, isEditing, onChange, onEdit, onDone}) {
+export default function GroupHeader({ groupName, isEditing, onChange, onEdit, onDone, onMessage}) {
 
   return ( 
     <div>
-      <Link
-          href={`/groups/${groupId}`}
-          className='bg-slate-900 rounded-md w-6 h-6 flex items-center justify-center mr-auto'>
-            <i className='fa-solid fa-arrow-left text-white text-base'></i>
-        </Link>
+      <div
+          onClick={onMessage}
+          className='bg-slate-900 rounded-md w-10 h-10 flex items-center justify-center mr-auto'>
+            <i className='fa-solid fa-arrow-left text-white text-2xl'></i>
+        </div>
       <div>
         {isEditing ? (
-          <div className='flex border-b border-slate-900 mx-2 text-slate-900 font-bold text-base h-fit py-2'>
+          <div className='flex border-b border-slate-900 mx-2 text-slate-900 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl h-fit py-2'>
             <textarea 
               value={groupName}
               rows={1}

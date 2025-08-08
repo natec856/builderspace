@@ -120,7 +120,7 @@ export default function ProfileContainer({ user }) {
   }
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-full mx-2 mt-4 px-4 py-6 mb-35 flex-1">
+    <div className="mx-auto w-full max-w-screen-md flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md h-fit px-4 py-6 md:mt-10 mb-36">
       <div className="h-fit">
         <ProfileInfo
           username={profileData.username}

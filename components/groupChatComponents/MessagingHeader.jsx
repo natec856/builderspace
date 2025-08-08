@@ -12,7 +12,7 @@ export default function MessagingHeader({groupId, groupName}) {
       </Link>
       <span className="mx-2 flex-1 font-bold text-center truncate">
         {groupName}
-      </span>
+          </span>
       <Link
         href={`/groups/${groupId}/groupFocus`}
         className="bg-slate-900 rounded-md w-6 h-6 flex items-center justify-center">

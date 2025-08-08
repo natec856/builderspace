@@ -50,18 +50,18 @@ export default function MessageList({ messages }) {
           return (
             <div key={msg.id}>
               {showTimestamp && (
-                <span className="block mt-2 text-xs text-slate-400 text-center">
+                <span className="block mt-2 text-xs md:text-base lg:text-lg text-slate-400 text-center">
                   {formatTimestamp(msg.timestamp)}
                 </span>
               )}
 
-              <span className={`text-xs text-slate-400 ml-2 ${
+              <span className={`text-xs md:text-base lg:text-lg text-slate-400 ml-2 ${
                 msg.sender === 'You' ? 'hidden' : ''
               }`}>
                 {msg.sender}
               </span>
 
-              <div className={`px-2 py-1 rounded-lg text-sm font-medium w-fit max-w-3/4 break-words ${
+              <div className={`px-2 py-1 md:px-3 md:py-2 rounded-lg text-sm md:text-lg lg:text-xl xl:text-2xl font-medium w-fit max-w-3/4 break-words ${
                 msg.sender === 'You'
                   ? 'ml-auto bg-blue-600 text-white rounded-br-none'
                   : 'mr-auto bg-slate-200 text-slate-700 rounded-bl-none'

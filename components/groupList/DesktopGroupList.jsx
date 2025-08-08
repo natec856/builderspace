@@ -1,13 +1,10 @@
 'use client'
 
 import React, { useState, useMemo } from 'react'
-import { useRouter } from 'next/navigation'
-import GroupPreview from '@/components/groupList/GroupPreview'
+import DesktopGroupPreview from '@/components/groupList/DesktopGroupPreview'
 import GroupSearchBar from './GroupSearchBar'
 
-export default function GroupList() {
-  const router = useRouter()
-
+export default function DesktopGroupList({onSelectGroup}) {
   const dummyGroups = [
     {
       groupId: 'abc123',
@@ -57,17 +54,18 @@ export default function GroupList() {
   }, [searchTerm])
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md h-full max-h-[400px] md:max-h-[450px] xl:max-h-[500px] 2xl:max-h-[1000px] overflow-y-scroll max-w-full mx-2 mt-4 px-4 py-6 mb-5 flex-1">
-      <h1 className="text-2xl sm:text-3xl font-bold">My Groups</h1>
+    <div className="bg-white shadow-md shadow-slate-400 rounded-md max-h-[400px] md:max-h-[800px] h-fit overflow-y-scroll md:max-w-[400px] xl:max-w-[550px] mx-2 mt-4 px-4 py-6 mb-35 flex-1">
+      <h1 className="text-3xl sm:text-4xl font-bold">My Groups</h1>
       <GroupSearchBar onSearch={setSearchTerm} />
       <ul>
         {filteredGroups.map((group) => (
           <li key={group.groupId}>
-            <GroupPreview
+            <DesktopGroupPreview
               groupId={group.groupId}
               groupName={group.groupName}
               lastMessage={group.lastMessage}
-              lastMessageDate={group.lastMessageDate} />
+              lastMessageDate={group.lastMessageDate}
+              onClick={() => onSelectGroup(group.groupId)} />
           </li>
         ))}
       </ul>

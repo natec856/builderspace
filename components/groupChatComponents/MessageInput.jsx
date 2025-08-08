@@ -24,7 +24,7 @@ export default function MessageInput({ setMessages }) {
   }
 
   return (
-    <div className="bg-slate-100 rounded-md flex gap-2 m-2">
+    <div className="bg-slate-100 rounded-md flex gap-2 mt-4 mb-10">
     <textarea
       ref={textareaRef}
       value={input}
@@ -42,12 +42,12 @@ export default function MessageInput({ setMessages }) {
           }
       }}
       placeholder="Type a message..."
-      className="flex-1 pl-4 py-2 outline-none text-sm resize-none overflow-hidden"
+      className="flex-1 pl-4 py-2 md:py-4 outline-none text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl resize-none overflow-hidden"
       rows={1}
       />
-      <div className="bg-blue-600 rounded-md w-7 h-7 m-1 flex items-center justify-center">
+      <div className="bg-blue-600 rounded-md w-7 h-7 md:w-12 md:h-12 m-1 md:m-2 flex items-center justify-center">
           <i
-              className="fa-solid fa-arrow-up text-white text-lg cursor-pointer"
+              className="fa-solid fa-arrow-up text-white text-lg md:text-2xl lg:text-3xl cursor-pointer"
               onClick={handleSend}
           ></i>
       </div>

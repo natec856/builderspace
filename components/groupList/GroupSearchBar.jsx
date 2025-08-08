@@ -13,14 +13,14 @@ export default function GroupSearchBar({ onSearch }) {
 
   return (
     <div className="w-full px-2 py-3 border-b border-slate-200 bg-white">
-      <div className="flex items-center bg-slate-100 px-3 py-2 rounded-full w-full sm:max-w-[500px] lg:max-w-[600px] shadow-sm">
-        <i className="fa-solid fa-search text-slate-500 mr-2 text-sm"></i>
+      <div className="flex items-center bg-slate-100 px-3 py-2 md:px-5 md:py-4 rounded-full w-full shadow-sm">
+        <i className="fa-solid fa-search text-slate-500 mr-2 text-sm md:text-lg lg:text-xl xl:text-2xl"></i>
         <input
           type="text"
           placeholder="Search groups"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="bg-transparent focus:outline-none text-slate-900 w-full placeholder:text-slate-400 text-sm sm:text-md md:text-lg"
+          className="bg-transparent focus:outline-none text-slate-900 w-full placeholder:text-slate-400 text-sm md:text-lg lg:text-xl xl:text-2xl"
         />
       </div>
     </div>

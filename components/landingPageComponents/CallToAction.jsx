@@ -3,13 +3,23 @@ import React from 'react'
 
 export default function CallToAction() {
   return (
-    <div className='grid grid-rows-2 gap-4 w-full max-w-[600px] mx-auto '>
+    <div className="flex flex-col gap-6 w-full max-w-[600px] mx-auto px-4 py-6 sm:py-10">
+      <Link 
+        href="/auth/signup"
+        className="bg-blue-600 text-white text-center py-3 sm:py-4 md:py-5 lg:py-6 font-semibold rounded-full text-lg sm:text-xl md:text-2xl lg:text-3xl shadow-lg hover:bg-blue-700 transition duration-200"
+      >
+        Join Now — It’s Free
+      </Link>
+
+      <p className="text-center text-base sm:text-lg md:text-xl lg:text-2xl text-slate-900">
+        Already have an account?{" "}
         <Link 
-          href="/auth/signup"
-          className='bg-blue-600 text-white text-center py-2 font-semibold rounded-full mx-2 text-base shadow-md shadow-slate-400'>
-          Sign Up
+          href="/auth/login"
+          className="text-blue-600 font-semibold hover:underline"
+        >
+          Log In
         </Link>
-        <p className='text-sm sm:text-base text-center'>Already have an account? <Link className='text-blue-600 text-sm sm:text-base sm:hover:underline' href="/auth/login">Login</Link></p>
+      </p>
     </div>
   )
 }
