@@ -18,7 +18,7 @@ export default function DirectMessageList({ dummyDirectMessages }) {
     
   return (
     <div className="bg-white shadow-md shadow-slate-400 rounded-md h-full max-h-[400px] md:max-h-[450px] xl:max-h-[500px] 2xl:max-h-[1000px] overflow-y-scroll max-w-full mx-2 mt-4 px-4 py-6 mb-5 flex-1">
-      <div className='flex items-center'>
+      <div className='flex justify-between items-center'>
         <h1 className="text-2xl sm:text-3xl font-bold">Messages</h1>
         <Link
           href={`directMessages/${chatId}`}>

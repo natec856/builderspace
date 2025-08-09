@@ -1,12 +1,10 @@
 'use client'
 
 import React, { useState, useMemo } from 'react'
-import { useRouter } from 'next/navigation'
 import GroupPreview from '@/components/groupList/GroupPreview'
 import GroupSearchBar from './GroupSearchBar'
 
 export default function GroupList() {
-  const router = useRouter()
 
   const dummyGroups = [
     {

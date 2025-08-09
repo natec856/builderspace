@@ -47,56 +47,58 @@ export default function FindGroupsContainer() {
   }, [userData])
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-full mx-2 mt-4 px-4 py-6 mb-35 flex-1">
-      {findStep === 'cooldown' && (
-        <FindCooldown 
-          findstep={findStep}/>
-      )}
-      {findStep === 'start' && (
-        <FindStart 
-          findStep={findStep} 
-          onDone={() => setFindStep('topics')} />
-      )}
-      {findStep === 'topics' && (
-        <FindTopics 
-          findStep={findStep}
-          onDone={(topics) => {
-            setUserData(prev => ({ ...prev, topics }));
-            setFindStep('experience');
-          }}
-          userData={userData} />
-      )}
-      {findStep === 'experience' && (
-        <FindExperience 
-          findStep={findStep} 
-          onDone={(experience) => {
-            setUserData(prev => ({ ...prev, experience }));
-            setFindStep('submit');
-          }} 
-          onBack={() => setFindStep('topics')}
-          userData={userData} />
-      )}
-      {findStep === 'submit' && (
-        <FindSubmit 
-          findStep={findStep} 
-          onDone={(timestamp) => {
-            setUserData(prev => ({ ...prev, timestamp }));
-            setFindStep('complete');
-          }}
-          onBack={() => setFindStep('experience')}
-          userData={userData} />
-      )}
-      {findStep === 'complete' && (
-        <FindComplete 
-          findStep={findStep} 
-          onDone={() => {
-            if (!canSubmit) {
-              setFindStep('cooldown');
-            } else {
-              setFindStep('start'); // or wherever the workflow begins
-            }
-          }} />
-      )}
+    <div className='flex w-full justify-center'>
+      <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-screen-md mx-2 mt-20 px-4 py-6 mb-35 flex-1">
+        {findStep === 'cooldown' && (
+          <FindCooldown 
+            findstep={findStep}/>
+        )}
+        {findStep === 'start' && (
+          <FindStart 
+            findStep={findStep} 
+            onDone={() => setFindStep('topics')} />
+        )}
+        {findStep === 'topics' && (
+          <FindTopics 
+            findStep={findStep}
+            onDone={(topics) => {
+              setUserData(prev => ({ ...prev, topics }));
+              setFindStep('experience');
+            }}
+            userData={userData} />
+        )}
+        {findStep === 'experience' && (
+          <FindExperience 
+            findStep={findStep} 
+            onDone={(experience) => {
+              setUserData(prev => ({ ...prev, experience }));
+              setFindStep('submit');
+            }} 
+            onBack={() => setFindStep('topics')}
+            userData={userData} />
+        )}
+        {findStep === 'submit' && (
+          <FindSubmit 
+            findStep={findStep} 
+            onDone={(timestamp) => {
+              setUserData(prev => ({ ...prev, timestamp }));
+              setFindStep('complete');
+            }}
+            onBack={() => setFindStep('experience')}
+            userData={userData} />
+        )}
+        {findStep === 'complete' && (
+          <FindComplete 
+            findStep={findStep} 
+            onDone={() => {
+              if (!canSubmit) {
+                setFindStep('cooldown');
+              } else {
+                setFindStep('start'); // or wherever the workflow begins
+              }
+            }} />
+        )}
+      </div>
     </div>
   )
 }
