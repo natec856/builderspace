@@ -8,7 +8,7 @@ export default function GroupHeader({ groupName, isEditing, onChange, onEdit, on
     <div>
       <div
           onClick={onMessage}
-          className='bg-slate-900 rounded-md w-10 h-10 flex items-center justify-center mr-auto'>
+          className='bg-slate-900 rounded-md w-10 h-10 flex items-center justify-center mr-auto hover:cursor-pointer'>
             <i className='fa-solid fa-arrow-left text-white text-2xl'></i>
         </div>
       <div>

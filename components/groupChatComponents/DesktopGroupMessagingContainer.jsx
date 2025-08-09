@@ -21,14 +21,14 @@ export default function DesktopGroupMessagingContainer({ groupId, onFocus }) {
   if (!group) {
     return (
       
-    <div className="flex-1 items-center mt-30 text-slate-500 text-2xl">
-      <p className='w-full text-center'>Select a group to view chat</p>
+    <div className="w-full max-w-screen-md mt-30 text-slate-500 text-2xl">
+      <p className='text-center'>Select a group to view chat</p>
     </div>
     )
   }
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md max-h-[400px] md:max-h-[800px] h-fit overflow-y-scroll mx-2 mt-4 px-4 mb-35 flex-1">
+    <div className="bg-white shadow-md shadow-slate-400 rounded-md max-h-[calc(100vh-200px)] h-fit mx-2 mt-4 px-4 mb-35 flex flex-col w-full max-w-screen-md">
         <DesktopMessagingHeader
             groupId={groupId}
             groupName={group.groupName}

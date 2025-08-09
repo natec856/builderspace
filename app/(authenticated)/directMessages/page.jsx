@@ -1,6 +1,8 @@
 import React from 'react'
 import DirectMessageList from '@/components/directMessageListComponents/DirectMessageList'
 import MainAuth from '@/components/MainAuth'
+import Header from '@/components/generalComponents/Header'
+import MobileNav from '@/components/generalComponents/MobileNav'
 
 export default function DirectMessagesPage() {
   const dummyDirectMessages = [
@@ -19,7 +21,9 @@ export default function DirectMessagesPage() {
   ]
   return (
     <MainAuth>
-        <DirectMessageList
+      <Header />
+      <MobileNav />
+      <DirectMessageList
         dummyDirectMessages={dummyDirectMessages} />
     </MainAuth>
   )

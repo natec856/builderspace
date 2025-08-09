@@ -27,7 +27,7 @@ export default function GroupFocus({ groupId, onMessage }) {
   }
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-full mx-2 mt-4 px-6 py-6 mb-35 flex-1">
+    <div className="bg-white shadow-md shadow-slate-400 rounded-md max-h-[calc(100vh-200px)] h-fit max-w-screen-md mx-2 mt-4 px-6 py-6 mb-35 flex-1">
       <DesktopGroupHeader
         groupId={groupId}
         isEditing={isEditing}

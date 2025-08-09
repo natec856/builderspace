@@ -8,8 +8,8 @@ export default function GroupHeader({groupId, groupName, isEditing, onChange, on
     <div>
       <Link
           href={`/groups/${groupId}`}
-          className='bg-slate-900 rounded-md w-6 h-6 flex items-center justify-center mr-auto'>
-            <i className='fa-solid fa-arrow-left text-white text-base'></i>
+          className='bg-slate-900 rounded-md w-7 h-7 md:w-9 md:h-9 lg:w-12 lg:h-12 flex items-center justify-center mr-auto'>
+            <i className='fa-solid fa-arrow-left text-white text-base sm:text-lg'></i>
         </Link>
       <div>
         {isEditing ? (

@@ -42,14 +42,14 @@ export default function Header({ username }) {
       {isAuthenticated ? (
         <div className="hidden sm:flex items-center justify-between w-full relative">
           {/* Centered nav */}
-          <div className="absolute left-1/2 -translate-x-1/2 flex gap-10 items-center">
-            <Link href="/findGroups" className="flex flex-col items-center justify-center text-slate-900 bg-white border-3 hover:text-white hover:bg-transparent hover:border-white font-semibold rounded-xl px-4 py-2 sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+          <div className="absolute left-1/2 -translate-x-1/2 flex gap-5 lg:gap-10 items-center w-full justify-center">
+            <Link href="/findGroups" className="flex flex-col items-center justify-center text-slate-900 bg-white border-3 hover:text-white hover:bg-transparent hover:border-white font-semibold rounded-xl px-4 py-2 sm:text-sm lg:text-xl xl:text-2xl 2xl:text-3xl">
               Find Groups
             </Link>
-            <Link href="/groups" className="flex flex-col items-center justify-center text-slate-900 bg-white border-3 hover:text-white hover:bg-transparent hover:border-white font-semibold rounded-xl px-4 py-2 sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+            <Link href="/groups" className="flex flex-col items-center justify-center text-slate-900 bg-white border-3 hover:text-white hover:bg-transparent hover:border-white font-semibold rounded-xl px-4 py-2 sm:text-sm lg:text-xl xl:text-2xl 2xl:text-3xl">
               My Groups
             </Link>
-            <Link href={`/${username}`} className="flex flex-col items-center justify-center text-slate-900 bg-white border-3 hover:text-white hover:bg-transparent hover:border-white font-semibold rounded-xl px-4 py-2 sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+            <Link href={`/${username}`} className="flex flex-col items-center justify-center text-slate-900 bg-white border-3 hover:text-white hover:bg-transparent hover:border-white font-semibold rounded-xl px-4 py-2 sm:text-sm lg:text-xl xl:text-2xl 2xl:text-3xl">
               My Profile
             </Link>
           </div>
@@ -57,7 +57,7 @@ export default function Header({ username }) {
           {/* Logout button on far right */}
           <button
             onClick={handleLogout}
-            className="ml-auto flex flex-col items-center justify-center text-white border-3 font-semibold hover:text-slate-900 hover:bg-white hover:cursor-pointer rounded-xl px-4 py-2 sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
+            className="ml-auto flex flex-col items-center justify-center text-white border-3 font-semibold hover:text-slate-900 hover:bg-white hover:cursor-pointer rounded-xl px-4 py-2 sm:text-sm lg:text-xl xl:text-2xl 2xl:text-3xl"
           >
             Logout
           </button>

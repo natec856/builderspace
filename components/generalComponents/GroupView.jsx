@@ -18,7 +18,7 @@ export default function GroupView() {
   return (
     <>
       {/* Desktop layout */}
-      <div className="hidden md:flex w-full">
+      <div className="hidden md:flex w-full justify-center">
         <DesktopGroupList onSelectGroup={handleSelectGroup} />
         {!isFocus ? (
           <DesktopGroupMessagingContainer

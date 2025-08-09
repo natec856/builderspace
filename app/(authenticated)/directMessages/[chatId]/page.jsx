@@ -2,6 +2,9 @@
 import { notFound } from 'next/navigation'
 import DirectMessagingContainer from '@/components/directMessagesComponents/DirectMessageContainer'
 import { useState } from 'react';
+import MainAuth from '@/components/MainAuth';
+import Header from '@/components/generalComponents/Header';
+import MobileNav from '@/components/generalComponents/MobileNav';
 
 export default async function ChatPage({ params }) {
   const { chatId } = await params;
@@ -68,13 +71,15 @@ export default async function ChatPage({ params }) {
   }
 
   return (
-    <div className="h-screen">
+    <MainAuth>
+      <Header />
+      <MobileNav />
       <DirectMessagingContainer 
         chatId={chatId}
         chatName={chat?.chatName ?? 'New Chat'}
         messages={chat?.messages ?? []}
         isNewChat={isNewChat}
         onStartChat={handleStartChat} />
-    </div>
+    </MainAuth>
   )
 }

@@ -23,7 +23,7 @@ export default function GroupMessagingContainer({ groupId }) {
   }
 
   return (
-    <div className="flex flex-col h-full rounded-md max-h-49/50">
+    <div className="flex flex-col rounded-md max-h-[calc(100vh-100px)] h-fit">
         <MessagingHeader
             groupId={groupId}
             groupName={group.groupName} />
