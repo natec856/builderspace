@@ -1,10 +1,8 @@
 import { useRef, useEffect } from 'react'
 
-export default function MessageList({ messages }) {
-  const bottomRef = useRef(null)
+export default function MessageList({ messages, currentUserId }) {
   const containerRef = useRef(null)
 
-  // Scroll to bottom on mount and whenever messages change
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
@@ -13,8 +11,8 @@ export default function MessageList({ messages }) {
 
   const shouldShowTimestamp = (current, previous) => {
     if (!previous) return true
-    const currTime = new Date(current.timestamp).getTime()
-    const prevTime = new Date(previous.timestamp).getTime()
+    const currTime = new Date(current.created_at).getTime()
+    const prevTime = new Date(previous.created_at).getTime()
     return currTime - prevTime > 15 * 60 * 1000 // 15 minutes
   }
 
@@ -38,7 +36,7 @@ export default function MessageList({ messages }) {
       return `Yesterday ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
     }
 
-    const daysDiff = (diff / oneDay) | 0
+    const daysDiff = Math.floor(diff / oneDay)
     if (daysDiff < 7) {
       return `${date.toLocaleDateString(undefined, { weekday: 'long' })} ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
     }
@@ -55,35 +53,37 @@ export default function MessageList({ messages }) {
         const prevMsg = messages[index - 1]
         const showTimestamp = shouldShowTimestamp(msg, prevMsg)
 
+        const isCurrentUser = msg.user_id === currentUserId
+        const senderName = isCurrentUser ? 'You' : (msg.user?.name || 'Unknown')
+
         return (
           <div key={msg.id}>
             {showTimestamp && (
               <span className="block mt-2 text-xs md:text-base lg:text-lg text-slate-400 text-center">
-                {formatTimestamp(msg.timestamp)}
+                {formatTimestamp(msg.created_at)}
               </span>
             )}
 
             <span
               className={`text-xs md:text-base lg:text-lg text-slate-400 ml-2 ${
-                msg.sender === 'You' ? 'hidden' : ''
+                isCurrentUser ? 'hidden' : ''
               }`}
             >
-              {msg.sender}
+              {senderName}
             </span>
 
             <div
               className={`px-2 py-1 md:px-3 md:py-2 rounded-lg text-sm md:text-base lg:text-lg xl:text-xl font-medium w-fit max-w-3/4 break-words ${
-                msg.sender === 'You'
+                isCurrentUser
                   ? 'ml-auto bg-blue-600 text-white rounded-br-none'
                   : 'mr-auto bg-slate-200 text-slate-700 rounded-bl-none'
               }`}
             >
-              <p className="break-words">{msg.text}</p>
+              <p className="break-words">{msg.content}</p>
             </div>
           </div>
         )
       })}
-      <div ref={bottomRef} />
     </div>
   )
 }

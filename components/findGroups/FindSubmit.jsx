@@ -1,8 +1,10 @@
 import React from 'react'
+import { addUserToStagingPool } from '@/utils/matching';
 
 export default function FindSubmit({ onDone, onBack, userData }) {
 
     const handleSubmit = () => {
+        addUserToStagingPool(userData.userId);
         const timestamp = new Date().toISOString();
         console.log('Submitted at:', timestamp);
         onDone(timestamp);

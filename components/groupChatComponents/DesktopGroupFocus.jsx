@@ -5,7 +5,7 @@ import mockData from '@/public/mockData.json'
 import DesktopGroupHeader from './DesktopGroupHeader'
 import GroupMemberPreview from './GroupMemberPreview'
 
-export default function GroupFocus({ groupId, onMessage }) {
+export default function DesktopGroupFocus({ groupId, onMessage }) {
   const [group, setGroup] = useState(null)
   const [groupPageName, setGroupPageName] = useState('')
   const [isEditing, setIsEditing] = useState(false)

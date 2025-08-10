@@ -40,7 +40,7 @@ export default async function FindGroupsPage() {
     <MainAuth>
       <Header username={userRecord.username} />
       <MobileNav username={userRecord.username} />
-      <FindGroupsContainer />
+      <FindGroupsContainer  />
     </MainAuth>
   )
 }

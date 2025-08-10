@@ -24,7 +24,7 @@ export default async function GroupPage({ params }) {
         error: userError 
       } = await supabase
         .from("users")
-        .select("*")
+        .select("username")
         .eq("id", authUser.id)
         .single();
     

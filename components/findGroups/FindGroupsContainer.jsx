@@ -18,6 +18,7 @@ function isWithin24Hours(timestamp) {
 export default function FindGroupsContainer() {
   const [findStep, setFindStep] = useState('start')
   const [userData, setUserData] = useState({
+    userId: '',
     topics: [],
     experience: '',
     timestamp: null,
@@ -48,7 +49,7 @@ export default function FindGroupsContainer() {
 
   return (
     <div className='flex w-full justify-center'>
-      <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-screen-md mx-2 mt-20 px-4 py-6 mb-35 flex-1">
+      <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-screen-md mx-2 mt-4 px-4 py-6 mb-35 flex-1">
         {findStep === 'cooldown' && (
           <FindCooldown 
             findstep={findStep}/>
