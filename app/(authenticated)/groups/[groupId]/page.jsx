@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import GroupMessaging from "@/components/groupChatComponents/GroupMessagingContainer";
+import GroupMessagingContainer from "@/components/groupChatComponents/GroupMessagingContainer";
 import MainAuth from "@/components/MainAuth";
 import Header from "@/components/generalComponents/Header";
 import MobileNav from "@/components/generalComponents/MobileNav";
@@ -39,7 +39,9 @@ export default async function GroupPage({ params }) {
     <MainAuth>
       <Header username={userRecord.username} />
       <MobileNav username={userRecord.username} />
-      <GroupMessaging groupId={groupId} />
+      <GroupMessagingContainer 
+        groupId={groupId}
+        currentUser={authUser.id} />
     </MainAuth>
   );
 }
