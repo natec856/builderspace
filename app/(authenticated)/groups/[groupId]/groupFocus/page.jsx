@@ -7,6 +7,7 @@ import { createClient } from '@/utils/supabase/server';
 
 
 export default async function GroupFocusPage({params}) {
+  const { groupId } = await params;
 
   const supabase = await createClient();
     // Get the currently authenticated user
@@ -33,8 +34,6 @@ export default async function GroupFocusPage({params}) {
           console.error("User not found or error:", error);
           return notFound();
         }
-    
-  const { groupId } = await params;
     
   return (
     <MainAuth>

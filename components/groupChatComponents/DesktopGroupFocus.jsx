@@ -1,54 +1,103 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import mockData from '@/public/mockData.json'
+import { createClient } from '@/utils/supabase/client'
 import DesktopGroupHeader from './DesktopGroupHeader'
 import GroupMemberPreview from './GroupMemberPreview'
 
 export default function DesktopGroupFocus({ groupId, onMessage }) {
-  const [group, setGroup] = useState(null)
-  const [groupPageName, setGroupPageName] = useState('')
+  const [members, setMembers] = useState([])
   const [isEditing, setIsEditing] = useState(false)
+  const [groupName, setGroupName] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  const supabase = createClient() // Initialize Supabase client to interact with your backend
 
   useEffect(() => {
-    const foundGroup = mockData.find(g => g.groupId === groupId)
-    if (foundGroup) {
-      setGroup(foundGroup)
-      setGroupPageName(foundGroup.groupName || '')
+    // If no groupId is provided, clear members and loading state and exit early
+    if (!groupId) {
+      setMembers([])       // Clear members list
+      setIsLoading(false)  // Indicate loading finished
+      return               // Exit useEffect early
     }
-  }, [groupId])
 
-  if (!group) {
-    return <p className="text-center text-gray-500">Group not found</p>
-  }
+    // Define an async function to fetch group members and group name
+    async function fetchGroupMembers() {
+      setIsLoading(true)   // Start loading state
+      setError(null)       // Clear any previous errors
+
+      try {
+        // Query 'groups' table to select the group's name and nested users in user_groups
+        const { data, error } = await supabase
+          .from('groups')
+          .select('name, user_groups(users(id, username, name))')
+          .eq('id', groupId)  // Filter by the given groupId
+          .single()           // Expect only one result (single row)
+
+        console.log(data)     // Debug log the returned data
+
+        if (error) throw error  // If error returned, throw it to catch block
+
+        setGroupName(data.name) // Set the group name state to the fetched group's name
+
+        // Extract the nested users from the user_groups array, filter out any nulls
+        const users = data.user_groups.map(ug => ug.users).filter(Boolean)
+
+        setMembers(users)      // Update members state with the user list
+      } catch (err) {
+        console.error('Error fetching group members:', err) // Log errors to console
+        setError(err.message)     // Store error message in state for UI display or logic
+        setMembers([])            // Clear members if error occurs
+        setGroupName('')          // Clear group name on error
+      } finally {
+        setIsLoading(false)       // End loading state regardless of success or failure
+      }
+    }
+
+    fetchGroupMembers() // Call the async fetch function defined above
+
+    // Dependency array triggers this effect when groupId or supabase client changes
+  }, [groupId, supabase])
+
 
   const handleChange = (newName) => {
-    setGroupPageName(newName)
+    setGroupName(newName)
+  }
+
+  if (isLoading) {
+    return <p className="text-center text-gray-500">Loading group members...</p>
+  }
+
+  if (error) {
+    return <p className="text-center text-red-500">Error loading group members: {error}</p>
   }
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md max-h-[calc(100vh-200px)] h-fit max-w-screen-md mx-2 mt-4 px-6 py-6 mb-35 flex-1">
+    <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-screen-md mx-2 mt-4 px-6 py-6 mb-35 flex-1">
       <DesktopGroupHeader
         groupId={groupId}
         isEditing={isEditing}
-        groupName={groupPageName}
+        groupName={groupName}
         onChange={handleChange}
         onEdit={() => setIsEditing(true)}
         onDone={() => setIsEditing(false)}
         onMessage={onMessage}
       />
-
-      {/* Render list of members */}
+{/* Render list of group members */}
       <ul className="mt-4 space-y-2">
-        {group.groupMembers.map((member) => (
-          <li key={member.userId}>
-            <GroupMemberPreview
-              userId={member.userId}
-              username={member.username}
-              name={member.name}
-            />
-          </li>
-        ))}
+        {members.length === 0 ? (
+          <li className="text-center text-gray-500">No members found</li>
+        ) : (
+          members.map(user => (
+            <li key={user.id}>
+              <GroupMemberPreview
+                username={user.username}
+                name={user.name}
+              />
+            </li>
+          ))
+        )}
       </ul>
     </div>
   )

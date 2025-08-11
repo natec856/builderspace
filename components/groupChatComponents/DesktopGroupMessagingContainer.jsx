@@ -84,23 +84,27 @@ export default function DesktopGroupMessagingContainer({ groupId, currentUser, o
 
     fetchGroupAndMessages()
 
-    // Realtime subscription for new messages in this group
-    const messageListener = supabase
-      .channel('public:messages')
-      .on(
-        'postgres_changes',
-        {
-          event: 'INSERT',
-          schema: 'public',
-          table: 'messages',
-          filter: `group_id=eq.${groupId}`
-        },
-        (payload) => {
-          if (!isMounted) return
-          setMessages((current) => [...current, payload.new])
-        }
-      )
-      .subscribe()
+    // Inside your useEffect, replace this block:
+  const messageListener = supabase
+    .channel('public:messages')
+    .on(
+      'postgres_changes',
+      {
+        event: 'INSERT',
+        schema: 'public',
+        table: 'messages',
+        filter: `group_id=eq.${groupId}`
+      },
+      (payload) => {
+        if (!isMounted) return
+        setMessages((current) => {
+          const exists = current.some(msg => msg.id === payload.new.id)
+          return exists ? current : [...current, payload.new]
+        })
+      }
+    )
+    .subscribe()
+
 
     return () => {
       isMounted = false
@@ -137,11 +141,8 @@ export default function DesktopGroupMessagingContainer({ groupId, currentUser, o
   return (
     <div className="bg-white shadow-md shadow-slate-400 rounded-md max-h-[calc(100vh-200px)] h-fit mx-2 mt-4 px-4 mb-35 flex flex-col w-full max-w-screen-md">
       <DesktopMessagingHeader
-        groupId={groupId}
         groupName={group.groupName}
-        lastMessage={group.last_message}
-        lastMessageDate={group.last_message_date}
-        onFocus={() => onFocus(groupId)}
+        onFocus={onFocus}
       />
       <MessageList 
         messages={messages}

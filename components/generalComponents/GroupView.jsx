@@ -47,7 +47,7 @@ export default function GroupView({ groups, currentUser }) {
           onSelectGroup={handleSelectGroup} 
         />
 
-        {!isFocus && selectedGroupId ? (
+        {!isFocus ? (
           <DesktopGroupMessagingContainer
             groupId={selectedGroupId}
             onFocus={() => setIsFocus(true)}
@@ -58,13 +58,15 @@ export default function GroupView({ groups, currentUser }) {
             groupId={selectedGroupId}
             onMessage={() => setIsFocus(false)}
           />
+
         )}
       </div>
 
       {/* Mobile layout */}
       <div className="md:hidden w-full">
         <GroupList
-          groups={groups} />
+          groups={groups}
+          currentUser={currentUser} />
       </div>
     </>
   )
