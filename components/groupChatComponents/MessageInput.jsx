@@ -21,6 +21,7 @@ export default function MessageInput({ groupId, currentUser, messages, setMessag
         group_id: groupId,
         user_id: currentUser,
         content,
+        created_at: new Date().toISOString(), // Add current timestamp to message in supabase
       })
       .select()
       .single()

@@ -59,13 +59,13 @@ export default function MessageList({ messages, currentUserId }) {
         return (
           <div key={msg.id}>
             {showTimestamp && (
-              <span className="block mt-2 text-xs md:text-base lg:text-lg text-slate-400 text-center">
+              <span className="block mt-2 mb-2 text-xs md:text-base lg:text-lg text-slate-400 text-center">
                 {formatTimestamp(msg.created_at)}
               </span>
             )}
 
             <span
-              className={`text-xs md:text-base lg:text-lg text-slate-400 ml-2 ${
+              className={`text-xs md:text-base lg:text-lg text-slate-400 ${
                 isCurrentUser ? 'hidden' : ''
               }`}
             >
@@ -73,10 +73,10 @@ export default function MessageList({ messages, currentUserId }) {
             </span>
 
             <div
-              className={`px-2 py-1 md:px-3 md:py-2 rounded-lg text-sm md:text-base lg:text-lg xl:text-xl font-medium w-fit max-w-3/4 break-words ${
+              className={`w-fit px-2 py-1 md:px-3 md:py-2 rounded-lg text-sm md:text-base lg:text-lg xl:text-xl max-w-[75%] break-words ${
                 isCurrentUser
                   ? 'ml-auto bg-blue-600 text-white rounded-br-none'
-                  : 'mr-auto bg-slate-200 text-slate-700 rounded-bl-none'
+                  : 'mr-auto bg-slate-200 text-slate-900 rounded-bl-none'
               }`}
             >
               <p className="break-words">{msg.content}</p>

@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import GroupButtons from './GroupButtons'
 
 export default function GroupHeader({ groupName, isEditing, onChange, onEdit, onDone, onMessage}) {
@@ -13,7 +12,7 @@ export default function GroupHeader({ groupName, isEditing, onChange, onEdit, on
         </div>
       <div>
         {isEditing ? (
-          <div className='flex border-b border-slate-900 mx-2 text-slate-900 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl h-fit py-2'>
+          <div className='flex border-b border-slate-300 mx-2 text-slate-900 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl h-fit py-2'>
             <textarea 
               value={groupName}
               rows={1}
@@ -28,8 +27,8 @@ export default function GroupHeader({ groupName, isEditing, onChange, onEdit, on
                   onDone={onDone} />
           </div>
         ):(
-          <div className="flex items-center w-full border-b border-slate-900 text-slate-900 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl h-fit py-2">
-            <div className="mx-2 flex-1 text-center truncate">
+          <div className="flex items-center w-full border-b border-slate-300 text-slate-900 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl h-fit py-2">
+            <div className="mx-2 pb-2 flex-1 text-center truncate">
               {groupName}
             </div>
             <GroupButtons

@@ -60,9 +60,23 @@ export default function GroupFocus({ groupId }) {
       // Dependency array triggers this effect when groupId or supabase client changes
     }, [groupId, supabase])
 
-    const handleChange = (newName) => {
-    setGroupName(newName)
-  }
+    const handleChange = async (newName) => {
+      const previousName = groupName; // save previous name to revert on error
+      setGroupName(newName);
+
+      const { data, error } = await supabase
+        .from('groups')
+        .update({ name: newName })
+        .eq('id', groupId)  // IMPORTANT: specify which group to update
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error updating group name:', error);
+        setGroupName(previousName); // revert to previous on error
+        return;
+      }
+    };
 
   if (isLoading) {
     return <p className="text-center text-gray-500">Loading group members...</p>
