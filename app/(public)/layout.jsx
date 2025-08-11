@@ -1,4 +1,4 @@
-import "@/app/globals.css";
+import "@/app/globals.css"
 import Header from "@/components/generalComponents/Header";
 import Head from "../head";
 import MobileNav from "@/components/generalComponents/MobileNav";

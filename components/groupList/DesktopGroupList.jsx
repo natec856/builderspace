@@ -23,10 +23,11 @@ export default function DesktopGroupList({ onSelectGroup, groups }) {
   }, [searchTerm, groups])
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md max-h-[calc(100vh-200px)] h-fit overflow-y-scroll w-full min-w-[350px] max-w-[500px] mx-2 mt-4 px-4 py-6 mb-35 flex-1">
+    <div className="bg-white shadow-md shadow-slate-400 rounded-md w-full min-w-[350px] max-w-[500px] mx-2 mt-4 px-4 py-6 mb-35 flex-1">
       <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">My Groups</h1>
       <GroupSearchBar onSearch={setSearchTerm} />
-      <ul>
+
+      <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll">
         {filteredGroups.length === 0 && <li>No groups found</li>}
         {filteredGroups.map((group) => (
           <li key={group.id}>

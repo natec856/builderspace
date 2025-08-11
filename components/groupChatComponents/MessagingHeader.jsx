@@ -5,7 +5,7 @@ export default function MessagingHeader({groupId, groupName, color}) {
 
   return (
     <div 
-      className="flex items-center w-full py-4 px-4 text-xl text-slate-900 sticky top-0 z-10"
+      className="flex items-center w-full py-4 px-4 text-xl text-slate-900 sticky top-0 z-10 slateBottomShadow"
       style={{backgroundColor: color}}>
       <Link
         href={`/groups`}

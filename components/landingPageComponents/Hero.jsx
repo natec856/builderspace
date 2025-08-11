@@ -11,7 +11,7 @@ export default function Hero() {
   return (
     <div className="w-full bg-white">
       {/* HERO */}
-      <section className="flex flex-col items-center text-center px-6 py-16 sm:px-10 lg:px-20 bg-white">
+      <section className="flex flex-col items-center text-center px-6 py-10 sm:py-16 sm:px-10 lg:px-20 bg-white">
         <h1
           className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 max-w-6xl ${inter.className}`}
         >
@@ -30,7 +30,7 @@ export default function Hero() {
 
       {/* HOW IT WORKS */}
       <section className="bg-slate-900 w-full py-20 px-6 sm:px-10 lg:px-20">
-        <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-center text-white mb-16">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center text-white mb-16">
           How It Works
         </h2>
 
@@ -46,7 +46,7 @@ export default function Hero() {
             },
             {
               title: 'Start Building Together',
-              desc: 'Connect in your private group chat, collaborate, and grow — all inside BuilderSpace.',
+              desc: 'Connect in your private group chat, collaborate, and grow all inside BuilderSpace.',
             },
             {
               title: 'Keep Building',
@@ -73,7 +73,7 @@ export default function Hero() {
 
       {/* Benefits */}
       <section className="bg-slate-900 w-full py-20 px-6 sm:px-10 lg:px-20">
-        <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-center text-white mb-16">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center text-white mb-16">
           Curated Connections, Real Results
         </h2>
 

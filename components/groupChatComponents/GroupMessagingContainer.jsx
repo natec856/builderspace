@@ -141,7 +141,7 @@ export default function GroupMessagingContainer({ groupId, currentUser }) {
       if (!group) return null
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 flex flex-col rounded-md max-h-[calc(100vh-100px)] h-fit">
+    <div className="bg-white shadow-md flex flex-col max-h-[calc(100vh-100px)] h-fit">
         <MessagingHeader
           groupId={groupId}
           groupName={group.groupName}

@@ -2,22 +2,12 @@
 
 .textGradient {
     background: -webkit-linear-gradient(#2563eb,
-                #93c5fd);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+            #93c5fd);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-@media (min-width: 640px) {
-    .blueTranslate {
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
-        box-shadow: 0 4px 0 #1E40AF;
-        /* solid blue shadow below (adjust color as needed) */
-    }
-        
-    .blueTranslate:hover {
-        transform: translateY(2px);
-        box-shadow: 0 1px 0 #1E40AF;
-        /* shorter shadow on press */     
-    }
+.slateBottomShadow {
+    box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.2);
 }
