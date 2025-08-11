@@ -120,44 +120,46 @@ export default function ProfileContainer({ user }) {
   }
 
   return (
-    <div className="max-w-screen-md flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md h-fit px-4 py-6 mx-2 mt-5 md:mt-10 mb-36">
-      <div className="h-fit">
-        <ProfileInfo
-          username={profileData.username}
-          name={profileData.name}
-          avatar_url={profileData.avatar_url}
-          isEditing={isEditing}
-          onChange={handleChange}
-          onImageUpload={handleImageUpload}
-        />
-        <ProfileVisitorBtns
-          onChange={(newInvites) =>
-            setProfileData((prev) => ({ ...prev, invites: newInvites }))
-          }
-          isOwner={isOwner}
-        />
-        <CategorySection
-          categories={profileData.categories}
-          isEditing={isEditing}
-          onChange={(newCategories) =>
-            setProfileData((prev) => ({ ...prev, categories: newCategories }))
-          }
-        />
-        <BioSection
-          bio={profileData.bio}
-          isEditing={isEditing}
-          onChange={(newBio) => handleChange("bio", newBio)}
-        />
-        <ProfileButtons
-          isEditing={isEditing}
-          onEdit={() => setIsEditing(true)}
-          onDone={async () => {
-            await handleSaveToSupabase()
-            setIsEditing(false)
-          }}
-          onShare={handleShare}
-          isOwner={isOwner}
-        />
+    <div className="flex w-full justify-center">
+      <div className="max-w-screen-md flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md h-fit px-4 py-6 mx-2 mt-5 md:mt-10 mb-36">
+        <div className="h-fit">
+          <ProfileInfo
+            username={profileData.username}
+            name={profileData.name}
+            avatar_url={profileData.avatar_url}
+            isEditing={isEditing}
+            onChange={handleChange}
+            onImageUpload={handleImageUpload}
+          />
+          <ProfileVisitorBtns
+            onChange={(newInvites) =>
+              setProfileData((prev) => ({ ...prev, invites: newInvites }))
+            }
+            isOwner={isOwner}
+          />
+          <CategorySection
+            categories={profileData.categories}
+            isEditing={isEditing}
+            onChange={(newCategories) =>
+              setProfileData((prev) => ({ ...prev, categories: newCategories }))
+            }
+          />
+          <BioSection
+            bio={profileData.bio}
+            isEditing={isEditing}
+            onChange={(newBio) => handleChange("bio", newBio)}
+          />
+          <ProfileButtons
+            isEditing={isEditing}
+            onEdit={() => setIsEditing(true)}
+            onDone={async () => {
+              await handleSaveToSupabase()
+              setIsEditing(false)
+            }}
+            onShare={handleShare}
+            isOwner={isOwner}
+          />
+        </div>
       </div>
     </div>
   )

@@ -5,7 +5,8 @@ const GroupPreview = React.memo(function GroupPreview({
   groupId,
   groupName,
   lastMessage,
-  lastMessageDate
+  lastMessageDate,
+  color
 }) {
   let lastDate = null
 
@@ -35,12 +36,12 @@ const GroupPreview = React.memo(function GroupPreview({
       href={`/groups/${groupId}`}
       className="flex items-center border-b border-slate-200 py-2 sm:py-3 hover:bg-slate-50 hover:cursor-pointer"
     >
-{/* Avatar/Icon */}
+{/* Group color */}
       <div className='flex items-center justify-center shrink-0'>
         <div 
-          className="aspect-square w-14 xl:w-20 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center relative">
-{/* Put your avatar <img /> or icon here */}
-          <i className="fa-solid fa-user text-slate-500 text-2xl sm:text-4xl" />
+          className="aspect-square text-3xl font-bold text-slate-700 w-14 xl:w-20 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 text-shadow-sm"
+          style={{backgroundColor: color}}>
+            {groupName[0].toUpperCase()}
         </div>
       </div>
 {/* Text content */}

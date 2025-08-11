@@ -5,10 +5,11 @@ import { createClient } from '@/utils/supabase/client'
 import DesktopGroupHeader from './DesktopGroupHeader'
 import GroupMemberPreview from './GroupMemberPreview'
 
-export default function DesktopGroupFocus({ groupId, onMessage }) {
+export default function DesktopGroupFocus({ groupId, onMessage, currentUserUsername }) {
   const [members, setMembers] = useState([])
   const [isEditing, setIsEditing] = useState(false)
   const [groupName, setGroupName] = useState('')
+  const [color, setColor] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -31,7 +32,7 @@ export default function DesktopGroupFocus({ groupId, onMessage }) {
         // Query 'groups' table to select the group's name and nested users in user_groups
         const { data, error } = await supabase
           .from('groups')
-          .select('name, user_groups(users(id, username, name))')
+          .select('name, color, user_groups(users(id, username, name, avatar_url))')
           .eq('id', groupId)  // Filter by the given groupId
           .single()           // Expect only one result (single row)
 
@@ -40,6 +41,8 @@ export default function DesktopGroupFocus({ groupId, onMessage }) {
         if (error) throw error  // If error returned, throw it to catch block
 
         setGroupName(data.name) // Set the group name state to the fetched group's name
+
+        setColor(data.color)
 
         // Extract the nested users from the user_groups array, filter out any nulls
         const users = data.user_groups.map(ug => ug.users).filter(Boolean)
@@ -50,6 +53,8 @@ export default function DesktopGroupFocus({ groupId, onMessage }) {
         setError(err.message)     // Store error message in state for UI display or logic
         setMembers([])            // Clear members if error occurs
         setGroupName('')          // Clear group name on error
+
+        setColor('')              // Clear group color on error
       } finally {
         setIsLoading(false)       // End loading state regardless of success or failure
       }
@@ -88,26 +93,32 @@ export default function DesktopGroupFocus({ groupId, onMessage }) {
   }
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-screen-md mx-2 mt-4 px-6 py-6 mb-35 flex-1">
+    <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-screen-md mx-2 mt-4 mb-35 flex-1">
       <DesktopGroupHeader
         groupId={groupId}
         isEditing={isEditing}
         groupName={groupName}
+        color={color}
         onChange={handleChange}
         onEdit={() => setIsEditing(true)}
         onDone={() => setIsEditing(false)}
         onMessage={onMessage}
       />
 {/* Render list of group members */}
-      <ul className="mt-4 space-y-2">
+      <ul>
         {members.length === 0 ? (
           <li className="text-center text-gray-500">No members found</li>
         ) : (
-          members.map(user => (
+          members
+            .slice()
+            .sort((a, b) => (a.name.localeCompare(b.name)))
+            .map(user => (
             <li key={user.id}>
               <GroupMemberPreview
+                currentUserUsername={currentUserUsername}
                 username={user.username}
                 name={user.name}
+                avatar_url={user.avatar_url}
               />
             </li>
           ))

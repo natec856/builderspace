@@ -39,7 +39,9 @@ export default async function GroupFocusPage({params}) {
     <MainAuth>
       <Header username={userRecord.username}/>
       <MobileNav username={userRecord.username}/>
-      <GroupFocus groupId = {groupId} />
+      <GroupFocus 
+        groupId = {groupId}
+        currentUserUsername={userRecord.username} />
     </MainAuth>
   )
 }

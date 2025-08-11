@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { createClient } from '@/utils/supabase/client'
 
-export default function MessageInput({ groupId, currentUser, messages, setMessages }) {
+export default function MessageInput({ groupId, currentUserId, setMessages }) {
   const [input, setInput] = useState('')
   const [sending, setSending] = useState(false)
   const textareaRef = useRef(null)
@@ -19,7 +19,7 @@ export default function MessageInput({ groupId, currentUser, messages, setMessag
       .from('messages')
       .insert({
         group_id: groupId,
-        user_id: currentUser,
+        user_id: currentUserId,
         content,
         created_at: new Date().toISOString(), // Add current timestamp to message in supabase
       })

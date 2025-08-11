@@ -4,6 +4,7 @@ const DesktopGroupPreview = React.memo(function DesktopGroupPreview({
   groupName,
   lastMessage,
   lastMessageDate,
+  color,
   onClick
 }) {
   let lastDate = null
@@ -35,15 +36,14 @@ const DesktopGroupPreview = React.memo(function DesktopGroupPreview({
       onClick={onClick}
       className="flex items-center border-b border-slate-200 py-2 sm:py-3 hover:bg-slate-50 hover:cursor-pointer"
     >
-      {/* Avatar/Icon */}
+      {/* Group color */}
       <div className="flex items-center justify-center shrink-0">
         {/* shrink-0 prevents the avatar box from shrinking; flex + items/justify-center centers its content */}
         <div
-          className="aspect-square w-14 xl:w-20 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center shrink-0"
-          aria-hidden="true"
+          className="aspect-square text-4xl font-bold text-slate-700 w-14 xl:w-20 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 text-shadow-sm shadow-sm"
+          style={{backgroundColor: color}}
         >
-          {/* Put your avatar <img /> or icon here */}
-          <i className="fa-solid fa-user text-slate-500 text-2xl sm:text-4xl" />
+          {groupName[0].toUpperCase()}
         </div>
       </div>
 

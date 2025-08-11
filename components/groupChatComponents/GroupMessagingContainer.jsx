@@ -49,6 +49,7 @@ export default function GroupMessagingContainer({ groupId, currentUser }) {
               name,
               last_message,
               last_message_date,
+              color,
               messages (
                 id,
                 content,
@@ -73,6 +74,7 @@ export default function GroupMessagingContainer({ groupId, currentUser }) {
             setGroup({
               id: data.id,
               groupName: data.name,
+              color: data.color,
               last_message: data.last_message,
               last_message_date: formatTimestamp(data.last_message_date),
             })
@@ -139,10 +141,11 @@ export default function GroupMessagingContainer({ groupId, currentUser }) {
       if (!group) return null
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 flex flex-col rounded-md max-h-[calc(100vh-100px)] h-fit mt-5">
+    <div className="bg-white shadow-md shadow-slate-400 flex flex-col rounded-md max-h-[calc(100vh-100px)] h-fit">
         <MessagingHeader
           groupId={groupId}
-          groupName={group.groupName} />
+          groupName={group.groupName}
+          color={group.color} />
         <MessageList
           messages={messages}
           currentUserId={currentUser} />

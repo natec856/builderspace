@@ -20,7 +20,7 @@ function formatTimestamp(dateString) {
   })
 }
 
-export default function DesktopGroupMessagingContainer({ groupId, currentUser, onFocus }) {
+export default function DesktopGroupMessagingContainer({ groupId, currentUserId, onFocus }) {
   const [group, setGroup] = useState(null)
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
@@ -49,6 +49,7 @@ export default function DesktopGroupMessagingContainer({ groupId, currentUser, o
           name,
           last_message,
           last_message_date,
+          color,
           messages (
             id,
             content,
@@ -73,6 +74,7 @@ export default function DesktopGroupMessagingContainer({ groupId, currentUser, o
         setGroup({
           id: data.id,
           groupName: data.name,
+          color: data.color,
           last_message: data.last_message,
           last_message_date: formatTimestamp(data.last_message_date),
         })
@@ -139,17 +141,18 @@ export default function DesktopGroupMessagingContainer({ groupId, currentUser, o
   if (!group) return null
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md max-h-[calc(100vh-200px)] h-fit mx-2 mt-4 px-4 mb-35 flex flex-col w-full max-w-screen-md">
+    <div className="bg-white rounded-md max-h-[calc(100vh-200px)] h-fit mx-2 mt-4 mb-35 flex flex-col w-full max-w-screen-md">
       <DesktopMessagingHeader
         groupName={group.groupName}
+        color={group.color}
         onFocus={onFocus}
       />
       <MessageList 
         messages={messages}
-        currentUserId={currentUser} />
+        currentUserId={currentUserId} />
       <MessageInput 
         groupId={groupId} 
-        currentUser={currentUser}
+        currentUserId={currentUserId}
         messages={messages} 
         setMessages={setMessages} />
     </div>

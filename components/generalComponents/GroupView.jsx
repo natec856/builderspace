@@ -6,7 +6,7 @@ import DesktopGroupMessagingContainer from '@/components/groupChatComponents/Des
 import DesktopGroupFocus from '@/components/groupChatComponents/DesktopGroupFocus'
 import GroupList from '../groupList/GroupList'
 
-export default function GroupView({ groups, currentUser }) {
+export default function GroupView({ groups, currentUserId, currentUserUsername }) {
   // Find group with most recent last_message_date on initial render
   const initialGroupId = useMemo(() => {
     if (!groups || groups.length === 0) return null
@@ -51,12 +51,13 @@ export default function GroupView({ groups, currentUser }) {
           <DesktopGroupMessagingContainer
             groupId={selectedGroupId}
             onFocus={() => setIsFocus(true)}
-            currentUser={currentUser}
+            currentUserId={currentUserId}
           />
         ) : (
           <DesktopGroupFocus
             groupId={selectedGroupId}
             onMessage={() => setIsFocus(false)}
+            currentUserUsername={currentUserUsername}
           />
 
         )}
@@ -64,9 +65,7 @@ export default function GroupView({ groups, currentUser }) {
 
       {/* Mobile layout */}
       <div className="md:hidden w-full">
-        <GroupList
-          groups={groups}
-          currentUser={currentUser} />
+        <GroupList groups={groups}/>
       </div>
     </>
   )

@@ -3,6 +3,22 @@ const stagingPool = []; // { user, joinedAt: Date }
 
 const groupSize = 5;
 
+// Generate a random color for the new group
+
+function getRandomColor() {
+  const colors = [
+    '#FF5733', '#4CAF50', '#2196F3',
+    '#9C27B0', '#FF9800', '#009688',
+    '#E91E63', '#3F51B5', '#795548'
+  ];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+// When creating a group
+const color = getRandomColor();
+// Save `color` to your DB in the `color` column
+
+
 function addUserToStagingPool(newUser) {
   stagingPool.push({
     user: newUser,

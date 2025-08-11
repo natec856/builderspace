@@ -40,12 +40,13 @@ export default async function GroupListPage() {
   .from("user_groups")
   .select(`
     joined_at,
-    groups (
+    groups ( 
       id,
       name,
       description,
       last_message,
-      last_message_date
+      last_message_date,
+      color
     )
   `)
   .eq("user_id", authUser.id);
@@ -67,7 +68,8 @@ export default async function GroupListPage() {
       <MobileNav username={userRecord.username} />
       <GroupView 
         groups={groupsWithJoinDate}
-        currentUser={userRecord.id} />
+        currentUserId={userRecord.id}
+        currentUserUsername={userRecord.username} />
     </MainAuth>
   );
 }

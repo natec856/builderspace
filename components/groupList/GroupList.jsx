@@ -35,7 +35,8 @@ export default function GroupList({groups}) {
               groupId={group.id}
               groupName={group.name}
               lastMessage={group.last_message || ''}
-              lastMessageDate={group.last_message_date || ''} />
+              lastMessageDate={group.last_message_date || ''}
+              color={group.color} />
           </li>
         ))}
       </ul>

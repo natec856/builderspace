@@ -35,6 +35,7 @@ export default function DesktopGroupList({ onSelectGroup, groups }) {
               groupName={group.name}
               lastMessage={group.last_message || ''}
               lastMessageDate={group.last_message_date || ''}
+              color={group.color}
               onClick={() => onSelectGroup(group.id)}
             />
           </li>

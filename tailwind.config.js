@@ -9,6 +9,9 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
       },
+      boxShadow: {
+        'bottom-slate-900': '0 4px 4px -1px rgba(15, 23, 42, 0.4)',
+      },
     },
   },
   plugins: [],

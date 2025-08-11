@@ -49,9 +49,9 @@ export default function MobileNav() {
   if (!currentUser) return null
 
   return (
-    <nav className="sm:hidden left-0 w-full flex flex-col z-50">
+    <nav className="sm:hidden left-0 w-full flex flex-col z-50 shadow-sm relative">
       {/* Top Nav Icons */}
-      <div className="grid grid-cols-3 justify-around items-center pt-3 pb-2 px-4 shadow-sm shadow-slate-300">
+      <div className="grid grid-cols-3 justify-around items-center pt-3 pb-2 px-4">
         <Link href="/findGroups" className="flex flex-col items-center gap-1 text-slate-900">
           <i className="fa-solid fa-search text-xl"></i>
           <span className="text-xs">Find Groups</span>
