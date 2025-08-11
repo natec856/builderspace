@@ -30,25 +30,39 @@ const DesktopGroupPreview = React.memo(function DesktopGroupPreview({
   }
 
   return (
+    // Changed items-start -> items-center so avatar and text are vertically centered
     <div
       onClick={onClick}
-      className="flex items-start border-b border-slate-200 py-2 sm:py-3 hover:bg-slate-50 hover:cursor-pointer"
+      className="flex items-center border-b border-slate-200 py-2 sm:py-3 hover:bg-slate-50 hover:cursor-pointer"
     >
       {/* Avatar/Icon */}
-      <div className='flex items-center'>
-        <div 
-          className="aspect-square w-16 xl:w-20 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center relative">
+      <div className="flex items-center justify-center shrink-0">
+        {/* shrink-0 prevents the avatar box from shrinking; flex + items/justify-center centers its content */}
+        <div
+          className="aspect-square w-14 xl:w-20 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center shrink-0"
+          aria-hidden="true"
+        >
+          {/* Put your avatar <img /> or icon here */}
+          <i className="fa-solid fa-user text-slate-500 text-2xl sm:text-4xl" />
         </div>
       </div>
+
       {/* Text content */}
       <div className="ml-3 flex-1 min-w-0">
-        <div className="flex flex-col-2 justify-between">
-          <div className="font-bold text-sm md:text-base lg:text-lg xl:text-xl truncate">{groupName}</div>
-          <div className="font-medium italic text-slate-700 text-right text-xs md:text-sm lg:text-base xl:text-lg">
+        {/* Row with groupName and displayDate aligned vertically centered */}
+        <div className="flex justify-between items-center">
+          <div className="font-bold text-sm md:text-base lg:text-lg xl:text-xl truncate">
+            {groupName}
+          </div>
+          <div className="font-medium italic text-slate-700 text-right text-xs md:text-sm lg:text-base xl:text-lg ml-4">
             {displayDate}
           </div>
         </div>
-        <div className="text-sm md:text-base lg:text-lg xl:text-xl text-slate-600 line-clamp-2 leading-tight">{lastMessage}</div>
+
+        {/* Last message below, max 2 lines (requires line-clamp plugin) */}
+        <div className="text-sm md:text-base lg:text-lg text-slate-600 line-clamp-2 leading-tight">
+          {lastMessage}
+        </div>
       </div>
     </div>
   )

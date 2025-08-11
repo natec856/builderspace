@@ -33,23 +33,33 @@ const GroupPreview = React.memo(function GroupPreview({
   return (
     <Link
       href={`/groups/${groupId}`}
-      className="flex items-start border-b border-slate-200 py-2 sm:py-3 hover:bg-slate-50 hover:cursor-pointer"
+      className="flex items-center border-b border-slate-200 py-2 sm:py-3 hover:bg-slate-50 hover:cursor-pointer"
     >
-      {/* Avatar/Icon */}
-      <div className="flex-shrink-0 aspect-square w-16 sm:w-20 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center relative">
-        <i className="fa-solid fa-user text-slate-500 text-2xl sm:text-4xl" />
+{/* Avatar/Icon */}
+      <div className='flex items-center justify-center shrink-0'>
+        <div 
+          className="aspect-square w-14 xl:w-20 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center relative">
+{/* Put your avatar <img /> or icon here */}
+          <i className="fa-solid fa-user text-slate-500 text-2xl sm:text-4xl" />
+        </div>
       </div>
-
-      {/* Text content */}
+{/* Text content */}
       <div className="ml-3 flex-1 min-w-0">
-        <div className="grid grid-cols-2">
-          <div className="font-bold sm:text-xl truncate">{groupName}</div>
-          <div className="font-medium italic text-slate-700 text-right sm:text-lg">
+{/* Row with groupName and displayDate aligned vertically centered */}
+        <div className="flex justify-between items-center">
+          <div className="font-bold text-sm md:text-base lg:text-lg xl:text-xl truncate">
+            {groupName}
+          </div>
+          <div className="font-medium italic text-slate-700 text-right text-xs md:text-sm lg:text-base xl:text-lg ml-4">
             {displayDate}
           </div>
         </div>
-        <div className="sm:text-lg line-clamp-2">{lastMessage}</div>
+{/* Last message below, max 2 lines */}
+        <div className="text-sm md:text-base lg:text-lg xl:text-xl text-slate-600 line-clamp-2 leading-tight">
+          {lastMessage}
+        </div>
       </div>
+
     </Link>
   )
 })
