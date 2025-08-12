@@ -60,7 +60,7 @@ const DesktopGroupPreview = React.memo(function DesktopGroupPreview({
         </div>
 
         {/* Last message below, max 2 lines (requires line-clamp plugin) */}
-        <div className="text-sm md:text-base lg:text-lg text-slate-600 line-clamp-2 leading-tight">
+        <div className="text-sm md:text-base lg:text-lg text-slate-600 line-clamp-2 leading-tight min-h-[30px]">
           {lastMessage}
         </div>
       </div>

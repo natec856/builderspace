@@ -151,7 +151,7 @@ export default function GroupMessagingContainer({ groupId, currentUser }) {
           currentUserId={currentUser} />
         <MessageInput
           groupId={groupId}
-          currentUser={currentUser}
+          currentUserId={currentUser}
           messages={messages}
           setMessages={setMessages} />
     </div>

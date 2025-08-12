@@ -9,71 +9,77 @@ export default function MessageInput({ groupId, currentUserId, setMessages }) {
 
   const handleSend = async () => {
     if (!input.trim() || sending) return
-
     setSending(true)
 
-    const content = input.trim()
+    try {
+      // Insert message into Supabase (realtime listener will handle UI update)
+      const { error: messageError } = await supabase
+        .from('messages')
+        .insert({
+          group_id: groupId,
+          user_id: currentUserId,
+          content: input.trim(),
+          created_at: new Date().toISOString(),
+        })
 
-    // Insert message into Supabase
-    const { data, error } = await supabase
-      .from('messages')
-      .insert({
-        group_id: groupId,
-        user_id: currentUserId,
-        content,
-        created_at: new Date().toISOString(), // Add current timestamp to message in supabase
-      })
-      .select()
-      .single()
+      if (messageError) {
+        console.error('Error sending message:', messageError)
+        setSending(false)
+        return
+      }
 
-    if (error) {
-      console.error('Error sending message:', error)
+      // Update last message in groups table
+      const { error: groupError } = await supabase
+        .from('groups')
+        .update({
+          last_message: input.trim(),
+          last_message_date: new Date().toISOString(),
+        })
+        .eq('id', groupId)
+
+      if (groupError) {
+        console.error('Error updating group last message:', groupError)
+      }
+
+      // Clear input & reset state
+      setInput('')
       setSending(false)
-      return
-    }
+      if (textareaRef.current) textareaRef.current.style.height = 'auto'
 
-    // Optimistically update UI with new message
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: data.id,
-        content: data.content,
-        created_at: data.created_at,
-        user_id: data.user_id,
-        user: { id: data.user_id, name: 'You' }, // You can customize this if you have user info handy
-      },
-    ])
-
-    setInput('')
-    setSending(false)
-
-    // Reset textarea height
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto'
+    } catch (err) {
+      console.error('Unexpected error sending message:', err)
+      setSending(false)
     }
   }
 
+
   return (
-    <div className="bg-slate-100 rounded-md flex gap-2 mt-4 mb-10 mx-4">
+    <div className="bg-slate-100 rounded-md flex gap-2 mt-4 mb-10 mx-4 items-end">
       <textarea
         ref={textareaRef}
         value={input}
         onChange={(e) => {
           setInput(e.target.value)
+
           if (textareaRef.current) {
-            textareaRef.current.style.height = 'auto'
-            textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px'
+            textareaRef.current.style.height = 'auto' // reset height
+            textareaRef.current.style.height =
+              Math.min(textareaRef.current.scrollHeight, 250) + 'px' // grow until 250px
           }
         }}
         onKeyDown={(e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault() // prevent newline on Enter
+            e.preventDefault()
             handleSend()
           }
         }}
         placeholder="Type a message..."
-        className="flex-1 pl-4 py-2 lg:py-4 outline-none text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl resize-none overflow-hidden"
+        className="flex-1 pl-4 py-2 lg:py-4 outline-none text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl resize-none overflow-y-auto"
         rows={1}
+        style={{
+          maxHeight: '250px',
+          minHeight: '40px',
+        }}
         disabled={sending}
       />
       <div
@@ -85,5 +91,7 @@ export default function MessageInput({ groupId, currentUserId, setMessages }) {
         <i className="fa-solid fa-arrow-up text-white"></i>
       </div>
     </div>
+
+
   )
 }

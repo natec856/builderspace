@@ -56,7 +56,7 @@ const GroupPreview = React.memo(function GroupPreview({
           </div>
         </div>
 {/* Last message below, max 2 lines */}
-        <div className="text-sm md:text-base lg:text-lg xl:text-xl text-slate-600 line-clamp-2 leading-tight">
+        <div className="text-sm md:text-base lg:text-lg xl:text-xl text-slate-600 line-clamp-2 leading-tight min-h-[30px]">
           {lastMessage}
         </div>
       </div>
