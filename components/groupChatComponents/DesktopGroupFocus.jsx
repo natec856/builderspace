@@ -117,6 +117,7 @@ export default function DesktopGroupFocus({ groupId, onMessage, currentUserUsern
               <GroupMemberPreview
                 currentUserUsername={currentUserUsername}
                 username={user.username}
+                user_id={user_id}
                 name={user.name}
                 avatar_url={user.avatar_url}
               />

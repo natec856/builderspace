@@ -113,6 +113,7 @@ export default function GroupFocus({ groupId, currentUserUsername }) {
             <li key={user.id}>
               <GroupMemberPreview
                 username={user.username}
+                user_id={user.id}
                 currentUserUsername={currentUserUsername}
                 name={user.name}
                 avatar_url={user.avatar_url}

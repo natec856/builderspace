@@ -17,7 +17,7 @@ export default function ProfileInfo({ username, name, avatar_url, isEditing, onC
   }, []);
 
   return (
-    <div className="flex items-center gap-6">
+    <div className="flex items-center gap-3 sm:gap-6">
       {/* Profile Picture */}
       <div className="flex flex-col items-center">
         <div className="w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center relative">

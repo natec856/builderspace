@@ -8,6 +8,8 @@ import ProfileButtons from "./ProfileButtons"
 import ProfileVisitorBtns from "./ProfileVisitorBtns"
 import { createClient } from "@/utils/supabase/client"
 import { useSearchParams } from "next/navigation"
+import ConnectionsContainer from "../connectionsComponents/ConnectionsContainer"
+import InvitesContainer from "../connectionsComponents/InvitesContainer"
 
 export default function ProfileContainer({ user }) {
   const supabase = createClient()
@@ -21,8 +23,6 @@ export default function ProfileContainer({ user }) {
     bio: "Click the edit profile button to set a name, bio, and categories you're interested in.",
     categories: [],
     avatar_url: '',
-    connections: [],
-    invites: [],
   }
 
   const [isEditing, setIsEditing] = useState(false)
@@ -120,8 +120,8 @@ export default function ProfileContainer({ user }) {
   }
 
   return (
-    <div className="flex w-full justify-center">
-      <div className="max-w-screen-md flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md h-fit px-4 py-6 mx-2 mt-5 md:mt-10 mb-36">
+    <div className="flex flex-col md:flex-row w-full justify-center">
+      <div className="max-w-screen-md flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md h-fit px-4 py-6 mx-2 mt-5 md:mt-10 mb-10">
         <div className="h-fit">
           <ProfileInfo
             username={profileData.username}
@@ -130,12 +130,6 @@ export default function ProfileContainer({ user }) {
             isEditing={isEditing}
             onChange={handleChange}
             onImageUpload={handleImageUpload}
-          />
-          <ProfileVisitorBtns
-            onChange={(newInvites) =>
-              setProfileData((prev) => ({ ...prev, invites: newInvites }))
-            }
-            isOwner={isOwner}
           />
           <CategorySection
             categories={profileData.categories}
@@ -159,8 +153,23 @@ export default function ProfileContainer({ user }) {
             onShare={handleShare}
             isOwner={isOwner}
           />
+          {!isOwner ? (
+            <ProfileVisitorBtns
+            user_id={profileData.id}/>
+          ):(
+            null
+          )}
         </div>
       </div>
+      {isOwner && (
+        <div className="flex flex-col justify-between w-full mb-20">
+          {/* Connections Container */}
+          <ConnectionsContainer
+            user={profileData} />
+          {/* Invites Container */}
+          <InvitesContainer />
+        </div>
+      )}
     </div>
   )
 }

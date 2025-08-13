@@ -14,22 +14,46 @@ export default async function ProfilePage({ params }) {
 
   const supabase = await createClient();
 
-  const { data: user, error } = await supabase
+  // 1️⃣ Get the logged-in user from the server
+  const {
+    data: { user: authUser },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !authUser) {
+    console.error("Auth error:", authError);
+    return notFound();
+  }
+
+  let currentUsername = null;
+
+  if (authUser) {
+    const { data: currentUserData } = await supabase
+      .from("users")
+      .select("username")
+      .eq("id", authUser.id)
+      .single();
+
+    currentUsername = currentUserData?.username || null;
+  }
+
+  // 2️⃣ Get the profile being viewed
+  const { data: viewedUser, error: viewedError } = await supabase
     .from("users")
     .select("*")
     .eq("username", username)
     .single();
 
-  if (error || !user) {
-    console.error("User not found or error:", error);
+  if (viewedError || !viewedUser) {
+    console.error("User not found or error:", viewedError);
     return notFound();
   }
 
   return (
     <MainAuth>
-      <Header username={username}/>
-      <MobileNav username={username}/>
-      <ProfileContainer user={user} />
+      <Header username={currentUsername} />
+      <MobileNav username={currentUsername} />
+      <ProfileContainer user={viewedUser} />
     </MainAuth>
   );
 }
