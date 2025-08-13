@@ -24,7 +24,7 @@ export default function GroupList({groups}) {
     }, [searchTerm, groups])
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md w-full mx-2 mt-4 px-4 py-4 mb-5 flex-1">
+    <div className="bg-white shadow-md shadow-slate-400 rounded-md mx-2 mt-4 px-4 py-4 mb-5 flex-1">
       <h1 className="text-2xl sm:text-3xl font-bold">My Groups</h1>
       <GroupSearchBar onSearch={setSearchTerm} />
       <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll">

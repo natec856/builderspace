@@ -1,9 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
+import InvitesButton from './InvitesButton'
 
-export default function ConnectionsPreview({ username, name, avatar_url, currentUserUsername }) {
+export default function InvitesPreview({ invite_id, username, name, avatar_url, currentUserUsername, currentUserId }) {
   return (
-    <div className="flex items-center justify-between w-full gap-3 border-b min-h-[80px] border-slate-200 py-2 lg:py-3"
+    <div 
+      className="flex items-center justify-between w-full gap-3 border-b min-h-[80px] border-slate-200 py-2 lg:py-3"
     >
       {/* User Info container */}
       <div className="flex items-center gap-3 min-w-0">
@@ -19,9 +21,11 @@ export default function ConnectionsPreview({ username, name, avatar_url, current
             )}
         </div>
         <div className="flex flex-col min-w-0">
-          <div className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl text-slate-900 truncate whitespace-nowrap overflow-hidden">
+          <Link 
+            href={`/${username}`}
+            className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl text-slate-900 truncate whitespace-nowrap overflow-hidden hover:underline">
             {name}
-          </div>
+          </Link>
           <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 truncate whitespace-nowrap overflow-hidden">
             @{username}
           </div>
@@ -32,16 +36,10 @@ export default function ConnectionsPreview({ username, name, avatar_url, current
       {currentUserUsername === username ? (
         <></>
       ):(
-        <div className="flex flex-col xl:flex-row gap-2 h-fit">
-          <button className="bg-blue-600 text-white py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl hover:cursor-pointer">
-            Message
-          </button>
-          <Link
-            href={`/${username}`}
-            className="bg-slate-200 text-slate-900 py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl text-center"
-          >
-            View
-          </Link>
+        <div className="flex flex-col lg:flex-row gap-2 h-fit">
+          <InvitesButton
+            invite_id={invite_id}
+            currentUserId={currentUserId} />
         </div>
       )}
     </div>

@@ -5,10 +5,10 @@ export default function ProfileButtons({ isEditing, onEdit, onDone, onShare, isO
   if (!isOwner) return null;
 
   return (
-    <div className="flex gap-4 justify-center text-xs sm:text-lg">
+    <div className="flex gap-4 justify-center text-xs sm:text-lg lg:text-xl">
       {isEditing ? (
         <button
-          className="bg-slate-200 rounded-md px-4 py-2 font-semibold"
+          className="bg-slate-200 rounded-md px-4 py-2 font-semibold hover:cursor-pointer"
           onClick={onDone}
         >
           Save
@@ -16,13 +16,13 @@ export default function ProfileButtons({ isEditing, onEdit, onDone, onShare, isO
       ) : (
         <>
           <button
-            className="bg-slate-200 rounded-md px-4 py-2 font-semibold"
+            className="bg-slate-200 rounded-md px-4 py-2 font-semibold hover:cursor-pointer"
             onClick={onEdit}
           >
             Edit Profile
           </button>
           <button
-            className="bg-slate-200 rounded-md px-4 py-2 font-semibold"
+            className="bg-slate-200 rounded-md px-4 py-2 font-semibold hover:cursor-pointer"
             onClick={onShare}
           >
             Share Profile

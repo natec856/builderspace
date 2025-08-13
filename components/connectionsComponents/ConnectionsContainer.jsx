@@ -23,7 +23,6 @@ export default function ConnectionsContainer({ user }) {
           other_user:users!user_connections_connection_id_fkey (id, name, username, avatar_url),
           other_user_alt:users!user_connections_user_id_fkey (id, name, username, avatar_url)
         `)
-        .or(`user_id.eq.${user.id},connection_id.eq.${user.id}`)
         .eq('status', 'accepted')
 
       if (error) {
@@ -48,7 +47,7 @@ export default function ConnectionsContainer({ user }) {
   }, [supabase, user.id])
 
   return (
-    <div className="max-w-screen-md flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md h-fit px-4 py-6 mx-2 mt-5 md:mt-10 mb-10">
+    <div className="flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md h-fit px-4 py-6">
       <ConnectionsList 
         connections={connections}
         currentUserUsername={user.username} />

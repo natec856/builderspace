@@ -25,17 +25,13 @@ export default async function ProfilePage({ params }) {
     return notFound();
   }
 
-  let currentUsername = null;
+  const { data: currentUserData } = await supabase
+    .from("users")
+    .select("username")
+    .eq("id", authUser.id)
+    .single();
 
-  if (authUser) {
-    const { data: currentUserData } = await supabase
-      .from("users")
-      .select("username")
-      .eq("id", authUser.id)
-      .single();
-
-    currentUsername = currentUserData?.username || null;
-  }
+  const currentUsername = currentUserData?.username || null;
 
   // 2️⃣ Get the profile being viewed
   const { data: viewedUser, error: viewedError } = await supabase

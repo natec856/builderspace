@@ -17,7 +17,7 @@ export default function ProfileInfo({ username, name, avatar_url, isEditing, onC
   }, []);
 
   return (
-    <div className="flex items-center gap-3 sm:gap-6">
+    <div className="flex items-center w-full gap-3 sm:gap-6">
       {/* Profile Picture */}
       <div className="flex flex-col items-center">
         <div className="w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center relative">
@@ -45,7 +45,7 @@ export default function ProfileInfo({ username, name, avatar_url, isEditing, onC
       </div>
       {/* Info */}
       <div className="flex-1 w-full">
-        <h2 className="text-lg sm:text-2xl font-semibold">@{username}</h2>
+        <h2 className="text-lg sm:text-2xl lg:text-3xl font-semibold">@{username}</h2>
         {isEditing ? (
           <textarea
             ref={textareaRef}
@@ -61,7 +61,7 @@ export default function ProfileInfo({ username, name, avatar_url, isEditing, onC
             rows={1}
           />
         ) : (
-          <p className="text-slate-700 text-sm sm:text-xl line-clamp-2">{name}</p>
+          <p className="text-slate-700 text-sm sm:text-xl lg:text-2xl line-clamp-2">{name}</p>
         )}
       </div>
     </div>

@@ -77,7 +77,7 @@ export default function SignupForm() {
           <button
             type="submit"
             disabled={isLoading}
-            className={`bg-blue-600 text-white rounded-full py-2 md:py-4 font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl ${
+            className={`bg-blue-600 text-white rounded-full py-2 md:py-4 font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl hover:cursor-pointer ${
               isLoading ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'
             } text-white`}
           >

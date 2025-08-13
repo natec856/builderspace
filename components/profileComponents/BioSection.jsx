@@ -3,7 +3,7 @@ import React from "react";
 
 export default function BioSection({ bio, isEditing, onChange }) {
   return (
-    <div className="mt-4">
+    <div className="mt-4 w-full">
       {isEditing ? (
         <>
           <textarea 
