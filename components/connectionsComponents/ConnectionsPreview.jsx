@@ -33,9 +33,11 @@ export default function ConnectionsPreview({ username, name, avatar_url, current
         <></>
       ):(
         <div className="flex flex-col xl:flex-row gap-2 h-fit">
-          <button className="bg-blue-600 text-white py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl hover:cursor-pointer">
+          <Link 
+            href={'/directMessages'}
+            className="bg-blue-600 text-white py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl hover:cursor-pointer">
             Message
-          </button>
+          </Link>
           <Link
             href={`/${username}`}
             className="bg-slate-200 text-slate-900 py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl text-center"

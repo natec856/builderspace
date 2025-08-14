@@ -23,6 +23,7 @@ export default function ConnectionsContainer({ user }) {
           other_user:users!user_connections_connection_id_fkey (id, name, username, avatar_url),
           other_user_alt:users!user_connections_user_id_fkey (id, name, username, avatar_url)
         `)
+        .or(`user_id.eq.${user.id},connection_id.eq.${user.id}`) // ✅ only the user's connections
         .eq('status', 'accepted')
 
       if (error) {
@@ -42,6 +43,7 @@ export default function ConnectionsContainer({ user }) {
 
       setConnections(normalized)
     }
+
 
     fetchConnections()
   }, [supabase, user.id])
