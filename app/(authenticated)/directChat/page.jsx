@@ -35,7 +35,7 @@ export default async function ChatListPage() {
     return notFound();
   }
 
-  // Get groups that user is part of
+  // Get chats that user is part of
   const { data: userChats, error: chatsError } = await supabase
   .from("user_chats")
   .select(`

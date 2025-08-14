@@ -73,7 +73,7 @@ export default function ChatMessageList({ messages, currentUserId }) {
             </span>
 
             <div
-              className={`w-fit px-2 py-1 md:px-3 md:py-2 rounded-lg text-sm md:text-base lg:text-lg xl:text-xl max-w-[75%] break-words ${
+              className={`w-fit px-2 py-1 md:px-3 md:py-2 rounded-lg text-base md:text-lg lg:text-xl xl:text-2xl max-w-[75%] break-words ${
                 isCurrentUser
                   ? 'ml-auto bg-blue-600 text-white rounded-br-none'
                   : 'mr-auto bg-slate-200 text-slate-900 rounded-bl-none'

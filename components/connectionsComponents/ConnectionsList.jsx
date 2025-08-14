@@ -3,7 +3,7 @@ import React, { useState, useMemo, useRef, useEffect } from 'react'
 import ConnectionsPreview from '@/components/connectionsComponents/ConnectionsPreview'
 import ConnectionsSearch from '@/components/connectionsComponents/ConnectionsSearch'
 
-export default function ConnectionsList({ connections, currentUserUsername }) {
+export default function ConnectionsList({ connections, currentUserUsername, currentUserId }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [showConnections, setShowConnections] = useState(false)
   const contentRef = useRef(null)
@@ -74,10 +74,12 @@ export default function ConnectionsList({ connections, currentUserUsername }) {
             {filteredConnections.map((connection) => (
               <li key={connection.id}>
                 <ConnectionsPreview
+                  user_id={connection.other.id}
                   username={connection.other.username}
                   name={connection.other.name}
                   avatar_url={connection.other.avatar_url}
                   currentUserUsername={currentUserUsername}
+                  currentUserId={currentUserId}
                 />
               </li>
             ))}

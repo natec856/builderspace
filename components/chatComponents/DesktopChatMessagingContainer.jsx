@@ -48,10 +48,10 @@ export default function DesktopChatMessagingContainer({ chatId, currentUserId })
           id,
           last_message,
           last_message_date,
-          user_chats(
-            name,
-            avatar_url
-            ),
+          user_chats!inner (
+            user_id,
+            name
+          ),
           direct_messages (
             id,
             content,
@@ -64,6 +64,7 @@ export default function DesktopChatMessagingContainer({ chatId, currentUserId })
           )
         `)
         .eq('id', chatId)
+        .eq('user_chats.user_id', currentUserId)
         .single()
 
       if (!isMounted) return
@@ -75,12 +76,11 @@ export default function DesktopChatMessagingContainer({ chatId, currentUserId })
       } else if (data) {
         setChat({
           id: data.id,
-          chatName: data.name,
-          avatar_url: data.avatar_url,
+          chatName: data.user_chats?.[0]?.name || '',
           last_message: data.last_message,
           last_message_date: formatTimestamp(data.last_message_date),
         })
-        setMessages(data.messages || [])
+        setMessages(data.direct_messages || [])
       }
 
       setLoading(false)
@@ -143,7 +143,7 @@ export default function DesktopChatMessagingContainer({ chatId, currentUserId })
   if (!chat) return null
 
   return (
-    <div className="bg-white rounded-md max-h-[calc(100vh-200px)] h-fit mx-2 mt-4 mb-35 flex flex-col w-full max-w-screen-md">
+    <div className="bg-white rounded-md h-[calc(100vh-200px)] mx-2 mt-4 mb-35 flex flex-col w-full max-w-screen-md shadow-md shadow-slate-400">
       <DesktopChatMessagingHeader
         chatName={chat.chatName} />
       <ChatMessageList

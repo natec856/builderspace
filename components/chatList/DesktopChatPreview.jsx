@@ -40,7 +40,7 @@ const DesktopChatPreview = React.memo(function DesktopChatPreview({
       <div className="flex items-center justify-center shrink-0">
         {/* shrink-0 prevents the avatar box from shrinking; flex + items/justify-center centers its content */}
         <div
-          className="aspect-square text-4xl font-bold text-slate-700 w-14 xl:w-20 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 text-shadow-sm shadow-sm">
+          className="aspect-square text-4xl font-bold text-slate-700 w-16 lg:w-20 xl:w-24 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 shadow-sm shadow-slate-400">
             <img src={avatar_url} alt="profilePic" />
         </div>
       </div>
@@ -49,16 +49,16 @@ const DesktopChatPreview = React.memo(function DesktopChatPreview({
       <div className="ml-3 flex-1 min-w-0">
         {/* Row with chatName and displayDate aligned vertically centered */}
         <div className="flex justify-between items-center">
-          <div className="font-bold text-sm md:text-base lg:text-lg xl:text-xl truncate">
+          <div className="font-bold text-base md:text-lg lg:text-xl xl:text-2xl text-shadow-xs truncate">
             {chatName}
           </div>
-          <div className="font-medium italic text-slate-700 text-right text-xs md:text-sm lg:text-base xl:text-lg ml-4">
+          <div className="font-medium italic text-slate-700 text-right text-sm md:text-base lg:text-lg xl:text-xl ml-4">
             {displayDate}
           </div>
         </div>
 
         {/* Last message below, max 2 lines (requires line-clamp plugin) */}
-        <div className="text-sm md:text-base lg:text-lg text-slate-600 line-clamp-2 leading-tight min-h-[30px]">
+        <div className="text-sm md:text-base lg:text-lg xl:text-xl text-slate-600 line-clamp-2 leading-tight min-h-[30px]">
           {lastMessage}
         </div>
       </div>

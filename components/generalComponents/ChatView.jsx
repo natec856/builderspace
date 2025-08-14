@@ -4,8 +4,12 @@ import React, { useState, useMemo } from 'react'
 import DesktopChatList from '../chatList/DesktopChatList'
 import ChatList from '../chatList/ChatList'
 import DesktopChatMessagingContainer from '../chatComponents/DesktopChatMessagingContainer'
+import { useSearchParams } from 'next/navigation'
 
 export default function ChatView({ chats, currentUserId }) {
+
+  const searchParams = useSearchParams()
+  const providedChatId = searchParams.get('providedChatId')
 
   // Find group with most recent last_message_date on initial render
   const initialChatId = useMemo(() => {
@@ -29,11 +33,12 @@ export default function ChatView({ chats, currentUserId }) {
     return chatsWithDates[0].direct_chats.id || chatsWithDates[0].chatId || null
   }, [chats])
 
-  const [selectedChatId, setSelectedChatId] = useState(initialChatId)
+  const [selectedChatId, setSelectedChatId] = useState(providedChatId || initialChatId)
 
   // Accept the selected group id from child component
   const handleSelectChat = (chatId) => {
     setSelectedChatId(chatId)
+    console.log(chatId)
   }
 
   return (

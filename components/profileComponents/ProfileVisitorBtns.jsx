@@ -119,7 +119,7 @@ export default function ProfileVisitorBtns({ user_id }) {
     <div className="flex w-full items-center justify-center text-center text-sm sm:text-lg lg:text-xl">
       {isConnected ? (
         <Link
-          href={`/directMessages`}
+          href={`/directChat`}
           className="bg-slate-200 text-slate-900 rounded-md py-1 px-2 md:py-2 md:px-4 font-semibold w-full"
         >
           Message

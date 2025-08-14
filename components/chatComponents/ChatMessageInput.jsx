@@ -14,7 +14,7 @@ export default function ChatMessageInput({ chatId, currentUserId, setMessages })
     try {
       // Insert message into Supabase (realtime listener will handle UI update)
       const { error: messageError } = await supabase
-        .from('messages')
+        .from('direct_messages')
         .insert({
           chat_id: chatId,
           user_id: currentUserId,

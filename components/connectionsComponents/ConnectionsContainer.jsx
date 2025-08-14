@@ -52,7 +52,8 @@ export default function ConnectionsContainer({ user }) {
     <div className="flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md h-fit px-4 py-6">
       <ConnectionsList 
         connections={connections}
-        currentUserUsername={user.username} />
+        currentUserUsername={user.username}
+        currentUserId={user.id} />
     </div>
   )
 }

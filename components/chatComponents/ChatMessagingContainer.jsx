@@ -48,22 +48,23 @@ export default function ChatMessagingContainer({ chatId, currentUser }) {
               id,
               last_message,
               last_message_date,
-              user_chats(
-                name,
-                avatar_url
+              user_chats!inner (
+                user_id,
+                name
               ),
               direct_messages (
-                id,
-                content,
-                created_at,
-                user_id,
-                user:users!direct_messages_user_id_fkey (
                   id,
-                  name
+                  content,
+                  created_at,
+                  user_id,
+                  user:users!direct_messages_user_id_fkey (
+                    id,
+                    name
                 )
               )
             `)
             .eq('id', chatId)
+            .eq('user_chats.user_id', currentUser)
             .single()
     
           if (!isMounted) return
@@ -75,12 +76,11 @@ export default function ChatMessagingContainer({ chatId, currentUser }) {
           } else if (data) {
             setChat({
               id: data.id,
-              chatName: data.user_chats.name,
-              avatar_url: data.user_chats.avatar_url,
+              chatName: data.user_chats?.[0]?.name || '',
               last_message: data.last_message,
               last_message_date: formatTimestamp(data.last_message_date),
             })
-            setMessages(data.messages || [])
+            setMessages(data.direct_messages || [])
           }
     
           setLoading(false)
@@ -142,8 +142,11 @@ export default function ChatMessagingContainer({ chatId, currentUser }) {
     
       if (!chat) return null
 
+console.log(chat)
+
+
   return (
-    <div className="bg-white shadow-md flex flex-col max-h-[calc(100vh-100px)] h-fit">
+    <div className="bg-white shadow-md shadow-slate-400 flex flex-col h-[calc(100vh-100px)]">
         <ChatMessagingHeader
           chatName={chat.chatName} />
         <ChatMessageList
