@@ -2,9 +2,11 @@
 import React, { useState, useMemo } from 'react'
 import DesktopChatPreview from './DesktopChatPreview'
 import ChatSearchBar from './ChatSearchBar'
+import NewChatContainer from '../newChatComponents/NewChatContainer'
 
-export default function DesktopChatList({ onSelectChat, chats }) {
+export default function DesktopChatList({ onSelectChat, chats, user }) {
   const [searchTerm, setSearchTerm] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
 
   const filteredChats = useMemo(() => {
     if (!chats) return []
@@ -22,26 +24,63 @@ export default function DesktopChatList({ onSelectChat, chats }) {
     )
   }, [searchTerm, chats])
 
-  return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md w-full min-w-[350px] max-w-[500px] mx-2 mt-4 px-4 py-6 mb-35 flex-1 h-fit">
-      <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">Direct Chats</h1>
-      <ChatSearchBar onSearch={setSearchTerm} />
+  const handleNewChatSelected = (chatId) => {
+    onSelectChat(chatId)        // ✅ Tell parent to set this chat active
+    setIsOpen(false)            // ✅ Close modal after selection
+  }
 
-      <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll">
-        {filteredChats.length === 0 && <li>No chats found</li>}
-        {filteredChats.map((chat) => (
-          <li key={chat.direct_chats.id}>
-            <DesktopChatPreview
-              chatId={chat.direct_chats.id}
-              chatName={chat.name}
-              lastMessage={chat.direct_chats.last_message || ''}
-              lastMessageDate={chat.direct_chats.last_message_date || ''}
-              avatar_url={chat.avatar_url}
-              onClick={() => onSelectChat(chat.direct_chats.id)}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
+  return (
+    <>
+      <div className="bg-white shadow-md shadow-slate-400 rounded-md w-full min-w-[350px] max-w-[500px] mx-2 mt-4 px-4 py-6 mb-35 flex-1 h-fit">
+        <div className='flex justify-between text-lg sm:text-xl md:text-2xl lg:text-3xl'>
+          <h1 className="font-bold">Direct Chats</h1>
+          <i className='fa-solid fa-plus' onClick={() => setIsOpen(true)}></i>
+        </div>
+        <ChatSearchBar onSearch={setSearchTerm} />
+
+        <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll">
+          {filteredChats.length === 0 && <li>No chats found</li>}
+          {filteredChats.map((chat) => (
+            <li key={chat.direct_chats.id}>
+              <DesktopChatPreview
+                chatId={chat.direct_chats.id}
+                chatName={chat.name}
+                lastMessage={chat.direct_chats.last_message || ''}
+                lastMessageDate={chat.direct_chats.last_message_date || ''}
+                avatar_url={chat.avatar_url}
+                onClick={() => onSelectChat(chat.direct_chats.id)}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+      {/* New Chat Modal */}
+      {isOpen && (
+        <div className="fixed top-0 left-0 right-0 bottom-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-lg mx-4 p-6 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+            {/* Close button */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-3 right-3 text-slate-500 hover:text-slate-800"
+            >
+              <i className="fa-solid fa-xmark"></i>
+            </button>
+
+            {/* Modal header */}
+            <h2 className="font-bold text-slate-900">
+              Create a New Chat
+            </h2>
+
+            {/* Modal body */}
+            <div className="max-h-[70vh] overflow-y-auto">
+              <NewChatContainer 
+                user={user} 
+                onChatSelected={handleNewChatSelected} 
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }

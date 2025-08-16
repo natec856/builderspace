@@ -123,6 +123,14 @@ export default function ChatMessagingContainer({ chatId, currentUser }) {
           </div>
         )
       }
+
+      if (!messages || messages.length === 0) {
+        return (
+          <div className="w-full max-w-screen-md mt-30 text-slate-500 text-2xl">
+            <p className="text-center">Send {chat.name} a message!</p>
+          </div>
+        )
+      }
     
       if (loading) {
         return (

@@ -39,8 +39,12 @@ const ChatPreview = React.memo(function ChatPreview({
 {/* Chat avatar_url */}
       <div className='flex items-center justify-center shrink-0'>
         <div 
-          className="aspect-square text-3xl font-bold text-slate-700 w-16 lg:w-20 xl:w-24 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 shadow-sm shadow-slate-400">
-            <img src={avatar_url} alt="profilePic" />
+          className="aspect-square text-3xl font-bold text-slate-500 w-16 lg:w-20 xl:w-24 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 shadow-sm shadow-slate-400">
+            {avatar_url ? (
+              <img src={avatar_url} alt="profilePic" />
+            ):(
+              <i className='fa-solid fa-user'></i>
+            )}
         </div>
       </div>
 {/* Text content */}

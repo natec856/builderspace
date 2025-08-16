@@ -5,15 +5,16 @@ import { createClient } from '@/utils/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
-export default function ConnectionsPreview({
+export default function NewChatPreview({
   connectionUser_id,
   connectionUsername,
   connectionName,
-  connectionAvatar_url,
+  connectionAvatarUrl,
   currentUserUsername,
   currentUserId, 
   currentUserName,
-  currentUserAvatarUrl
+  currentUserAvatarUrl,
+  onChatSelected
 }) {
   const supabase = createClient()
   const router = useRouter()
@@ -53,7 +54,7 @@ export default function ConnectionsPreview({
         const { error: linkErr } = await supabase
           .from('user_chats')
           .insert([
-            { chat_id: newChat.id, user_id: currentUserId,       name: connectionName, avatar_url: connectionAvatar_url },
+            { chat_id: newChat.id, user_id: currentUserId,       name: connectionName, avatar_url: connectionAvatarUrl },
             { chat_id: newChat.id, user_id: connectionUser_id,   name: currentUserName, avatar_url: currentUserAvatarUrl }
           ])
         if (linkErr) throw linkErr
@@ -61,9 +62,17 @@ export default function ConnectionsPreview({
         chatId = newChat.id
       }
 
-      // 3) route
-      if (window.innerWidth < 768) router.push(`/directChat/${chatId}`)
-      else router.push(`/directChat?providedChatId=${chatId}`)
+      // 3) route differently depending on screen + context
+      if (window.innerWidth < 768) {
+        // ✅ mobile: go to its own page
+        router.push(`/directChat/${chatId}`)
+      } else if (onChatSelected) {
+        // ✅ desktop inside directChats page: just notify parent
+        onChatSelected(chatId)
+      } else {
+        // ✅ fallback if not inside directChats page
+        router.push(`/directChat?providedChatId=${chatId}`)
+      }
     } catch (err) {
       console.error('start message error:', err)
     } finally {
@@ -75,8 +84,8 @@ export default function ConnectionsPreview({
     <div className="flex items-center justify-between w-full gap-3 border-b min-h-[80px] border-slate-200 py-2 lg:py-3">
       <div className="flex items-center gap-3 min-w-0">
         <div className="aspect-square w-14 sm:w-20 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0">
-          {connectionAvatar_url ? (
-            <img src={connectionAvatar_url} alt="Profile" className="w-full h-full object-cover" />
+          {connectionAvatarUrl ? (
+            <img src={connectionAvatarUrl} alt="Profile" className="w-full h-full object-cover" />
           ) : (
             <i className="fa-solid fa-user text-slate-500 text-2xl sm:text-4xl" />
           )}

@@ -6,7 +6,7 @@ import ChatList from '../chatList/ChatList'
 import DesktopChatMessagingContainer from '../chatComponents/DesktopChatMessagingContainer'
 import { useSearchParams } from 'next/navigation'
 
-export default function ChatView({ chats, currentUserId }) {
+export default function ChatView({ chats, currentUser }) {
 
   const searchParams = useSearchParams()
   const providedChatId = searchParams.get('providedChatId')
@@ -47,17 +47,20 @@ export default function ChatView({ chats, currentUserId }) {
       <div className="hidden md:flex w-full justify-center">
         <DesktopChatList
           chats={chats} 
-          onSelectChat={handleSelectChat} 
+          onSelectChat={handleSelectChat}
+          user={currentUser} 
         />
         <DesktopChatMessagingContainer
           chatId={selectedChatId}
-          currentUserId={currentUserId}
+          currentUserId={currentUser.id}
         />
       </div>
 
       {/* Mobile layout */}
       <div className="md:hidden w-full">
-        <ChatList chats={chats}/>
+        <ChatList 
+          chats={chats}
+          user={currentUser}/>
       </div>
     </>
   )

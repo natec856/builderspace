@@ -58,8 +58,7 @@ export default async function ChatListPage() {
       <MobileNav username={userRecord.username} />
       <ChatView
         chats={userChats}
-        currentUserId={userRecord.id}
-        currentUserUsername={userRecord.username} />
+        currentUser={userRecord} />
     </MainAuth>
   );
 }
