@@ -53,7 +53,9 @@ export default function ConnectionsContainer({ user }) {
       <ConnectionsList 
         connections={connections}
         currentUserUsername={user.username}
-        currentUserId={user.id} />
+        currentUserId={user.id}
+        currentUserName={user.name}
+        currentUserAvatarUrl={user.avatar_url} />
     </div>
   )
 }
