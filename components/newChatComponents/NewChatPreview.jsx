@@ -99,11 +99,11 @@ export default function NewChatPreview({
       {currentUserUsername === connectionUsername ? null : (
         <div className="flex flex-col xl:flex-row gap-2 h-fit">
           <button onClick={handleMessageClick} disabled={loading}
-            className="sm:hidden bg-blue-600 text-white py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl disabled:opacity-50">
+            className="sm:hidden bg-blue-600 text-white py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl disabled:opacity-50 cursor-pointer">
             Message
           </button>
           <button onClick={handleMessageClick} disabled={loading}
-            className="hidden sm:flex bg-blue-600 text-white py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl disabled:opacity-50">
+            className="hidden sm:flex bg-blue-600 text-white py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl disabled:opacity-50 cursor-pointer">
             Message
           </button>
           <Link href={`/${connectionUsername}`}

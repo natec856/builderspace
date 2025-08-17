@@ -67,9 +67,7 @@ export default function ConnectionsList({ connections, currentUserUsername, curr
           <ConnectionsSearch onSearch={setSearchTerm} />
           <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll">
             {filteredConnections.length === 0 && (
-              <li className="mt-2 text-base font-semibold text-slate-400">
-                No connections found
-              </li>
+              <li className="mt-2 text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-slate-400">No connections found</li>
             )}
             {filteredConnections.map((connection) => (
               <li key={connection.id}>

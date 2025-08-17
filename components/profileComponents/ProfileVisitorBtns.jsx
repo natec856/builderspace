@@ -120,7 +120,7 @@ export default function ProfileVisitorBtns({ user_id }) {
       {isConnected ? (
         <Link
           href={`/directChat`}
-          className="bg-slate-200 text-slate-900 rounded-md py-1 px-2 md:py-2 md:px-4 font-semibold w-full"
+          className="bg-slate-200 text-slate-900 rounded-md py-1 px-2 md:py-2 md:px-4 font-semibold w-full cursor-pointer"
         >
           Message
         </Link>
@@ -128,7 +128,7 @@ export default function ProfileVisitorBtns({ user_id }) {
         <button
           onClick={handleAccept}
           disabled={loading}
-          className="bg-blue-600 text-white rounded-md py-1 px-2 md:py-2 md:px-4 font-semibold w-full hover:cursor-pointer"
+          className="bg-blue-600 text-white rounded-md py-1 px-2 md:py-2 md:px-4 font-semibold w-full cursor-pointer"
         >
           {loading ? 'Accepting...' : 'Accept'}
         </button>
@@ -143,7 +143,7 @@ export default function ProfileVisitorBtns({ user_id }) {
         <button
           onClick={handleInvite}
           disabled={loading}
-          className="bg-blue-600 text-white rounded-md py-1 px-2 md:py-2 md:px-4 font-semibold disabled:opacity-50 w-full"
+          className="bg-blue-600 text-white rounded-md py-1 px-2 md:py-2 md:px-4 font-semibold disabled:opacity-50 w-full cursor-pointer"
         >
           {loading ? 'Sending...' : 'Connect'}
         </button>

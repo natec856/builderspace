@@ -57,7 +57,7 @@ export default function InvitesList({ invites, currentUserUsername, currentUserI
           className='border-t border-slate-200 mt-2 min-h-[20px]'>
           <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll">
             {invites.length === 0 ? (
-              <p className='text-base font-semibold text-slate-400 py-5'>No invites found</p>
+              <p className='text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-slate-400 py-5'>No invites found</p>
               ):(
                 invites.map((invite) => (
                   <li key={invite.id}>
