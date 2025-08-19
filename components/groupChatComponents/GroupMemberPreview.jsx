@@ -8,7 +8,7 @@ export default function GroupMemberPreview({ user_id, username, currentUserUsern
     >
       {/* User Info container */}
       <div className="flex items-center gap-3 min-w-0">
-        <div className="aspect-square w-14 sm:w-20 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0">
+        <div className="aspect-square w-14 sm:w-17 md:w-20 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0">
           {avatar_url ? (
             <img
                 src={avatar_url}
@@ -16,7 +16,7 @@ export default function GroupMemberPreview({ user_id, username, currentUserUsern
                 className="w-full h-full object-cover"
             />
             ) : (
-            <i className="fa-solid fa-user text-slate-500 text-2xl sm:text-4xl" />
+            <i className="fa-solid fa-user text-slate-500 text-2xl md:text-4xl" />
             )}
         </div>
 
@@ -34,7 +34,7 @@ export default function GroupMemberPreview({ user_id, username, currentUserUsern
       {currentUserUsername === username ? (
         <></>
       ):(
-        <div className="flex flex-col md:flex-row gap-2 h-fit">
+        <div className="flex flex-col lg:flex-row gap-2 h-fit">
           <ProfileVisitorBtns
              user_id={user_id}/>
           <Link

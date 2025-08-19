@@ -34,7 +34,7 @@ const ChatPreview = React.memo(function ChatPreview({
   return (
     <Link
       href={`/directChat/${chatId}`}
-      className="flex items-center border-b border-slate-200 py-2 sm:py-3 hover:bg-slate-50 hover:cursor-pointer"
+      className="flex items-center border-b border-slate-200 px-1 py-2 sm:py-3 hover:bg-slate-50 hover:cursor-pointer"
     >
 {/* Chat avatar_url */}
       <div className='flex items-center justify-center shrink-0'>

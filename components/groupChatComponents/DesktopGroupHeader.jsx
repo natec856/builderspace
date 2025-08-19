@@ -8,11 +8,8 @@ export default function GroupHeader({ groupName, color, isEditing, onChange, onE
       style={{ backgroundColor: color }}
     >
 {/* Left: arrow button */}
-      <div
-        onClick={onMessage}
-        className="bg-slate-900 rounded-md w-10 h-10 flex items-center justify-center hover:cursor-pointer"
-      >
-        <i className="fa-solid fa-arrow-left text-white text-2xl"></i>
+      <div onClick={onMessage}>
+        <i className="fa-solid fa-chevron-left text-shadow-sm text-2xl cursor-pointer"></i>
       </div>
 {/* Center: group name or textarea */}
       <div className="flex-1 flex justify-center">
@@ -23,7 +20,7 @@ export default function GroupHeader({ groupName, color, isEditing, onChange, onE
             maxLength={20}
             onChange={(e) => onChange(e.target.value)}
             placeholder="Enter group name"
-            className="border-2 border-slate-700 rounded-sm py-2 px-2 focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none overflow-hidden text-slate-900 font-bold text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl w-full max-w-md mx-4"
+            className="border-4 border-slate-700 rounded-sm py-2 px-2 focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none overflow-hidden text-slate-900 font-bold text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl w-full max-w-md mx-4"
           />
         ) : (
           <div className="truncate text-slate-900 font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl py-3 text-shadow-sm">

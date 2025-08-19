@@ -37,32 +37,38 @@ export default function Header({ username }) {
       >
         BuilderSpace
       </Link>
-
-      {/* Desktop Authenticated Nav */}
+{/* Desktop Authenticated Nav */}
       {isAuthenticated ? (
-        <div className="hidden sm:flex items-center justify-between w-full relative z-0">
-          {/* Centered nav */}
-          <div className="absolute left-1/2 -translate-x-1/2 flex gap-5 lg:gap-10 items-center w-full justify-center">
-            <Link href="/findGroups" className="flex flex-col items-center justify-center text-slate-900 bg-white border-4 hover:text-white hover:bg-transparent hover:border-white font-semibold rounded-xl px-4 py-2 sm:text-sm lg:text-xl xl:text-2xl 2xl:text-3xl">
-              Find Groups
+        <div className="hidden sm:flex items-center justify-between w-full gap-4">
+          {/* Nav links */}
+          <div className="flex flex-wrap justify-center gap-8 lg:gap-15 flex-1">
+            <Link href="/findGroups" className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+              <i className='fa-solid fa-search'></i>
+              <span className='text-sm md:text-base lg:text-lg cursor-pointer hover:underline'>Find Groups</span>
             </Link>
-            <Link href="/groups" className="flex flex-col items-center justify-center text-slate-900 bg-white border-4 hover:text-white hover:bg-transparent hover:border-white font-semibold rounded-xl px-4 py-2 sm:text-sm lg:text-xl xl:text-2xl 2xl:text-3xl">
-              My Groups
+            <Link href="/groups" className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+              <i className='fa-solid fa-users'></i>
+              <span className='text-sm md:text-base lg:text-lg cursor-pointer hover:underline'>My Groups</span>
             </Link>
-            <Link href={`/${username}`} className="flex flex-col items-center justify-center text-slate-900 bg-white border-4 hover:text-white hover:bg-transparent hover:border-white font-semibold rounded-xl px-4 py-2 sm:text-sm lg:text-xl xl:text-2xl 2xl:text-3xl">
-              My Profile
+            <Link href={`/${username}`} className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+              <i className='fa-solid fa-user'></i>
+              <span className='text-sm md:text-base lg:text-lg cursor-pointer hover:underline'>My Profile</span>            </Link>
+            <Link href={`/directChat`} className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+              <i className='fa-solid fa-message'></i>
+              <span className='text-sm md:text-base lg:text-lg cursor-pointer hover:underline'>Direct Chats</span>
             </Link>
           </div>
 
           {/* Logout button on far right */}
           <button
             onClick={handleLogout}
-            className="ml-auto flex flex-col items-center justify-center text-white bg-transparent border-4 font-semibold hover:text-slate-900 hover:bg-white cursor-pointer rounded-xl px-4 py-2 sm:text-sm lg:text-xl xl:text-2xl 2xl:text-3xl z-10"
+            className="flex flex-col items-center justify-center text-white bg-transparent border-2 font-semibold hover:text-slate-900 hover:bg-white hover:border-4 hover:border-white cursor-pointer rounded-xl px-2 py-1 md:px-3 md:py-2 sm:text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
           >
             Logout
           </button>
         </div>
       ) : (
+
         // Desktop unauthenticated buttons
         <div className="hidden sm:flex gap-4 ml-auto text-base lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold">
           <Link

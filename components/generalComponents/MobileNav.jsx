@@ -51,22 +51,19 @@ export default function MobileNav() {
   return (
     <nav className="sm:hidden left-0 w-full flex flex-col z-50 shadow-sm relative bg-white">
       {/* Top Nav Icons */}
-      <div className="grid grid-cols-3 justify-around items-center pt-3 pb-2 px-4">
+      <div className="grid grid-cols-4 justify-around items-center py-3 px-4">
         <Link href="/findGroups" className="flex flex-col items-center gap-1 text-slate-900">
           <i className="fa-solid fa-search text-xl"></i>
-          <span className="text-xs">Find Groups</span>
         </Link>
-
         <Link href="/groups" className="flex flex-col items-center gap-1 text-slate-900">
           <i className="fa-solid fa-users text-xl"></i>
-          <span className="text-xs">Groups</span>
         </Link>
-
         <Link href={`/${username}`} className="flex flex-col items-center gap-1 text-slate-900">
           <i className="fa-solid fa-user text-center text-xl"></i>
-          <span className="text-xs">Profile</span>
         </Link>
-
+        <Link href={`/directChat`} className="flex flex-col items-center gap-1 text-slate-900">
+          <i className="fa-solid fa-message text-center text-xl"></i>
+        </Link>
       </div>
     </nav>
   )

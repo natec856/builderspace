@@ -9,11 +9,9 @@ export default function GroupHeader({groupId, groupName, color, isEditing, onCha
       className="flex items-center justify-between px-3 py-4"
       style={{ backgroundColor: color }}>
 {/* Left: arrow link/button */}
-      <Link
-          href={`/groups/${groupId}`}
-          className='bg-slate-900 rounded-md w-6 h-6 md:w-9 md:h-9 lg:w-12 lg:h-12 flex items-center justify-center mr-auto'>
-            <i className='fa-solid fa-arrow-left text-white text-base sm:text-lg'></i>
-        </Link>
+      <Link href={`/groups/${groupId}`}>
+        <i className='fa-solid fa-chevron-left text-shadow-sm text-xl'></i>
+      </Link>
 {/* Center: group name or textarea */}
       <div className="flex-1 flex justify-center">
         {isEditing ? (

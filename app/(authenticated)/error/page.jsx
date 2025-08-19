@@ -3,6 +3,7 @@ import MainAuth from "@/components/MainAuth"
 import { createClient } from "@/utils/supabase/server";
 import Header from "@/components/generalComponents/Header";
 import MobileNav from "@/components/generalComponents/MobileNav";
+import Link from "next/link";
 
 export default async function ErrorPage() {
   const supabase = await createClient();
@@ -34,10 +35,10 @@ export default async function ErrorPage() {
     <MainAuth>
       <Header username={userRecord.username} />
       <MobileNav username={userRecord.username} />
-      <div className="flex w-full justify-center">
-        <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-screen-md mx-2 mt-4 px-4 py-6 flex flex-col items-center gap-4">
-          <h1 className="text-lg lg:text-xl font-semibold text-center">Sorry, something went wrong!</h1>
-        </div>
+      <div className='flex flex-col items-center justify-center mt-5 lg:mt-10 gap-5 lg:gap-10'>
+        <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-slate-900'>404 Error: Page not found</h1>
+        <p className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-slate-900'>Whoops, something went wrong!</p>
+        <Link href={`/${userRecord.username}`} className='bg-blue-600 text-white font-semibold rounded-full text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl px-10 py-5'>Go Home</Link>
       </div>
     </MainAuth>
   )

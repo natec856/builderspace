@@ -93,7 +93,7 @@ export default function DesktopGroupFocus({ groupId, onMessage, currentUserUsern
   }
 
   return (
-    <div className="bg-white shadow-md shadow-slate-400 rounded-md h-fit max-w-screen-md mx-2 mt-4 mb-35 flex-1">
+    <div className="bg-white rounded-md h-fit w-full max-w-screen-md mx-2 mt-4 mb-35 flex flex-col shadow-md shadow-slate-400">
       <DesktopGroupHeader
         groupId={groupId}
         isEditing={isEditing}

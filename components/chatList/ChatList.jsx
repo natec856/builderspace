@@ -32,7 +32,7 @@ export default function ChatList({chats, user}) {
 
   return (
     <>
-      <div className="bg-white shadow-md shadow-slate-400 rounded-md mx-2 mt-4 px-4 py-4 mb-5 flex-1">
+      <div className="bg-white shadow-md shadow-slate-400 rounded-md mx-2 mt-4 px-3 py-4 mb-5 flex-1">
         <div className='flex justify-between text-lg sm:text-xl md:text-2xl lg:text-3xl'>
           <h1 className="font-bold">Direct Chats</h1>
           <i className='fa-solid fa-plus' onClick={() => setIsOpen(true)}></i>
