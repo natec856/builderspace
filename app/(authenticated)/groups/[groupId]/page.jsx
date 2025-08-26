@@ -37,8 +37,12 @@ export default async function GroupPage({ params }) {
 
   return (
     <MainAuth>
-      <Header username={userRecord.username} />
-      <MobileNav username={userRecord.username} />
+      <Header 
+        username={userRecord.username}
+        avatar_url={userRecord.avatar_url} />
+      <MobileNav 
+        username={userRecord.username}
+        avatar_url={userRecord.avatar_url} />
       <GroupMessagingContainer 
         groupId={groupId}
         currentUser={authUser.id} />

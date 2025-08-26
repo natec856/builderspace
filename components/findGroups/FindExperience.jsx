@@ -6,7 +6,6 @@ export default function FindExperience({ onDone, onBack, userData }) {
     1: 'Beginner',
     2: 'Intermediate',
     3: 'Advanced',
-    4: 'Expert'
   };
 
   const experienceKey = Object.keys(EXPERIENCE).find(

@@ -33,8 +33,12 @@ export default async function ErrorPage() {
         }
   return (
     <MainAuth>
-      <Header username={userRecord.username} />
-      <MobileNav username={userRecord.username} />
+      <Header 
+        username={userRecord.username}
+        avatar_url={userRecord.avatar_url} />
+      <MobileNav 
+        username={userRecord.username}
+        avatar_url={userRecord.avatar_url} />
       <div className='flex flex-col items-center justify-center mt-5 lg:mt-10 gap-5 lg:gap-10'>
         <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-slate-900'>404 Error: Page not found</h1>
         <p className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-slate-900'>Whoops, something went wrong!</p>

@@ -2,11 +2,12 @@
 
 import React, { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { createClient } from '@/utils/supabase/client'
 import { useRouter } from 'next/navigation'
 
-export default function Header({ username }) {
+export default function Header({ username, avatar_url }) {
   const supabase = createClient()
   const [menuOpen, setMenuOpen] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -41,7 +42,7 @@ export default function Header({ username }) {
       {isAuthenticated ? (
         <div className="hidden sm:flex items-center justify-between w-full gap-4">
           {/* Nav links */}
-          <div className="flex flex-wrap justify-center gap-8 lg:gap-15 flex-1">
+          <div className="flex flex-wrap justify-center gap-8 lg:gap-15 xl:gap-20 flex-1">
             <Link href="/findGroups" className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
               <i className='fa-solid fa-search'></i>
               <span className='text-sm md:text-base lg:text-lg cursor-pointer hover:underline'>Find Groups</span>
@@ -50,22 +51,42 @@ export default function Header({ username }) {
               <i className='fa-solid fa-users'></i>
               <span className='text-sm md:text-base lg:text-lg cursor-pointer hover:underline'>My Groups</span>
             </Link>
-            <Link href={`/${username}`} className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-              <i className='fa-solid fa-user'></i>
-              <span className='text-sm md:text-base lg:text-lg cursor-pointer hover:underline'>My Profile</span>            </Link>
             <Link href={`/directChat`} className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
               <i className='fa-solid fa-message'></i>
               <span className='text-sm md:text-base lg:text-lg cursor-pointer hover:underline'>Direct Chats</span>
             </Link>
           </div>
 
-          {/* Logout button on far right */}
-          <button
-            onClick={handleLogout}
-            className="flex flex-col items-center justify-center text-white bg-transparent border-2 font-semibold hover:text-slate-900 hover:bg-white hover:border-4 hover:border-white cursor-pointer rounded-xl px-2 py-1 md:px-3 md:py-2 sm:text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
-          >
-            Logout
-          </button>
+          {/* Logout button and profile on far right */}
+          <div className='flex gap-5 lg:gap-10 items-center justify-between'>
+            <Link href={`/${username}`} className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                {avatar_url ? (
+                  <div className='w-8 h-8 lg:w-10 lg:h-10 xl:w-20 xl:h-20 rounded-full overflow-hidden relative'>
+                    <Image
+                      src={avatar_url}
+                      alt="Profile"
+                      fill
+                      sizes="(max-width: 640px) 32px,
+                            (max-width: 1024px) 40px,
+                            (max-width: 1280px) 64px,
+                            (max-width: 1536px) 80px,
+                            80px"
+                      className="object-cover"
+                    />
+                  </div>
+                ):(
+                  <div className='flex flex-col items-center justify-center border-3 rounded-full p-4 aspect-square'>
+                    <i className='fa-solid fa-user'></i>
+                  </div>
+                )}          
+              </Link>
+            <button
+              onClick={handleLogout}
+              className="flex flex-col items-center justify-center text-white bg-transparent border-2 font-semibold hover:text-slate-900 hover:bg-white hover:border-2 hover:border-white cursor-pointer rounded-xl px-2 py-1 md:px-3 md:py-2 sm:text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       ) : (
 

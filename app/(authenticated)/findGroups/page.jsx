@@ -38,9 +38,13 @@ export default async function FindGroupsPage() {
 
   return (
     <MainAuth>
-      <Header username={userRecord.username} />
-      <MobileNav username={userRecord.username} />
-      <FindGroupsContainer  />
+      <Header 
+        username={userRecord.username} 
+        avatar_url={userRecord.avatar_url}/>
+      <MobileNav 
+        username={userRecord.username}
+        avatar_url={userRecord.avatar_url} />
+      <FindGroupsContainer user={userRecord} />
     </MainAuth>
   )
 }

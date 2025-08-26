@@ -10,7 +10,7 @@ import { createClient } from "@/utils/supabase/client"
 import { useSearchParams } from "next/navigation"
 import ConnectionsContainer from "../connectionsComponents/ConnectionsContainer"
 import InvitesContainer from "../inviteComponents/InvitesContainer"
-import GroupList from "../groupList/GroupList"
+import ProfileGroupsContainer from "../groupList/ProfileGroupsContainer"
 
 export default function ProfileContainer({ user }) {
   const supabase = createClient()
@@ -122,6 +122,8 @@ export default function ProfileContainer({ user }) {
 
   return (
     <div className="flex flex-col md:flex-row w-full justify-center items-start gap-4 px-2 my-4">
+      <ProfileGroupsContainer
+        user_id={user.id} />
       {/* Left Column: Profile Info */}
       <div className="flex-1 min-w-0 max-w-full md:max-w-md lg:max-w-2xl flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md p-4">
         <ProfileInfo

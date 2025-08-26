@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 
-export default function FindTopics({ onDone, userData }) {
-  const TOPICS = [
+export default function FindInterests({ onDone, userData }) {
+  const INTERESTS = [
     "Building a Team",
     "Funding",
     "Idea Validation",
@@ -17,16 +17,16 @@ export default function FindTopics({ onDone, userData }) {
     "Time Allocation",
   ];
 
-  const [selectedTopics, setSelectedTopics] = useState(userData.topics || []);
+  const [selectedInterests, setSelectedInterests] = useState(userData.interests || []);
 
-  const handleAdd = (topic) => {
-    if (selectedTopics.length < 3 && !selectedTopics.includes(topic)) {
-      setSelectedTopics([...selectedTopics, topic]);
+  const handleAdd = (interest) => {
+    if (selectedInterests.length < 3 && !selectedInterests.includes(interest)) {
+      setSelectedInterests([...selectedInterests, interest]);
     }
   };
 
-  const handleRemove = (topic) => {
-    setSelectedTopics(selectedTopics.filter((t) => t !== topic));
+  const handleRemove = (interest) => {
+    setSelectedInterests(selectedInterests.filter((t) => t !== interest));
   };
 
   return (
@@ -34,35 +34,35 @@ export default function FindTopics({ onDone, userData }) {
       <h1 className='font-bold text-xl text-center mb-4'>Choose up to 3 topics</h1>
 
       <div className='flex flex-wrap gap-2 justify-center mb-6'>
-        {selectedTopics.map((topic) => (
+        {selectedInterests.map((interest) => (
           <span
-            key={topic}
-            onClick={() => handleRemove(topic)}
+            key={interest}
+            onClick={() => handleRemove(interest)}
             className='bg-blue-600 text-white px-3 py-1 rounded-full cursor-pointer text-sm'
           >
-            {topic} &times;
+            {interest} &times;
           </span>
         ))}
       </div>
 
       <div className="flex flex-wrap gap-2 max-h-40 overflow-y-auto border border-slate-300 rounded p-2 mb-6">
-        {TOPICS.map((topic) => (
+        {INTERESTS.map((interest) => (
           <button
-            key={topic}
-            onClick={() => handleAdd(topic)}
-            disabled={selectedTopics.includes(topic) || selectedTopics.length >= 3}
+            key={interest}
+            onClick={() => handleAdd(interest)}
+            disabled={selectedInterests.includes(interest) || selectedInterests.length >= 3}
             className={`rounded-full px-3 py-2 text-xs font-medium 
-              ${selectedTopics.includes(topic) ? 'hidden' : 'bg-slate-200 text-slate-800 hover:bg-blue-100'}
+              ${selectedInterests.includes(interest) ? 'hidden' : 'bg-slate-200 text-slate-800 hover:bg-blue-100'}
             `}
           >
-            + {topic}
+            + {interest}
           </button>
         ))}
       </div>
 
       <button
-        onClick={() => onDone(selectedTopics)}
-        disabled={selectedTopics.length === 0}
+        onClick={() => onDone(selectedInterests)}
+        disabled={selectedInterests.length === 0}
         className='bg-blue-600 text-white py-2 px-4 rounded-full font-semibold text-base w-full max-w-[250px] disabled:opacity-50'
       >
         Continue

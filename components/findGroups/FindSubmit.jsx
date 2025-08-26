@@ -1,13 +1,28 @@
+'use client'
+
 import React from 'react'
-import { addUserToStagingPool } from '@/utils/matching';
+import { createClient } from '@/utils/supabase/client'
 
-export default function FindSubmit({ onDone, onBack, userData }) {
+export default function FindSubmit({ onDone, onBack, userData, user_id }) {
 
-    const handleSubmit = () => {
-        addUserToStagingPool(userData.userId);
-        const timestamp = new Date().toISOString();
-        console.log('Submitted at:', timestamp);
-        onDone(timestamp);
+  const supabase = createClient()
+
+    const handleSubmit = async () => {
+      // Add user and the user's experience level and interests to the staging_pool table
+      const { error: stagingError } = await supabase
+        .from('staging_pool')
+        .insert({
+          user_id: user_id,
+          experience_level: userData.experience,
+          interests: userData.interests,
+        })
+
+      if (stagingError) {
+        console.error('Error staging user:', stagingError)
+        return
+      }
+      // Call the onDone to go to next step
+      onDone()
     }
     
   return (
@@ -18,12 +33,12 @@ export default function FindSubmit({ onDone, onBack, userData }) {
           <h2 className='text-sm text-slate-500 font-medium mb-2'>Topics:</h2>
           <div className='flex flex-wrap gap-2'>
             
-              {userData.topics.map((topic, i) => (
+              {userData.interests.map((interest, i) => (
                 <span
                   key={i}
                   className='bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium'
                 >
-                  {topic}
+                  {interest}
                 </span>
               ))}
           </div>

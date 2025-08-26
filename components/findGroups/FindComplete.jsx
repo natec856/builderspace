@@ -1,10 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-export default function FindComplete({onDone}) {
-//test username 
-  const username="NateC32"
-
+export default function FindComplete({username}) {
   return (
     <div className='flex flex-col items-center w-full'>
         <h1 className='font-bold text-xl text-center'>All done!</h1>

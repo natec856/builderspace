@@ -1,56 +1,10 @@
-'use client'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { createClient } from '@/utils/supabase/client'
+import Image from 'next/image'
+import React from 'react'
 
-export default function MobileNav() {
-  const supabase = createClient()
-  const [currentUser, setCurrentUser] = useState(null)
-  const [username, setUsername] = useState(null)
-
-  // Helper to fetch username by user ID
-  const fetchUsername = async (userId) => {
-    const { data, error } = await supabase
-      .from('users')
-      .select('username')
-      .eq('id', userId)
-      .single()
-
-    if (error) {
-      console.error('Failed to fetch username:', error.message)
-      setUsername(null)
-    } else {
-      setUsername(data?.username || null)
-    }
-  }
-
-  useEffect(() => {
-    // Initial user fetch on mount
-    supabase.auth.getUser().then(({ data: { user: authUser } }) => {
-      setCurrentUser(authUser)
-      if (authUser) fetchUsername(authUser.id)
-      else setUsername(null)
-    })
-
-    // Listen to auth changes (login/logout)
-    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
-      const user = session?.user || null
-      setCurrentUser(user)
-      if (user) fetchUsername(user.id)
-      else setUsername(null)
-    })
-
-    // Cleanup on unmount
-    return () => {
-      listener.subscription.unsubscribe()
-    }
-  }, [supabase])
-
-  if (!currentUser) return null
-
+export default function MobileNav({username, avatar_url}) {
   return (
     <nav className="sm:hidden left-0 w-full flex flex-col z-50 shadow-sm relative bg-white">
-      {/* Top Nav Icons */}
       <div className="grid grid-cols-4 justify-around items-center py-3 px-4">
         <Link href="/findGroups" className="flex flex-col items-center gap-1 text-slate-900">
           <i className="fa-solid fa-search text-xl"></i>
@@ -58,11 +12,27 @@ export default function MobileNav() {
         <Link href="/groups" className="flex flex-col items-center gap-1 text-slate-900">
           <i className="fa-solid fa-users text-xl"></i>
         </Link>
-        <Link href={`/${username}`} className="flex flex-col items-center gap-1 text-slate-900">
-          <i className="fa-solid fa-user text-center text-xl"></i>
-        </Link>
-        <Link href={`/directChat`} className="flex flex-col items-center gap-1 text-slate-900">
+        <Link href="/directChat" className="flex flex-col items-center gap-1 text-slate-900">
           <i className="fa-solid fa-message text-center text-xl"></i>
+        </Link>
+        <Link href={`/${username}`} className="flex flex-col items-center gap-1 text-slate-900">
+          {avatar_url ? (
+            <div className='w-7 h-7 rounded-full overflow-hidden relative'>
+              <Image
+                src={avatar_url}
+                alt="Profile"
+                fill
+                sizes="(max-width: 640px) 32px,
+                        (max-width: 1024px) 40px,
+                        (max-width: 1280px) 64px,
+                        (max-width: 1536px) 80px,
+                        80px"
+                className="object-cover"
+              />
+            </div>
+          ):(
+            <i className='fa-solid fa-user'></i>
+          )}
         </Link>
       </div>
     </nav>

@@ -54,8 +54,12 @@ export default async function ChatListPage() {
 
   return (
     <MainAuth>
-      <Header username={userRecord.username} />
-      <MobileNav username={userRecord.username} />
+      <Header 
+        username={userRecord.username}
+        avatar_url={userRecord.avatar_url} />
+      <MobileNav 
+        username={userRecord.username}
+        avatar_url={userRecord.avatar_url} />
       <ChatView
         chats={userChats}
         currentUser={userRecord} />
