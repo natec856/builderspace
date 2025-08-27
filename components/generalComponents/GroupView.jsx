@@ -5,8 +5,12 @@ import DesktopGroupList from '@/components/groupList/DesktopGroupList'
 import DesktopGroupMessagingContainer from '@/components/groupChatComponents/DesktopGroupMessagingContainer'
 import DesktopGroupFocus from '@/components/groupChatComponents/DesktopGroupFocus'
 import GroupList from '../groupList/GroupList'
+import { useSearchParams } from 'next/navigation'
 
 export default function GroupView({ groups, currentUserId, currentUserUsername }) {
+
+  const searchParams = useSearchParams()
+  const providedGroupId = searchParams.get('providedGroupId')
   // Find group with most recent last_message_date on initial render
   const initialGroupId = useMemo(() => {
     if (!groups || groups.length === 0) return null
@@ -29,7 +33,7 @@ export default function GroupView({ groups, currentUserId, currentUserUsername }
     return groupsWithDates[0].id || groupsWithDates[0].groupId || null
   }, [groups])
 
-  const [selectedGroupId, setSelectedGroupId] = useState(initialGroupId)
+  const [selectedGroupId, setSelectedGroupId] = useState(providedGroupId || initialGroupId)
   const [isFocus, setIsFocus] = useState(false)
 
   // Accept the selected group id from child component

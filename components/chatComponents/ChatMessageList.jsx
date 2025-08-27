@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 
-export default function ChatMessageList({ messages, currentUserId }) {
+export default function ChatMessageList({ chatName, messages, currentUserId }) {
   const containerRef = useRef(null)
 
   useEffect(() => {
@@ -44,11 +44,19 @@ export default function ChatMessageList({ messages, currentUserId }) {
     return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
   }
 
+  if (!messages || messages.length === 0) {
+        return (
+          <div className="w-full max-w-screen-md mt-30 text-slate-500 text-xl h-full px-2">
+            <p className="text-center">Send {chatName} a message!</p>
+          </div>
+        )
+      }
+
   return (
     <div
       ref={containerRef}
       className="flex-1 h-full overflow-y-auto p-4 space-y-2 bg-white"
-    >
+    > 
       {messages.map((msg, index) => {
         const prevMsg = messages[index - 1]
         const showTimestamp = shouldShowTimestamp(msg, prevMsg)

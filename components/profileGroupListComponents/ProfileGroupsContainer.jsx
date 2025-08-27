@@ -23,18 +23,24 @@ export default function ProfileGroupsContainer({ user_id }) {
             color
           )
         `)
-        .eq("user_id", user_id);
+        .eq("user_id", user_id)
 
       if (groupsError) {
-        console.error("Error fetching groups:", groupsError);
-        return;
+        console.error("Error fetching groups:", groupsError)
+        return
       }
 
-      setGroups(userGroups);
+      // flatten the results
+      const flattened = userGroups.map((ug) => ({
+        ...ug.groups,
+        joined_at: ug.joined_at,
+      }))
+
+      setGroups(flattened)
     }
 
-    if (user_id) fetchGroups();
-  }, [supabase, user_id]);
+    if (user_id) fetchGroups()
+  }, [supabase, user_id])
 
   return (
     <div className="flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md h-fit px-4 py-6">

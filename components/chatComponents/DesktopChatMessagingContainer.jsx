@@ -50,7 +50,8 @@ export default function DesktopChatMessagingContainer({ chatId, currentUserId })
           last_message_date,
           user_chats!inner (
             user_id,
-            name
+            name,
+            username
           ),
           direct_messages (
             id,
@@ -77,6 +78,7 @@ export default function DesktopChatMessagingContainer({ chatId, currentUserId })
         setChat({
           id: data.id,
           chatName: data.user_chats?.[0]?.name || '',
+          chatUser: data.user_chats?.[0]?.username || '',
           last_message: data.last_message,
           last_message_date: formatTimestamp(data.last_message_date),
         })
@@ -145,7 +147,8 @@ export default function DesktopChatMessagingContainer({ chatId, currentUserId })
   return (
     <div className="bg-white rounded-md h-[calc(100vh-200px)] mx-2 mt-4 mb-35 flex flex-col w-full max-w-screen-md shadow-md shadow-slate-400">
       <DesktopChatMessagingHeader
-        chatName={chat.chatName} />
+        chatName={chat.chatName}
+        chatUser={chat.chatUser} />
       <ChatMessageList
         messages={messages}
         currentUserId={currentUserId} />

@@ -50,7 +50,8 @@ export default function ChatMessagingContainer({ chatId, currentUser }) {
               last_message_date,
               user_chats!inner (
                 user_id,
-                name
+                name,
+                username
               ),
               direct_messages (
                   id,
@@ -77,6 +78,7 @@ export default function ChatMessagingContainer({ chatId, currentUser }) {
             setChat({
               id: data.id,
               chatName: data.user_chats?.[0]?.name || '',
+              chatUser: data.user_chats?.[0]?.username || '',
               last_message: data.last_message,
               last_message_date: formatTimestamp(data.last_message_date),
             })
@@ -88,7 +90,6 @@ export default function ChatMessagingContainer({ chatId, currentUser }) {
     
         fetchChatAndMessages()
     
-        // Inside your useEffect, replace this block:
       const messageListener = supabase
         .channel('public:direct_messages')
         .on(
@@ -123,14 +124,6 @@ export default function ChatMessagingContainer({ chatId, currentUser }) {
           </div>
         )
       }
-
-      if (!messages || messages.length === 0) {
-        return (
-          <div className="w-full max-w-screen-md mt-30 text-slate-500 text-2xl">
-            <p className="text-center">Send {chat.name} a message!</p>
-          </div>
-        )
-      }
     
       if (loading) {
         return (
@@ -150,14 +143,13 @@ export default function ChatMessagingContainer({ chatId, currentUser }) {
     
       if (!chat) return null
 
-console.log(chat)
-
-
   return (
     <div className="bg-white shadow-md shadow-slate-400 flex flex-col h-[calc(100vh-100px)]">
         <ChatMessagingHeader
-          chatName={chat.chatName} />
+          chatName={chat.chatName}
+          chatUser={chat.chatUser} />
         <ChatMessageList
+          chatName={chat.chatName}
           messages={messages}
           currentUserId={currentUser} />
         <ChatMessageInput

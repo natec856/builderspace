@@ -53,8 +53,8 @@ export default function ConnectionsPreview({
         const { error: linkErr } = await supabase
           .from('user_chats')
           .insert([
-            { chat_id: newChat.id, user_id: currentUserId,       name: connectionName, avatar_url: connectionAvatar_url },
-            { chat_id: newChat.id, user_id: connectionUser_id,   name: currentUserName, avatar_url: currentUserAvatarUrl }
+            { chat_id: newChat.id, user_id: currentUserId, name: connectionName, username: connectionUsername, avatar_url: connectionAvatar_url },
+            { chat_id: newChat.id, user_id: connectionUser_id, name: currentUserName, username:currentUserUsername, avatar_url: currentUserAvatarUrl }
           ])
         if (linkErr) throw linkErr
 
