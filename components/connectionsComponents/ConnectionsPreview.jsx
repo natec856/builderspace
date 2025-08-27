@@ -74,7 +74,7 @@ export default function ConnectionsPreview({
   return (
     <div className="flex items-center justify-between w-full gap-3 border-b min-h-[80px] border-slate-200 py-2 lg:py-3">
       <div className="flex items-center gap-3 min-w-0">
-        <div className="aspect-square w-14 sm:w-20 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0">
+        <div className="aspect-square w-14 sm:w-20 lg:w-16 xl:w-20 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0">
           {connectionAvatar_url ? (
             <img src={connectionAvatar_url} alt="Profile" className="w-full h-full object-cover" />
           ) : (
@@ -82,23 +82,23 @@ export default function ConnectionsPreview({
           )}
         </div>
         <div className="flex flex-col min-w-0">
-          <div className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl text-slate-900 truncate">{connectionName}</div>
-          <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 truncate">@{connectionUsername}</div>
+          <div className="font-bold text-base sm:text-lg md:text-xl xl:text-2xl text-slate-900 truncate">{connectionName}</div>
+          <div className="text-sm sm:text-base md:text-lg xl:text-2xl text-slate-600 truncate">@{connectionUsername}</div>
         </div>
       </div>
 
       {currentUserUsername === connectionUsername ? null : (
-        <div className="flex flex-col xl:flex-row gap-2 h-fit">
+        <div className="flex flex-col 2xl:flex-row gap-2 h-fit">
           <button onClick={handleMessageClick} disabled={loading}
             className="sm:hidden bg-blue-600 text-white py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl disabled:opacity-50 cursor-pointer">
             Message
           </button>
           <button onClick={handleMessageClick} disabled={loading}
-            className="hidden sm:flex bg-blue-600 text-white py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl disabled:opacity-50 cursor-pointer">
+            className="hidden sm:flex bg-blue-600 text-white py-1 px-2 xl:py-2 xl:px-4 font-semibold rounded-md text-sm sm:text-lg xl:text-xl disabled:opacity-50 cursor-pointer">
             Message
           </button>
           <Link href={`/${connectionUsername}`}
-            className="bg-slate-200 text-slate-900 py-1 px-2 lg:py-2 lg:px-4 font-semibold rounded-md text-sm sm:text-lg lg:text-xl text-center"> 
+            className="bg-slate-200 text-slate-900 py-1 px-2 xl:py-2 xl:px-4 font-semibold rounded-md text-sm sm:text-lg xl:text-xl text-center"> 
             View
           </Link>
         </div>

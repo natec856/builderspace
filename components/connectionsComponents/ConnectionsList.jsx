@@ -1,11 +1,11 @@
 'use client'
 import React, { useState, useMemo, useRef, useEffect } from 'react'
-import ConnectionsPreview from '@/components/connectionsComponents/ConnectionsPreview'
-import ConnectionsSearch from '@/components/connectionsComponents/ConnectionsSearch'
+import ConnectionsPreview from './ConnectionsPreview'
+import ConnectionsSearch from './ConnectionsSearch'
 
 export default function ConnectionsList({ connections, currentUserUsername, currentUserId, currentUserName, currentUserAvatarUrl }) {
   const [searchTerm, setSearchTerm] = useState('')
-  const [showConnections, setShowConnections] = useState(false)
+  const [showConnections, setShowConnections] = useState(true)
   const contentRef = useRef(null)
   const [height, setHeight] = useState(0)
 
@@ -26,6 +26,15 @@ export default function ConnectionsList({ connections, currentUserUsername, curr
 
   const handleShow = () => setShowConnections((prev) => !prev)
 
+  // On mount, close groups if on mobile
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 768) {  // Tailwind's md breakpoint
+        setShowConnections(false)
+      }
+    }
+  }, [])
+
   // Animate height when showConnections changes
   useEffect(() => {
     if (contentRef.current) {
@@ -39,7 +48,7 @@ export default function ConnectionsList({ connections, currentUserUsername, curr
         onClick={handleShow}
         className="flex items-center justify-between cursor-pointer select-none"
       >
-        <h1 className="text-2xl sm:text-3xl font-bold pb-1">
+        <h1 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-bold pb-1">
           My Connections
         </h1>
         <svg

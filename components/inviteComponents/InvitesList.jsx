@@ -3,19 +3,26 @@ import React, { useEffect, useRef, useState } from 'react'
 import InvitesPreview from './InvitesPreview'
 
 export default function InvitesList({ invites, currentUserUsername, currentUserId }) {
-  const [showInvites, setShowInvites] = useState(false)
+  const [showInvites, setShowInvites] = useState(invites.length > 0) // start open if invites exist
   const contentRef = useRef(null)
   const [height, setHeight] = useState(0)
 
   const handleShow = () => setShowInvites((prev) => !prev)
-  
-    // Animate height when showInvites changes
-    useEffect(() => {
-      if (contentRef.current) {
-        setHeight(showInvites ? contentRef.current.scrollHeight : 0)
-      }
-    }, [showInvites])
-  
+
+  // Keep showInvites in sync if invites change
+  useEffect(() => {
+    if (invites.length > 0) {
+      setShowInvites(true)
+    }
+  }, [invites])
+
+  // Animate height when showInvites changes
+  useEffect(() => {
+    if (contentRef.current) {
+      setHeight(showInvites ? contentRef.current.scrollHeight : 0)
+    }
+  }, [showInvites, invites])
+
   return (
     <div className="flex flex-col items-left w-full">
       <div
@@ -23,7 +30,7 @@ export default function InvitesList({ invites, currentUserUsername, currentUserI
         className="flex items-center justify-between cursor-pointer select-none"
       >
         <div className='flex gap-3 items-center'>
-          <h1 className="text-2xl sm:text-3xl font-bold pb-1">
+          <h1 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-bold pb-1">
             Pending Invites
           </h1>
           {invites.length > 0 && (
@@ -57,21 +64,23 @@ export default function InvitesList({ invites, currentUserUsername, currentUserI
           className='border-t border-slate-200 mt-2 min-h-[20px]'>
           <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll">
             {invites.length === 0 ? (
-              <p className='text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-slate-400 py-5'>No invites found</p>
-              ):(
-                invites.map((invite) => (
-                  <li key={invite.id}>
-                    <InvitesPreview
-                      invite_id={invite.id}
-                      username={invite.user_id.username}
-                      name={invite.user_id.name}
-                      avatar_url={invite.user_id.avatar_url}
-                      currentUserUsername={currentUserUsername}
-                      currentUserId={currentUserId}
-                    />
-                  </li>
-                ))
-              )}
+              <p className='text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-slate-400 py-5'>
+                No invites found
+              </p>
+            ) : (
+              invites.map((invite) => (
+                <li key={invite.id}>
+                  <InvitesPreview
+                    invite_id={invite.id}
+                    username={invite.user_id.username}
+                    name={invite.user_id.name}
+                    avatar_url={invite.user_id.avatar_url}
+                    currentUserUsername={currentUserUsername}
+                    currentUserId={currentUserId}
+                  />
+                </li>
+              ))
+            )}
           </ul>
         </div>
       </div>

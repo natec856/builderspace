@@ -150,6 +150,7 @@ export default function DesktopChatMessagingContainer({ chatId, currentUserId })
         chatName={chat.chatName}
         chatUser={chat.chatUser} />
       <ChatMessageList
+        chatName={chat.chatName}
         messages={messages}
         currentUserId={currentUserId} />
       <ChatMessageInput

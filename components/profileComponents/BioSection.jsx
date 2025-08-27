@@ -17,7 +17,7 @@ export default function BioSection({ bio, isEditing, onChange }) {
           <p className="text-xs sm:text-xl text-slate-500">150 characters max</p>
         </>
       ) : (
-        <p className="text-slate-700 text-sm sm:text-xl lg:text-2xl whitespace-pre-wrap border-b-2 border-slate-200 pb-4 mb-4">{bio}</p>
+        <p className="text-slate-700 text-sm sm:text-xl xl:text-2xl whitespace-pre-wrap border-b-2 border-slate-200 pb-4 mb-4">{bio}</p>
       )}
     </div>
   );

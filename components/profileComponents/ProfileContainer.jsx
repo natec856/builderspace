@@ -121,40 +121,47 @@ export default function ProfileContainer({ user }) {
   }
 
   return (
-    <div className="flex flex-col md:flex-row w-full justify-center items-start gap-4 px-2 my-4">
-      {/* Left Column: Profile Info */}
-      <div className="flex-1 min-w-0 max-w-full md:max-w-md lg:max-w-2xl flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md p-4">
-        <ProfileInfo
-          username={profileData.username}
-          name={profileData.name}
-          avatar_url={profileData.avatar_url}
-          isEditing={isEditing}
-          onChange={handleChange}
-          onImageUpload={handleImageUpload}
-        />
-        <CategorySection
-          categories={profileData.categories}
-          isEditing={isEditing}
-          onChange={(newCategories) =>
-            setProfileData((prev) => ({ ...prev, categories: newCategories }))
-          }
-        />
-        <BioSection
-          bio={profileData.bio}
-          isEditing={isEditing}
-          onChange={(newBio) => handleChange("bio", newBio)}
-        />
-        <ProfileButtons
-          isEditing={isEditing}
-          onEdit={() => setIsEditing(true)}
-          onDone={async () => {
-            await handleSaveToSupabase();
-            setIsEditing(false);
-          }}
-          onShare={handleShare}
-          isOwner={isOwner}
-        />
-        {!isOwner && <ProfileVisitorBtns user={profileData} />}
+    <div className="flex flex-col lg:flex-row w-full justify-center items-center lg:items-start gap-4 px-2 my-4">
+      {/* Left Column: Profile Info and Invites Container */}
+      <div className="flex-1 min-w-0 w-full md:max-w-md lg:max-w-2xl flex flex-col gap-6">
+      {/* User Profile Container */}
+        <div className="flex-1 min-w-0 max-w-full md:max-w-md lg:max-w-2xl flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md p-4">
+          <ProfileInfo
+            username={profileData.username}
+            name={profileData.name}
+            avatar_url={profileData.avatar_url}
+            isEditing={isEditing}
+            onChange={handleChange}
+            onImageUpload={handleImageUpload}
+          />
+          <CategorySection
+            categories={profileData.categories}
+            isEditing={isEditing}
+            onChange={(newCategories) =>
+              setProfileData((prev) => ({ ...prev, categories: newCategories }))
+            }
+          />
+          <BioSection
+            bio={profileData.bio}
+            isEditing={isEditing}
+            onChange={(newBio) => handleChange("bio", newBio)}
+          />
+          <ProfileButtons
+            isEditing={isEditing}
+            onEdit={() => setIsEditing(true)}
+            onDone={async () => {
+              await handleSaveToSupabase();
+              setIsEditing(false);
+            }}
+            onShare={handleShare}
+            isOwner={isOwner}
+          />
+          {!isOwner && <ProfileVisitorBtns user={profileData} />}
+        </div>
+        {/* Invites section */}
+        <div>
+          {isOwner && <InvitesContainer user={profileData}/>}
+        </div>
       </div>
       {/* Middle Column: Groups */}
       {isOwner && (
@@ -167,7 +174,6 @@ export default function ProfileContainer({ user }) {
       {isOwner && (
         <div className="flex-1 min-w-0 w-full md:max-w-md lg:max-w-2xl flex flex-col gap-6">
           <ConnectionsContainer user={profileData} />
-          <InvitesContainer user={profileData} />
         </div>
       )}
     </div>

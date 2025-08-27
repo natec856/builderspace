@@ -8,8 +8,6 @@ export default function InvitesButton({ invite_id, currentUserId }) {
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState(null) // pending, accepted, declined
 
-  console.log(invite_id)
-
   const handleAccept = async () => {
     setLoading(true)
     const { error } = await supabase
@@ -49,27 +47,31 @@ export default function InvitesButton({ invite_id, currentUserId }) {
   }
 
   return (
-    <div className="flex flex-col xl:flex-row gap-2 h-fit">
+    <>
+    <div className="flex flex-col 2xl:flex-row gap-2 items-center">
       <button
         onClick={handleAccept}
         disabled={loading}
-        className="bg-blue-600 text-white rounded-md py-1 px-2 lg:py-2 lg:px-4 font-semibold disabled:opacity-50 w-full text-sm sm:text-lg lg:text-xl hover:cursor-pointer"
+        className="bg-blue-600 text-white rounded-md py-2 px-4 font-semibold disabled:opacity-50 w-full lg:w-auto text-sm sm:text-lg lg:text-xl hover:cursor-pointer"
       >
-        Accept
+        {loading ? 'Accepting...' : 'Accept'}
       </button>
+
       <button
         onClick={() => setShowConfirm(true)}
         disabled={loading}
-        className="bg-slate-200 text-slate-900 rounded-md py-1 px-2 lg:py-2 lg:px-4 font-semibold disabled:opacity-50 w-full text-sm sm:text-lg lg:text-xl hover:cursor-pointer"
+        className="bg-slate-200 text-slate-900 rounded-md py-2 px-4 font-semibold disabled:opacity-50 w-full lg:w-auto text-sm sm:text-lg lg:text-xl hover:cursor-pointer"
       >
         Decline
       </button>
-
-      {/* Confirmation Popup */}
+    </div>
+    {/* Confirmation Popup */}
       {showConfirm && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-slate-900 rounded-lg p-6 max-w-sm md:max-w-md w-full shadow-lg">
-            <p className="mb-4 text-white text-center font-semibold md:text-xl">Are you sure you want to decline this invite?</p>
+            <p className="mb-4 text-white text-center font-semibold md:text-xl">
+              Are you sure you want to decline this invite?
+            </p>
             <div className="flex justify-center gap-3 md:text-xl">
               <button
                 onClick={handleDecline}
@@ -88,6 +90,6 @@ export default function InvitesButton({ invite_id, currentUserId }) {
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 }

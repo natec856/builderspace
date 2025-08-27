@@ -46,7 +46,7 @@ export default function InvitesContainer({ user }) {
   }, [supabase, user.id])
 
   return (
-    <div className="flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md h-fit px-4 py-6">
+    <div className="flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md px-4 py-6 h-fit">
       <InvitesList 
         invites={invites}
         currentUserUsername={user.username}
