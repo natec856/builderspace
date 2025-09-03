@@ -45,7 +45,7 @@ export default function ProfileInfo({ username, name, avatar_url, isEditing, onC
       </div>
       {/* Info */}
       <div className="flex-1 w-full">
-        <h2 className="text-lg sm:text-2xl lg:text-xl xl:text-2xl font-semibold">@{username}</h2>
+        <h2 className="text-lg sm:text-2xl lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold">@{username}</h2>
         {isEditing ? (
           <textarea
             ref={textareaRef}
@@ -61,7 +61,7 @@ export default function ProfileInfo({ username, name, avatar_url, isEditing, onC
             rows={1}
           />
         ) : (
-          <p className="text-slate-700 text-sm sm:text-xl lg:text-xl xl:text-2xl line-clamp-2">{name}</p>
+          <p className="text-slate-700 text-sm sm:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl line-clamp-2">{name}</p>
         )}
       </div>
     </div>

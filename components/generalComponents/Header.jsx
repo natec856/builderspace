@@ -30,7 +30,7 @@ export default function Header({ username, avatar_url }) {
 
   return (
   <header className="w-full px-3 lg:px-6 text-white bg-slate-900">
-    <div className="flex items-center justify-between w-full py-3 lg:py-6">
+    <div className="flex items-center justify-between w-full py-3 sm:py-4 md:py-5 lg:py-6">
       {/* Logo */}
       <Link
         href="/"
@@ -61,7 +61,7 @@ export default function Header({ username, avatar_url }) {
           <div className='flex gap-5 lg:gap-10 items-center justify-between'>
             <Link href={`/${username}`} className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
                 {avatar_url ? (
-                  <div className='w-8 h-8 lg:w-10 lg:h-10 xl:w-20 xl:h-20 rounded-full overflow-hidden relative'>
+                  <div className='w-10 h-10 md:w-15 md:h-15 lg:w-18 lg:h-18 xl:w-20 xl:h-20 rounded-full overflow-hidden relative'>
                     <Image
                       src={avatar_url}
                       alt="Profile"
