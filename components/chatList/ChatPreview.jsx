@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const ChatPreview = React.memo(function ChatPreview({
   chatId,
@@ -39,11 +40,25 @@ const ChatPreview = React.memo(function ChatPreview({
 {/* Chat avatar_url */}
       <div className='flex items-center justify-center shrink-0'>
         <div 
-          className="aspect-square text-3xl font-bold text-slate-500 w-16 lg:w-20 xl:w-24 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 shadow-sm shadow-slate-400">
+          className="text-3xl font-bold text-slate-500 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 shadow-sm shadow-slate-400">
             {avatar_url ? (
-              <img src={avatar_url} alt="profilePic" />
+              <div className='w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full overflow-hidden relative'>
+                <Image
+                  src={avatar_url}
+                  alt="Profile"
+                  fill
+                  sizes="(max-width: 640px) 32px,
+                        (max-width: 1024px) 40px,
+                        (max-width: 1280px) 64px,
+                        (max-width: 1536px) 80px,
+                        80px"
+                  className="object-cover"
+                />
+              </div>
             ):(
-              <i className='fa-solid fa-user'></i>
+              <div className='flex flex-col items-center justify-center w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full overflow-hidden relative'>
+                <i className='fa-solid fa-user'></i>
+              </div>
             )}
         </div>
       </div>

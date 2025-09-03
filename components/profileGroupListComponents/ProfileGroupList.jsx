@@ -75,7 +75,7 @@ export default function ProfileGroupList({ groups }) {
       >
         <div ref={contentRef}>
           <ProfileGroupSearchBar onSearch={setSearchTerm} />
-          <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll">
+          <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll scrollbar-hide">
             {filteredGroups.length === 0 && (
               <li className="mt-2 text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-slate-400">
                 No groups found

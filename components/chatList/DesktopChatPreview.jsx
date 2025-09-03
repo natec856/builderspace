@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const DesktopChatPreview = React.memo(function DesktopChatPreview({
   chatName,
@@ -37,18 +38,30 @@ const DesktopChatPreview = React.memo(function DesktopChatPreview({
       className="flex items-center border-b border-slate-200 py-2 sm:py-3 hover:bg-slate-50 hover:cursor-pointer"
     >
       {/* Chat avatar_url */}
-      <div className="flex items-center justify-center shrink-0">
-        {/* shrink-0 prevents the avatar box from shrinking; flex + items/justify-center centers its content */}
-        <div
-          className="aspect-square text-4xl font-bold text-slate-500 w-16 lg:w-20 xl:w-24 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 shadow-sm shadow-slate-400">
+      <div className='flex items-center justify-center shrink-0 ml-1'>
+        <div 
+          className="text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-500 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 shadow-sm shadow-slate-400">
             {avatar_url ? (
-              <img src={avatar_url} alt="profilePic" />
+              <div className='w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full overflow-hidden relative'>
+                <Image
+                  src={avatar_url}
+                  alt="Profile"
+                  fill
+                  sizes="(max-width: 640px) 32px,
+                        (max-width: 1024px) 40px,
+                        (max-width: 1280px) 64px,
+                        (max-width: 1536px) 80px,
+                        80px"
+                  className="object-cover"
+                />
+              </div>
             ):(
-              <i className='fa-solid fa-user'></i>
+              <div className='flex flex-col items-center justify-center w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full overflow-hidden relative'>
+                <i className='fa-solid fa-user'></i>
+              </div>
             )}
         </div>
       </div>
-
       {/* Text content */}
       <div className="ml-3 flex-1 min-w-0">
         {/* Row with chatName and displayDate aligned vertically centered */}
@@ -62,7 +75,7 @@ const DesktopChatPreview = React.memo(function DesktopChatPreview({
         </div>
 
         {/* Last message below, max 2 lines (requires line-clamp plugin) */}
-        <div className="text-sm md:text-base lg:text-lg xl:text-xl text-slate-600 line-clamp-2 leading-tight min-h-[30px]">
+        <div className="text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 line-clamp-2 leading-tight min-h-[40px]">
           {lastMessage}
         </div>
       </div>

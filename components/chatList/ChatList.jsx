@@ -38,7 +38,7 @@ export default function ChatList({chats, user}) {
           <i className='fa-solid fa-plus' onClick={() => setIsOpen(true)}></i>
         </div>
         <ChatSearchBar onSearch={setSearchTerm} />
-        <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll">
+        <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll scrollbar-hide">
           {filteredChats.length === 0 && <li>No chats found</li>}
           {filteredChats.map((chat) => (
             <li key={chat.direct_chats.id}>

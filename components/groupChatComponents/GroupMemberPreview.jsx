@@ -1,22 +1,34 @@
 import React from 'react'
 import Link from 'next/link'
-import ProfileVisitorBtns from '../profileComponents/ProfileVisitorBtns'
+import Image from 'next/image'
+import GroupFocusButtons from './GroupFocusButtons'
 
-export default function GroupMemberPreview({ user_id, username, currentUserUsername, name, avatar_url }) {
+export default function GroupMemberPreview({ user_id, name, username, avatar_url, currentUserUsername }) {
   return (
     <div className="flex items-center justify-between w-full gap-3 border-b min-h-[80px] border-slate-200 px-4 py-2 sm:px-6 sm:py-3"
     >
       {/* User Info container */}
       <div className="flex items-center gap-3 min-w-0">
-        <div className="aspect-square w-14 sm:w-17 md:w-20 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0">
-          {avatar_url ? (
-            <img
-                src={avatar_url}
-                alt="Profile"
-                className="w-full h-full object-cover"
-            />
-            ) : (
-            <i className="fa-solid fa-user text-slate-500 text-2xl md:text-4xl" />
+        <div 
+          className="text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-500 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 shadow-sm shadow-slate-400">
+            {avatar_url ? (
+              <div className='w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full overflow-hidden relative'>
+                <Image
+                  src={avatar_url}
+                  alt="Profile"
+                  fill
+                  sizes="(max-width: 640px) 32px,
+                        (max-width: 1024px) 40px,
+                        (max-width: 1280px) 64px,
+                        (max-width: 1536px) 80px,
+                        80px"
+                  className="object-cover"
+                />
+              </div>
+            ):(
+              <div className='flex flex-col items-center justify-center w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full overflow-hidden relative'>
+                <i className='fa-solid fa-user'></i>
+              </div>
             )}
         </div>
 
@@ -35,7 +47,7 @@ export default function GroupMemberPreview({ user_id, username, currentUserUsern
         <></>
       ):(
         <div className="flex flex-col lg:flex-row gap-2 h-fit">
-          <ProfileVisitorBtns
+          <GroupFocusButtons
              user_id={user_id}/>
           <Link
             href={`/${username}`}

@@ -74,7 +74,7 @@ export default function ConnectionsList({ connections, currentUserUsername, curr
       >
         <div ref={contentRef}>
           <ConnectionsSearch onSearch={setSearchTerm} />
-          <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll">
+          <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll scrollbar-hide">
             {filteredConnections.length === 0 && (
               <li className="mt-2 text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-slate-400">No connections found</li>
             )}

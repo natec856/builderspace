@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 
 export default function ProfileVisitorBtns({ user }) {
   const router = useRouter()
-  const [connection, setConnection] = useState({})
   const [isConnected, setIsConnected] = useState(false)
   const [invited, setInvited] = useState(false)
   const [pendingFromOther, setPendingFromOther] = useState(false)

@@ -47,7 +47,7 @@ export default function MessageList({ messages, currentUserId }) {
   return (
     <div
       ref={containerRef}
-      className="flex-1 h-full overflow-y-auto p-4 space-y-2 bg-white"
+      className="flex-1 h-full overflow-y-scroll scrollbar-hide p-4 space-y-2 bg-white"
     >
       {messages.map((msg, index) => {
         const prevMsg = messages[index - 1]

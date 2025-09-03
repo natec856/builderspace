@@ -16,53 +16,54 @@ export default function GroupFocus({ groupId, currentUserUsername }) {
     const supabase = createClient() // Initialize Supabase client to interact with your backend
 
     useEffect(() => {
-      // If no groupId is provided, clear members and loading state and exit early
-      if (!groupId) {
-        setMembers([])       // Clear members list
-        setIsLoading(false)  // Indicate loading finished
-        return               // Exit useEffect early
-      }
-
-      // Define an async function to fetch group members and group name
-      async function fetchGroupMembers() {
-        setIsLoading(true)   // Start loading state
-        setError(null)       // Clear any previous errors
-
-        try {
-          // Query 'groups' table to select the group's name and nested users in user_groups
-          const { data, error } = await supabase
-            .from('groups')
-            .select('name, color, user_groups(users(id, username, name, avatar_url))')
-            .eq('id', groupId)  // Filter by the given groupId
-            .single()           // Expect only one result (single row)
-
-          console.log(data)     // Debug log the returned data
-
-          if (error) throw error  // If error returned, throw it to catch block
-
-          setGroupName(data.name) // Set the group name state to the fetched group's name
-
-          setColor(data.color) // Set the group color state to the fetched group's color
-
-          // Extract the nested users from the user_groups array, filter out any nulls
-          const users = data.user_groups.map(ug => ug.users).filter(Boolean)
-
-          setMembers(users)      // Update members state with the user list
-        } catch (err) {
-          console.error('Error fetching group members:', err) // Log errors to console
-          setError(err.message)     // Store error message in state for UI display or logic
-          setMembers([])            // Clear members if error occurs
-          setGroupName('')          // Clear group name on error
-          setColor('')              // Clear group color on error
-        } finally {
-          setIsLoading(false)       // End loading state regardless of success or failure
+        // If no groupId is provided, clear members and loading state and exit early
+        if (!groupId) {
+          setMembers([])       // Clear members list
+          setIsLoading(false)  // Indicate loading finished
+          return               // Exit useEffect early
         }
-      }
-
-      fetchGroupMembers() // Call the async fetch function defined above
-
-      // Dependency array triggers this effect when groupId or supabase client changes
-    }, [groupId, supabase])
+    
+        // Define an async function to fetch group members and group name
+        async function fetchGroupMembers() {
+          setIsLoading(true)   // Start loading state
+          setError(null)       // Clear any previous errors
+    
+          try {
+            // Query 'groups' table to select the group's name and nested users in user_groups
+            const { data, error } = await supabase
+              .from('groups')
+              .select('name, color, user_groups(users(id, username, name, avatar_url))')
+              .eq('id', groupId)  // Filter by the given groupId
+              .single()           // Expect only one result (single row)
+    
+            console.log(data)     // Debug log the returned data
+    
+            if (error) throw error  // If error returned, throw it to catch block
+    
+            setGroupName(data.name) // Set the group name state to the fetched group's name
+    
+            setColor(data.color)
+    
+            // Extract the nested users from the user_groups array, filter out any nulls
+            const users = data.user_groups.map(ug => ug.users).filter(Boolean)
+    
+            setMembers(users)      // Update members state with the user list
+          } catch (err) {
+            console.error('Error fetching group members:', err) // Log errors to console
+            setError(err.message)     // Store error message in state for UI display or logic
+            setMembers([])            // Clear members if error occurs
+            setGroupName('')          // Clear group name on error
+    
+            setColor('')              // Clear group color on error
+          } finally {
+            setIsLoading(false)       // End loading state regardless of success or failure
+          }
+        }
+    
+        fetchGroupMembers() // Call the async fetch function defined above
+    
+        // Dependency array triggers this effect when groupId or supabase client changes
+      }, [groupId, supabase])
 
     const handleChange = async (newName) => {
       const previousName = groupName; // save previous name to revert on error
@@ -112,9 +113,9 @@ export default function GroupFocus({ groupId, currentUserUsername }) {
             .map(user => (
             <li key={user.id}>
               <GroupMemberPreview
+                currentUserUsername={currentUserUsername}
                 username={user.username}
                 user_id={user.id}
-                currentUserUsername={currentUserUsername}
                 name={user.name}
                 avatar_url={user.avatar_url}
               />

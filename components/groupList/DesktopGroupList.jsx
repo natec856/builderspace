@@ -27,7 +27,7 @@ export default function DesktopGroupList({ onSelectGroup, groups }) {
       <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">My Groups</h1>
       <GroupSearchBar onSearch={setSearchTerm} />
 
-      <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll">
+      <ul className="max-h-[calc(100vh-300px)] overflow-y-scroll scrollbar-hide">
         {filteredGroups.length === 0 && <li>No groups found</li>}
         {filteredGroups.map((group) => (
           <li key={group.id}>
