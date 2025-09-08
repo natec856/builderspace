@@ -1,5 +1,6 @@
 "use client"
 import React, { useRef, useEffect } from "react";
+import Image from "next/image";
 
 export default function ProfileInfo({ username, name, avatar_url, isEditing, onChange, onImageUpload }) {
   const textareaRef = useRef(null)
@@ -22,10 +23,17 @@ export default function ProfileInfo({ username, name, avatar_url, isEditing, onC
       <div className="flex flex-col items-center">
         <div className="w-20 h-20 sm:w-32 sm:h-32 lg:w-22 lg:h-22 xl:w-32 xl:h-32 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center relative">
         {avatar_url ? (
-            <img
-                src={avatar_url}
-                alt="Profile"
-                className="w-full h-full object-cover"
+            <Image
+              src={avatar_url}
+              alt="Profile"
+              fill
+              quality={100}
+              sizes="(max-width: 640px) 80px,
+                    (max-width: 1024px) 128px,
+                    (max-width: 1280px) 88px,
+                    (max-width: 1536px) 128px,
+                    80px"
+              className="object-cover"
             />
             ) : (
             <i className="fa-solid fa-user text-slate-500 text-2xl sm:text-6xl" />

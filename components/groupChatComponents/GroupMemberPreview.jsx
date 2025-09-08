@@ -17,11 +17,12 @@ export default function GroupMemberPreview({ user_id, name, username, avatar_url
                   src={avatar_url}
                   alt="Profile"
                   fill
-                  sizes="(max-width: 640px) 32px,
-                        (max-width: 1024px) 40px,
-                        (max-width: 1280px) 64px,
-                        (max-width: 1536px) 80px,
-                        80px"
+                  quality={100}
+                  sizes="(max-width: 640px) 64px,
+                        (max-width: 1024px) 80px,
+                        (max-width: 1280px) 96px,
+                        (max-width: 1536px) 96px,
+                        96px"
                   className="object-cover"
                 />
               </div>
