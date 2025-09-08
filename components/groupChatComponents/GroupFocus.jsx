@@ -36,7 +36,6 @@ export default function GroupFocus({ groupId, currentUserUsername }) {
               .eq('id', groupId)  // Filter by the given groupId
               .single()           // Expect only one result (single row)
     
-            console.log(data)     // Debug log the returned data
     
             if (error) throw error  // If error returned, throw it to catch block
     
@@ -65,23 +64,24 @@ export default function GroupFocus({ groupId, currentUserUsername }) {
         // Dependency array triggers this effect when groupId or supabase client changes
       }, [groupId, supabase])
 
-    const handleChange = async (newName) => {
-      const previousName = groupName; // save previous name to revert on error
-      setGroupName(newName);
+    const handleLocalChange = (newName) => {
+      setGroupName(newName); // just update local state
+    };
 
-      const { data, error } = await supabase
+    const handleSave = async () => {
+      const previousName = groupName;
+
+      const { error } = await supabase
         .from('groups')
-        .update({ name: newName })
-        .eq('id', groupId)  // IMPORTANT: specify which group to update
-        .select()
-        .single();
+        .update({ name: groupName })
+        .eq('id', groupId);
 
       if (error) {
         console.error('Error updating group name:', error);
-        setGroupName(previousName); // revert to previous on error
-        return;
+        setGroupName(previousName); // revert if fail
       }
     };
+
 
   if (isLoading) {
     return <p className="text-center text-gray-500">Loading group members...</p>
@@ -98,9 +98,12 @@ export default function GroupFocus({ groupId, currentUserUsername }) {
         isEditing={isEditing}
         groupName={groupName}
         color={color}
-        onChange={handleChange}
+        onChange={handleLocalChange}
         onEdit={() => setIsEditing(true)}
-        onDone={() => setIsEditing(false)}
+        onDone={() => {
+          setIsEditing(false);
+          handleSave();
+        }}
       />
 {/* Render list of members */}
       <ul>

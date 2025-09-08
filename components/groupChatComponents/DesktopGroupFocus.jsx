@@ -36,8 +36,6 @@ export default function DesktopGroupFocus({ groupId, onMessage, currentUserUsern
           .eq('id', groupId)  // Filter by the given groupId
           .single()           // Expect only one result (single row)
 
-        console.log(data)     // Debug log the returned data
-
         if (error) throw error  // If error returned, throw it to catch block
 
         setGroupName(data.name) // Set the group name state to the fetched group's name
@@ -66,23 +64,23 @@ export default function DesktopGroupFocus({ groupId, onMessage, currentUserUsern
   }, [groupId, supabase])
 
 
-  const handleChange = async (newName) => {
-    const previousName = groupName; // save previous name to revert on error
-    setGroupName(newName);
+  const handleLocalChange = (newName) => {
+      setGroupName(newName); // just update local state
+    };
 
-    const { data, error } = await supabase
-      .from('groups')
-      .update({ name: newName })
-      .eq('id', groupId)  // IMPORTANT: specify which group to update
-      .select()
-      .single();
+    const handleSave = async () => {
+      const previousName = groupName;
 
-    if (error) {
-      console.error('Error updating group name:', error);
-      setGroupName(previousName); // revert to previous on error
-      return;
-    }
-  };
+      const { error } = await supabase
+        .from('groups')
+        .update({ name: groupName })
+        .eq('id', groupId);
+
+      if (error) {
+        console.error('Error updating group name:', error);
+        setGroupName(previousName); // revert if fail
+      }
+    };
 
   if (isLoading) {
     return <p className="text-center text-gray-500">Loading group members...</p>
@@ -99,9 +97,12 @@ export default function DesktopGroupFocus({ groupId, onMessage, currentUserUsern
         isEditing={isEditing}
         groupName={groupName}
         color={color}
-        onChange={handleChange}
+        onChange={handleLocalChange}
         onEdit={() => setIsEditing(true)}
-        onDone={() => setIsEditing(false)}
+        onDone={() => {
+          setIsEditing(false);
+          handleSave();
+        }}
         onMessage={onMessage}
       />
 {/* Render list of group members */}

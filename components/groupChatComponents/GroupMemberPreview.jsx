@@ -46,7 +46,7 @@ export default function GroupMemberPreview({ user_id, name, username, avatar_url
       {currentUserUsername === username ? (
         <></>
       ):(
-        <div className="flex flex-col lg:flex-row gap-2 h-fit">
+        <div className="flex flex-col min-w-[100px] lg:flex-row gap-2 h-fit">
           <GroupFocusButtons
              user_id={user_id}/>
           <Link

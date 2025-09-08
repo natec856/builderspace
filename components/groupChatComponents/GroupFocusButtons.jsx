@@ -154,7 +154,7 @@ export default function GroupFocusButtons({ user_id }) {
   return (
     <div className="flex w-full items-center justify-center text-center text-sm sm:text-lg lg:text-xl">
       {isConnected ? (
-        <button onClick={handleMessageClick} disabled={loading} className="bg-slate-200 text-slate-900 rounded-md py-2 px-4 w-full font-semibold">
+        <button onClick={handleMessageClick} disabled={loading} className="bg-blue-600 text-white rounded-md py-2 px-4 w-full font-semibold">
           {loading ? 'Loading...' : 'Message'}
         </button>
       ) : pendingFromOther ? (

@@ -38,7 +38,6 @@ export default function ChatView({ chats, currentUser }) {
   // Accept the selected group id from child component
   const handleSelectChat = (chatId) => {
     setSelectedChatId(chatId)
-    console.log(chatId)
   }
 
   return (

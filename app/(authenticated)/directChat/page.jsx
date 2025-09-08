@@ -50,8 +50,6 @@ export default async function ChatListPage() {
     return notFound();
   }
 
-  console.log(userChats)
-
   return (
     <MainAuth>
       <Header 

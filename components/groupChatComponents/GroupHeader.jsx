@@ -6,36 +6,44 @@ export default function GroupHeader({groupId, groupName, color, isEditing, onCha
 
   return ( 
     <div
-      className="flex items-center justify-between px-3 py-4"
-      style={{ backgroundColor: color }}>
-{/* Left: arrow link/button */}
-      <Link href={`/groups/${groupId}`}>
-        <i className='fa-solid fa-chevron-left text-shadow-sm text-xl'></i>
+      className="flex items-center w-full justify-between text-slate-900 p-4 text-xl mb-2 slateBottomShadow"
+      style={{ backgroundColor: color }}
+    >
+      {/* Left: arrow link/button */}
+      <Link 
+        href={`/groups/${groupId}`}
+        className='w-6 h-6 sm:w-10 sm:h-10'>
+        <i className="fa-solid fa-chevron-left text-shadow-sm"></i>
       </Link>
-{/* Center: group name or textarea */}
-      <div className="flex-1 flex justify-center">
+
+      {/* Center: group name or textarea */}
+      <div className="max-w-md w-full flex justify-center">
         {isEditing ? (
-          <textarea 
+          <textarea
             value={groupName}
             rows={1}
-            maxLength={20}
+            maxLength={30}
             onChange={(e) => onChange(e.target.value)}
-            placeholder='Enter group name'
-            className="border-2 border-slate-700 rounded-sm py-1 px-2 focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none overflow-hidden text-slate-900 font-bold text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl w-full max-w-md mx-4 my-2"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault(); // stops newline insertion
+              }
+            }}
+            placeholder="Enter group name"
+            className="border-2 border-slate-700 rounded-sm px-2 focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none overflow-hidden text-slate-900 font-bold text-center w-full max-w-md mx-4"
           />
-        ):(
-          <div className="truncate text-slate-900 font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl py-3 text-shadow-sm">
+        ) : (
+          <div className="mx-2 flex-1 font-bold text-center truncate text-shadow-xs items-center justify-center">
             {groupName}
           </div>
         )}
       </div>
-{/* Right: GroupButtons */}
+
+      {/* Right: GroupButtons */}
       <div className="flex items-center">
-        <GroupButtons 
-          isEditing={isEditing} 
-          onEdit={onEdit} 
-          onDone={onDone} />
+        <GroupButtons isEditing={isEditing} onEdit={onEdit} onDone={onDone} />
       </div>
     </div>
+
   )
 }
