@@ -4,7 +4,7 @@ import GroupButtons from './GroupButtons'
 export default function GroupHeader({ groupName, color, isEditing, onChange, onEdit, onDone, onMessage }) {
   return (
     <div
-      className="flex items-center justify-between px-6 py-8 rounded-t-md text-slate-900 mb-2 text-lg sm:text-xl md:text-2xl lg:text-3xl"
+      className="flex items-center justify-between px-10 py-8 rounded-t-md text-slate-900 mb-2 text-lg sm:text-xl md:text-2xl lg:text-3xl"
       style={{ backgroundColor: color }}
     >
 {/* Left: arrow button */}

@@ -59,15 +59,13 @@ export default function MessageList({ messages, currentUserId }) {
         return (
           <div key={msg.id}>
             {showTimestamp && (
-              <span className="block mt-2 mb-2 text-xs md:text-base lg:text-lg text-slate-400 text-center">
+              <span className="block mt-4 lg:mt-6 mb-2 text-xs md:text-base lg:text-lg text-slate-400 text-center">
                 {formatTimestamp(msg.created_at)}
               </span>
             )}
 
             <span
-              className={`text-xs md:text-base lg:text-lg text-slate-400 ${
-                isCurrentUser ? 'hidden' : ''
-              }`}
+              className={`text-xs md:text-base lg:text-lg xl:text-xl text-slate-400 ${ isCurrentUser ? 'hidden' : '' }`}
             >
               {senderName}
             </span>
