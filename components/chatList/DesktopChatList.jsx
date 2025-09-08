@@ -31,7 +31,7 @@ export default function DesktopChatList({ onSelectChat, chats, user }) {
 
   return (
     <>
-      <div className="bg-white shadow-md shadow-slate-400 rounded-md w-full min-w-[350px] max-w-[500px] mx-2 mt-4 px-4 py-6 mb-35 flex-1 h-fit">
+      <div className="bg-white shadow-md shadow-slate-400 rounded-md w-full min-w-[300px] lg:min-w-[350px] max-w-[600px] mx-2 mt-4 px-4 py-6 mb-35 flex-1 h-fit">
         <div className='flex justify-between text-lg sm:text-xl md:text-2xl lg:text-3xl'>
           <h1 className="font-bold">Direct Chats</h1>
           <i className='fa-solid fa-plus' onClick={() => setIsOpen(true)}></i>
