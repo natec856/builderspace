@@ -86,7 +86,7 @@ export default function ProfileContainer({ user }) {
   const handleShare = () => {
     const shareData = {
       title: 'Check out this profile',
-      text: `See what ${profileData.name} is up to on BuilderSpace`,
+      text: `See what ${profileData.name} is up to on Skocoh`,
       url: window.location.href,
     }
 

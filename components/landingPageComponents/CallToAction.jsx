@@ -8,7 +8,7 @@ export default function CallToAction() {
         href="/auth/signup"
         className="bg-blue-600 text-white text-center py-3 sm:py-4 md:py-5 lg:py-6 font-semibold rounded-full text-lg sm:text-xl md:text-2xl lg:text-3xl shadow-lg hover:bg-blue-700 transition duration-200"
       >
-        Join Now — It’s Free
+        Join the Beta Now — It’s Free!
       </Link>
 
       <p className="text-center text-base sm:text-lg md:text-xl lg:text-2xl text-slate-900">

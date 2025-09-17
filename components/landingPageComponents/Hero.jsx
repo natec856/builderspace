@@ -21,7 +21,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg sm:text-2xl md:text-3xl lg:text-4xl leading-snug text-slate-800 max-w-4xl mb-10 font-medium">
-          <span className="text-blue-600 font-semibold">BuilderSpace</span> matches you into small, curated groups based on your goals. It's networking made{' '}
+          <span className="text-blue-600 font-semibold">Skocoh</span> matches you into small, curated groups based on your goals. It's networking made{' '}
           <span className="italic text-blue-600">fast, easy, and effective.</span>
         </p>
 
@@ -46,7 +46,7 @@ export default function Hero() {
             },
             {
               title: 'Start Building Together',
-              desc: 'Connect in your private group chat, collaborate, and grow all inside BuilderSpace.',
+              desc: 'Connect in your private group chat, collaborate, and grow all inside Skocoh.',
             },
             {
               title: 'Keep Building',

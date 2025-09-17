@@ -5,7 +5,7 @@ import MobileNav from "@/components/generalComponents/MobileNav";
 import Footer from "@/components/generalComponents/Footer";
 
 export const metadata = {
-  title: "BuilderSpace",
+  title: "Skocoh",
   description: "Fast, easy networking for creators and entrepreneurs",
 };
 

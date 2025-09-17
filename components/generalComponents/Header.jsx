@@ -30,13 +30,25 @@ export default function Header({ username, avatar_url }) {
 
   return (
   <header className="w-full px-3 lg:px-6 text-white bg-slate-900">
-    <div className="flex items-center justify-between w-full py-3 sm:py-4 md:py-5 lg:py-6">
+    <div className="flex items-center justify-between w-full py-3">
       {/* Logo */}
       <Link
         href="/"
-        className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold transition-transform duration-200 hover:scale-[1.05]"
+        className="flex items-center font-bold transition-transform duration-200 hover:scale-[1.05]"
       >
-        BuilderSpace
+        <Image
+          src="/Web.png"
+          alt="Skocoh Logo"
+          width={300} // maximum width
+          height={150} // maximum height
+          priority
+          sizes="(max-width: 640px) 150px,
+                (max-width: 768px) 200px,
+                (max-width: 1024px) 250px,
+                (max-width: 1280px) 300px,
+                350px"
+          className="h-auto w-auto"
+        />
       </Link>
 {/* Desktop Authenticated Nav */}
       {isAuthenticated ? (

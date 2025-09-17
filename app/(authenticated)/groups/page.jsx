@@ -6,7 +6,7 @@ import { createClient } from "@/utils/supabase/server";
 import { notFound } from "next/navigation";
 
 export const metadata = {
-  title: "BuilderSpace",
+  title: "Skocoh",
 };
 
 export default async function GroupListPage() {

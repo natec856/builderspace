@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "BuilderSpace",
+  title: "Skocoh",
   description: "Fast, easy networking for creators and entrepreneurs",
 };
 

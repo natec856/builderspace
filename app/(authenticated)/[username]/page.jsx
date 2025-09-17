@@ -6,7 +6,7 @@ import MobileNav from "@/components/generalComponents/MobileNav";
 import MainAuth from "@/components/MainAuth";
 
 export const metadata = {
-  title: "BuilderSpace",
+  title: "Skocoh",
 };
 
 export default async function ProfilePage({ params }) {

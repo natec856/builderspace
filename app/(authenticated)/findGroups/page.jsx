@@ -5,7 +5,7 @@ import MobileNav from "@/components/generalComponents/MobileNav";
 import { createClient } from "@/utils/supabase/server";
 
 export const metadata = {
-    title: "BuilderSpace",
+    title: "Skocoh",
   };
 
 export default async function FindGroupsPage() {
