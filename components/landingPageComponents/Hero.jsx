@@ -13,7 +13,7 @@ export default function Hero() {
       {/* HERO */}
       <section className="flex flex-col items-center text-center px-6 py-10 sm:py-16 sm:px-10 lg:px-20 bg-white">
         <h1
-          className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 max-w-6xl ${inter.className}`}
+          className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 max-w-6xl text-slate-900 ${inter.className}`}
         >
           Instantly connect with serious{' '}
           <span className="italic text-blue-600">creators</span> and{' '}

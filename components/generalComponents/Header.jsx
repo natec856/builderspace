@@ -30,7 +30,7 @@ export default function Header({ username, avatar_url }) {
 
   return (
   <header className="w-full px-3 lg:px-6 text-white bg-slate-900">
-    <div className="flex items-center justify-between w-full py-3">
+    <div className="flex items-center justify-between w-full py-3 md:py-2">
       {/* Logo */}
       <Link
         href="/"
@@ -43,7 +43,7 @@ export default function Header({ username, avatar_url }) {
           height={150} // maximum height
           priority
           sizes="(max-width: 640px) 150px,
-                (max-width: 768px) 200px,
+                (max-width: 768px) 250px,
                 (max-width: 1024px) 250px,
                 (max-width: 1280px) 300px,
                 350px"
@@ -55,15 +55,15 @@ export default function Header({ username, avatar_url }) {
         <div className="hidden sm:flex items-center justify-between w-full gap-4">
           {/* Nav links */}
           <div className="flex flex-wrap justify-center gap-8 lg:gap-15 xl:gap-20 flex-1">
-            <Link href="/findGroups" className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+            <Link href="/findGroups" className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl">
               <i className='fa-solid fa-search'></i>
               <span className='text-sm md:text-base lg:text-lg cursor-pointer hover:underline'>Find Groups</span>
             </Link>
-            <Link href="/groups" className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+            <Link href="/groups" className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl">
               <i className='fa-solid fa-users'></i>
               <span className='text-sm md:text-base lg:text-lg cursor-pointer hover:underline'>My Groups</span>
             </Link>
-            <Link href={`/directChat`} className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+            <Link href={`/directChat`} className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl">
               <i className='fa-solid fa-message'></i>
               <span className='text-sm md:text-base lg:text-lg cursor-pointer hover:underline'>Direct Chats</span>
             </Link>
@@ -71,9 +71,9 @@ export default function Header({ username, avatar_url }) {
 
           {/* Logout button and profile on far right */}
           <div className='flex gap-5 lg:gap-10 items-center justify-between'>
-            <Link href={`/${username}`} className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+            <Link href={`/${username}`} className="flex flex-col items-center justify-center text-white sm:text-xl md:text-2xl lg:text-3xl">
                 {avatar_url ? (
-                  <div className='w-10 h-10 md:w-15 md:h-15 lg:w-18 lg:h-18 xl:w-20 xl:h-20 rounded-full overflow-hidden relative'>
+                  <div className='w-10 h-10 md:w-15 md:h-15 rounded-full overflow-hidden relative'>
                     <Image
                       src={avatar_url}
                       alt="Profile"
@@ -94,7 +94,7 @@ export default function Header({ username, avatar_url }) {
               </Link>
             <button
               onClick={handleLogout}
-              className="flex flex-col items-center justify-center text-white bg-transparent border-2 font-semibold hover:text-slate-900 hover:bg-white hover:border-2 hover:border-white cursor-pointer rounded-xl px-2 py-1 md:px-3 md:py-2 sm:text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
+              className="flex flex-col items-center justify-center text-white bg-transparent border-2 font-semibold hover:text-slate-900 hover:bg-white hover:border-2 hover:border-white cursor-pointer rounded-xl px-2 py-1 md:px-3 md:py-2 sm:text-sm md:text-lg lg:text-xl"
             >
               Logout
             </button>
@@ -103,7 +103,7 @@ export default function Header({ username, avatar_url }) {
       ) : (
 
         // Desktop unauthenticated buttons
-        <div className="hidden sm:flex gap-4 ml-auto text-base lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold">
+        <div className="hidden sm:flex gap-4 ml-auto text-base lg:text-xl font-semibold">
           <Link
             href="/auth/login"
             className="bg-white text-blue-600 text-center px-4 py-4 font-semibold rounded-md"
