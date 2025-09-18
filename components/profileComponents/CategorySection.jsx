@@ -50,7 +50,7 @@ export default function CategorySection({ categories = [], isEditing, onChange }
         {safeCategories.map((cat, index) => (
           <span
             key={index}
-            className="flex items-center bg-blue-600 text-white text-sm sm:text-xl lg:text-lg xl:text-2xl px-3 py-1 rounded-full"
+            className="flex items-center bg-blue-600 text-white text-sm sm:text-xl lg:text-lg xl:text-xl px-3 py-1 rounded-full"
           >
             {cat}
             {isEditing && (

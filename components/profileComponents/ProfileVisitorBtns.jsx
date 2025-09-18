@@ -192,7 +192,7 @@ export default function ProfileVisitorBtns({ user }) {
     }
 
   return (
-    <div className="flex w-full items-center justify-center text-center text-sm sm:text-lg lg:text-xl">
+    <div className="flex w-full items-center justify-center text-center text-sm sm:text-lg">
       {isConnected ? (
         <button
           onClick={handleMessageClick}
