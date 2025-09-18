@@ -13,11 +13,11 @@ export default function ChatSearchBar({ onSearch }) {
 
   return (
     <div className="w-full px-2 py-3 border-b border-slate-200 bg-white">
-      <div className="flex items-center bg-slate-100 px-3 py-2 lg:px-5 lg:py-4 rounded-full w-full shadow-sm">
+      <div className="flex items-center bg-slate-100 px-3 py-2 lg:px-4 lg:py-3 rounded-full w-full shadow-sm">
         <i className="fa-solid fa-search text-slate-500 mr-2 text-sm md:text-lg lg:text-xl xl:text-2xl"></i>
         <input
           type="text"
-          placeholder="Search groups"
+          placeholder="Search chats"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           className="bg-transparent focus:outline-none text-slate-900 w-full placeholder:text-slate-400 text-sm md:text-lg lg:text-xl xl:text-2xl"
