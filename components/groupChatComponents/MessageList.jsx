@@ -59,19 +59,19 @@ export default function MessageList({ messages, currentUserId }) {
         return (
           <div key={msg.id}>
             {showTimestamp && (
-              <span className="block mt-4 lg:mt-6 mb-2 text-xs md:text-base lg:text-lg text-slate-400 text-center">
+              <span className="block mt-4 mb-2 text-xs md:text-base lg:text-lg text-slate-400 text-center">
                 {formatTimestamp(msg.created_at)}
               </span>
             )}
 
             <span
-              className={`text-xs md:text-base lg:text-lg xl:text-xl text-slate-400 ${ isCurrentUser ? 'hidden' : '' }`}
+              className={`text-xs md:text-base lg:text-lg text-slate-400 ${ isCurrentUser ? 'hidden' : '' }`}
             >
               {senderName}
             </span>
 
             <div
-              className={`w-fit max-w-[75%] px-2 py-1 md:px-3 md:py-2 rounded-lg text-base md:text-lg lg:text-xl xl:text-2xl ${
+              className={`w-fit max-w-[75%] px-2 py-1 md:px-3 md:py-2 rounded-lg text-base md:text-lg lg:text-xl ${
                 isCurrentUser
                   ? 'ml-auto bg-blue-600 text-white rounded-br-none'
                   : 'mr-auto bg-slate-200 text-slate-900 rounded-bl-none'

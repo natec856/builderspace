@@ -145,7 +145,7 @@ export default function DesktopChatMessagingContainer({ chatId, currentUserId })
   if (!chat) return null
 
   return (
-    <div className="bg-white rounded-md h-[calc(100vh-200px)] mx-2 mt-4 mb-35 flex flex-col w-full max-w-screen-md 2xl:max-w-screen-lg shadow-md shadow-slate-400">
+    <div className="bg-white rounded-md h-[calc(100vh-100px)] mx-2 mt-4 mb-35 flex flex-col w-full max-w-screen-md 2xl:max-w-screen-lg shadow-md shadow-slate-400">
       <DesktopChatMessagingHeader
         chatName={chat.chatName}
         chatUser={chat.chatUser} />

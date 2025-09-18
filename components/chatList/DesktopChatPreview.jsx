@@ -42,7 +42,7 @@ const DesktopChatPreview = React.memo(function DesktopChatPreview({
         <div 
           className="text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-500 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center shrink-0 shadow-sm shadow-slate-400">
             {avatar_url ? (
-              <div className='w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full overflow-hidden relative'>
+              <div className='w-16 h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden relative'>
                 <Image
                   src={avatar_url}
                   alt="Profile"
@@ -57,7 +57,7 @@ const DesktopChatPreview = React.memo(function DesktopChatPreview({
                 />
               </div>
             ):(
-              <div className='flex flex-col items-center justify-center w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full overflow-hidden relative'>
+              <div className='flex flex-col items-center justify-center w-16 h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden relative'>
                 <i className='fa-solid fa-user'></i>
               </div>
             )}

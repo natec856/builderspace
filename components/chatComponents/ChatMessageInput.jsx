@@ -54,7 +54,7 @@ export default function ChatMessageInput({ chatId, currentUserId, setMessages })
 
 
   return (
-    <div className="bg-slate-100 rounded-md flex gap-2 mt-4 mb-10 mx-4 items-end">
+    <div className="bg-slate-100 rounded-md flex gap-2 mt-4 mb-4 mx-4 items-end">
       <textarea
         ref={textareaRef}
         value={input}

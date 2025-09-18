@@ -81,13 +81,18 @@ export default function ChatMessageList({ chatName, messages, currentUserId }) {
             </span>
 
             <div
-              className={`w-fit px-2 py-1 md:px-3 md:py-2 rounded-lg text-base md:text-lg lg:text-xl xl:text-2xl max-w-[75%] break-words ${
+              className={`w-fit max-w-[75%] px-2 py-1 md:px-3 md:py-2 rounded-lg text-base md:text-lg lg:text-xl ${
                 isCurrentUser
                   ? 'ml-auto bg-blue-600 text-white rounded-br-none'
                   : 'mr-auto bg-slate-200 text-slate-900 rounded-bl-none'
               }`}
+              style={{ 
+                wordBreak: 'break-word',
+                overflowWrap: 'anywhere',
+                minWidth: 0
+              }}
             >
-              <p className="break-words">{msg.content}</p>
+              {msg.content}
             </div>
           </div>
         )
