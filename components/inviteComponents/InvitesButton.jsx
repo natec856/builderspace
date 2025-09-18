@@ -52,7 +52,7 @@ export default function InvitesButton({ invite_id, currentUserId }) {
       <button
         onClick={handleAccept}
         disabled={loading}
-        className="bg-blue-600 text-white rounded-md py-2 px-4 font-semibold disabled:opacity-50 w-full lg:w-auto text-sm sm:text-lg lg:text-xl hover:cursor-pointer"
+        className="bg-blue-600 text-white rounded-md py-1 px-2 font-semibold disabled:opacity-50 w-full lg:w-auto text-sm sm:text-lg hover:cursor-pointer"
       >
         {loading ? 'Accepting...' : 'Accept'}
       </button>
@@ -60,7 +60,7 @@ export default function InvitesButton({ invite_id, currentUserId }) {
       <button
         onClick={() => setShowConfirm(true)}
         disabled={loading}
-        className="bg-slate-200 text-slate-900 rounded-md py-2 px-4 font-semibold disabled:opacity-50 w-full lg:w-auto text-sm sm:text-lg lg:text-xl hover:cursor-pointer"
+        className="bg-slate-200 text-slate-900 rounded-md py-1 px-2 font-semibold disabled:opacity-50 w-full lg:w-auto text-sm sm:text-lg hover:cursor-pointer"
       >
         Decline
       </button>
@@ -82,7 +82,7 @@ export default function InvitesButton({ invite_id, currentUserId }) {
               </button>
               <button
                 onClick={() => setShowConfirm(false)}
-                className="bg-slate-200 text-slate-900 font-semibold px-4 py-2 rounded-md shadow-sm hover:cursor-pointer"
+                className="bg-slate-200 text-slate-900 font-semibold px-2 py-1 rounded-md shadow-sm hover:cursor-pointer"
               >
                 Cancel
               </button>

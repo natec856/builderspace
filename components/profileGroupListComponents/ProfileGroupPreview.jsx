@@ -53,7 +53,7 @@ export default function ProfileGroupPreview({
         if (loading) return; // block action
         handleGroupClick()// do stuff
         }}
-        className="flex items-center border-b border-slate-200 py-2 sm:py-3 hover:bg-slate-50 hover:cursor-pointer"
+        className="flex items-center border-b border-slate-200 py-2 hover:bg-slate-50 hover:cursor-pointer"
     >
       {/* Group color */}
       <div className="flex items-center justify-center shrink-0">
@@ -69,16 +69,16 @@ export default function ProfileGroupPreview({
       <div className="ml-3 flex-1 min-w-0">
         {/* Row with groupName and displayDate aligned vertically centered */}
         <div className="flex justify-between items-center">
-          <div className="font-bold text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl truncate">
+          <div className="font-bold text-sm md:text-base lg:text-lg xl:text-xl truncate">
             {groupName}
           </div>
-          <div className="font-medium italic text-slate-700 text-right text-sm md:text-base lg:text-lg xl:text-xl ml-4">
+          <div className="font-medium italic text-slate-700 text-right text-sm md:text-base lg:text-lg ml-4">
             {displayDate}
           </div>
         </div>
 
         {/* Last message below, max 2 lines */}
-        <div className="text-left text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 line-clamp-2 leading-tight min-h-[40px]">
+        <div className="text-left text-sm md:text-base lg:text-lg xl:text-xl text-slate-600 line-clamp-2 leading-tight min-h-[40px]">
           {lastMessage}
         </div>
       </div>
