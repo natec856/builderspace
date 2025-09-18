@@ -21,9 +21,9 @@ export default function NewChatList({ connections, currentUserUsername, currentU
   }, [connections, searchTerm])
 
   return (
-    <div className="flex flex-col items-left w-full">
+    <div className="flex flex-col items-left w-full mt-2 md:mt-3 lg:mt-4">
         <NewChatSearchBar onSearch={setSearchTerm} />
-        <ul className="max-h-[calc(100vh-600px)] overflow-y-scroll">
+        <ul className="h-[calc(100vh-300px)] overflow-y-scroll scrollbar-hide">
           {filteredConnections.length === 0 && (
             <li className="mt-2 text-base font-semibold text-slate-400">
               No connections found

@@ -55,13 +55,13 @@ export default function ChatList({chats, user}) {
 {/* New Chat Modal */}
       {isOpen && (
         <div className="fixed top-0 left-0 right-0 bottom-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-lg mx-4 p-6 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+          <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-lg mx-4 p-6 text-2xl lg:text-3xl">
             {/* Close button */}
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-3 right-3 text-slate-500 hover:text-slate-800"
+              className="absolute top-3 right-3 text-slate-500"
             >
-              <i className="fa-solid fa-xmark"></i>
+              <i className="fa-solid fa-xmark cursor-pointer"></i>
             </button>
 
             {/* Modal header */}
@@ -70,12 +70,10 @@ export default function ChatList({chats, user}) {
             </h2>
 
             {/* Modal body */}
-            <div className="max-h-[70vh] overflow-y-auto">
-              <NewChatContainer 
-                user={user} 
-                onChatSelected={handleNewChatSelected} 
-              />
-            </div>
+            <NewChatContainer 
+              user={user} 
+              onChatSelected={handleNewChatSelected} 
+            />
           </div>
         </div>
       )}

@@ -47,7 +47,7 @@ export default function NewChatContainer({ user, onChatSelected }) {
   }, [supabase, user.id])
 
   return (
-    <div className="flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md h-fit py-6">
+    <div className="flex flex-col items-center rounded-md">
       <NewChatList
         connections={connections}
         currentUserUsername={user.username}

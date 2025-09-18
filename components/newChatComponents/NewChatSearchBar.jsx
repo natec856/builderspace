@@ -13,8 +13,8 @@ export default function NewChatSearcBar({ onSearch }) {
 
   return (
     <div className="w-full pb-3 border-b border-slate-200 bg-white">
-      <div className="flex items-center bg-slate-100 px-3 py-2 lg:px-5 lg:py-4 rounded-full w-full shadow-sm">
-        <i className="fa-solid fa-search text-slate-500 mr-2 text-sm md:text-lg lg:text-xl xl:text-2xl"></i>
+      <div className="flex items-center bg-slate-100 px-3 py-2 lg:px-4 lg:py-3 rounded-full w-full shadow-sm">
+        <i className="fa-solid fa-search text-slate-500 mr-2 text-base md:text-lg lg:text-xl xl:text-2xl"></i>
         <input
           type="text"
           placeholder="Search connections"
