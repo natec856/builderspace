@@ -121,11 +121,16 @@ export default function ProfileContainer({ user }) {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row w-full justify-center items-center lg:items-start gap-4 px-2 my-4">
-      {/* Left Column: Profile Info and Invites Container */}
-      <div className="flex-1 min-w-0 w-full md:max-w-md lg:max-w-2xl flex flex-col gap-6">
-      {/* User Profile Container */}
-        <div className="flex-1 min-w-0 max-w-full md:max-w-md lg:max-w-2xl flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md p-4">
+    <div
+  className="grid w-full gap-4 p-4
+             sm:grid-cols-1
+             md:grid-cols-2
+             xl:grid-cols-3
+             auto-rows-auto"
+    >
+      {/* Profile + Invites */}
+      <div className="flex flex-col gap-6">
+        <div className="min-w-0 max-w-full flex flex-col items-center bg-white shadow-md shadow-slate-400 rounded-md p-4">
           <ProfileInfo
             username={profileData.username}
             name={profileData.name}
@@ -158,25 +163,28 @@ export default function ProfileContainer({ user }) {
           />
           {!isOwner && <ProfileVisitorBtns user={profileData} />}
         </div>
-        {/* Invites section */}
-        <div>
-          {isOwner && <InvitesContainer user={profileData}/>}
-        </div>
-      </div>
-      {/* Middle Column: Groups */}
-      {isOwner && (
-        <div className="flex-1 min-w-0 w-full md:max-w-md lg:max-w-2xl flex flex-col gap-6">
-          <ProfileGroupsContainer user_id={profileData.id} />
-        </div>
-      )}
 
-      {/* Right Column: Connections / Invites (only owner) */}
+        {isOwner && <InvitesContainer user={profileData} />}
+      </div>
+
+      {/* Groups + Connections wrapper column */}
       {isOwner && (
-        <div className="flex-1 min-w-0 w-full md:max-w-md lg:max-w-2xl flex flex-col gap-6">
-          <ConnectionsContainer user={profileData} />
+        <div
+          className="flex flex-col gap-6
+                    md:col-start-2
+                    xl:col-span-2 xl:grid xl:grid-cols-2 auto-rows-auto"
+        >
+          {/* Groups */}
+          <div className="flex flex-col gap-6">
+            <ProfileGroupsContainer user_id={profileData.id} />
+          </div>
+
+          {/* Connections */}
+          <div className="flex flex-col gap-6">
+            <ConnectionsContainer user={profileData} />
+          </div>
         </div>
       )}
     </div>
-
   )
 }

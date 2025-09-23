@@ -49,7 +49,7 @@ export default function ProfileGroupList({ groups }) {
         onClick={handleShow}
         className="flex items-center justify-between cursor-pointer select-none"
       >
-        <h1 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-bold pb-1">My Groups</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold pb-1">My Groups</h1>
         <svg
           className={`ml-2 h-5 w-5 lg:h-8 lg:w-8 transition-transform duration-300 ${
             showGroups ? 'rotate-180' : ''

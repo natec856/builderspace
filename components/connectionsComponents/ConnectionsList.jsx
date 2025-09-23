@@ -48,7 +48,7 @@ export default function ConnectionsList({ connections, currentUserUsername, curr
         onClick={handleShow}
         className="flex items-center justify-between cursor-pointer select-none"
       >
-        <h1 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-bold pb-1">
+        <h1 className="text-2xl sm:text-3xl font-bold pb-1">
           My Connections
         </h1>
         <svg

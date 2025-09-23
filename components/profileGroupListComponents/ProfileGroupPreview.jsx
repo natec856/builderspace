@@ -72,13 +72,13 @@ export default function ProfileGroupPreview({
           <div className="font-bold text-sm md:text-base lg:text-lg xl:text-xl truncate">
             {groupName}
           </div>
-          <div className="font-medium italic text-slate-700 text-right text-sm md:text-base lg:text-lg ml-4">
+          <div className="font-medium italic text-slate-700 text-right text-sm md:text-base ml-4">
             {displayDate}
           </div>
         </div>
 
         {/* Last message below, max 2 lines */}
-        <div className="text-left text-sm md:text-base lg:text-lg xl:text-xl text-slate-600 line-clamp-2 leading-tight min-h-[40px]">
+        <div className="text-left text-sm md:text-base xl:text-xl text-slate-600 line-clamp-2 leading-tight min-h-[40px]">
           {lastMessage}
         </div>
       </div>

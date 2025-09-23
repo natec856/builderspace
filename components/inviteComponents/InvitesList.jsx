@@ -30,7 +30,7 @@ export default function InvitesList({ invites, currentUserUsername, currentUserI
         className="flex items-center justify-between cursor-pointer select-none"
       >
         <div className='flex gap-3 items-center'>
-          <h1 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-bold pb-1">
+          <h1 className="text-2xl sm:text-3xl font-bold pb-1">
             Pending Invites
           </h1>
           {invites.length > 0 && (
