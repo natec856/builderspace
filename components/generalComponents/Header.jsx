@@ -56,12 +56,12 @@ export default function Header({ username, avatar_url }) {
           {/* Nav links */}
           <div className="flex flex-wrap justify-center sm:gap-12 md:gap-6 lg:gap-12 xl:gap-16 flex-1">
             <Link href="/findGroups" className="flex flex-col items-center justify-center text-white text-2xl lg:text-3xl">
-              <i className='fa-solid fa-search'></i>
-              <span className='hidden md:inline text-sm lg:text-base xl:text-lg cursor-pointer hover:underline'>Find Groups</span>
-            </Link>
-            <Link href="/findGroups" className="flex flex-col items-center justify-center text-white text-2xl lg:text-3xl">
               <i className='fa-solid fa-compass'></i>
               <span className='hidden md:inline text-sm lg:text-base xl:text-lg cursor-pointer hover:underline'>Discover</span>
+            </Link>
+            <Link href="/findGroups" className="flex flex-col items-center justify-center text-white text-2xl lg:text-3xl">
+              <i className='fa-solid fa-search'></i>
+              <span className='hidden md:inline text-sm lg:text-base xl:text-lg cursor-pointer hover:underline'>Find Groups</span>
             </Link>
             <Link href="/groups" className="flex flex-col items-center justify-center text-white text-2xl lg:text-3xl">
               <i className='fa-solid fa-users'></i>

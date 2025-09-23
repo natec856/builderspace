@@ -26,7 +26,7 @@ export default async function GroupPage({ params }) {
   // Get user record from 'users' table
   const { data: userRecord, error: userError } = await supabase
     .from("users")
-    .select("username")
+    .select("*")
     .eq("id", authUser.id)
     .single();
 
