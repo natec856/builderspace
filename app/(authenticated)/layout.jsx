@@ -1,5 +1,6 @@
 import "@/app/globals.css"
 import Footer from "@/components/generalComponents/Footer";
+import Head from "next/head";
 
 export default async function RootLayout({ children }) {
 
