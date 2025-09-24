@@ -37,7 +37,7 @@ export default function BetaCTA() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <h1 className='text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-slate-900'>
+          <h1 className='text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-slate-900 text-center'>
             **Only 100 spots available**
           </h1>
           <input
