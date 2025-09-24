@@ -29,6 +29,8 @@ export default function RootLayout({ children }) {
           content="Skocoh matches you into small, curated groups of creators and entrepreneurs to network fast, easy, and effectively."
         />
         <link rel="icon" href="/favicon.ico" />
+        {/* Apple touch icon */}
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
         {/* Open Graph / social preview */}
         <meta property="og:title" content="Skocoh — Connect with creators and entrepreneurs" />
