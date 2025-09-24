@@ -16,9 +16,6 @@ export default function MobileNav({username, avatar_url}) {
     <nav className="sm:hidden left-0 w-full flex flex-col z-50 shadow-sm relative bg-white">
       <div className="grid grid-cols-5 justify-around items-center py-3 px-4">
         <Link href="/findGroups" className="flex flex-col items-center gap-1 text-slate-900">
-          <i className="fa-solid fa-compass text-xl"></i>
-        </Link>
-        <Link href="/findGroups" className="flex flex-col items-center gap-1 text-slate-900">
           <i className="fa-solid fa-search text-xl"></i>
         </Link>
         <Link href="/groups" className="flex flex-col items-center gap-1 text-slate-900">

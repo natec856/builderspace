@@ -1,14 +1,14 @@
-import Hero from '@/components/landingPageComponents/Hero';
+import BetaHero from '@/components/betaComponents/BetaHero'
 import React from 'react'
 
 export const metadata = {
     title: "Skocoh",
   };
 
-export default function HomePage() {
+export default function BetaPage() {
   return (
     <div className='bg-blue-100'>
-      <Hero />
+        <BetaHero />
     </div>
   )
 }

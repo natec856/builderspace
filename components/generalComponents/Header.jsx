@@ -33,7 +33,7 @@ export default function Header({ username, avatar_url }) {
     <div className="flex items-center justify-between w-full py-3 md:py-2">
       {/* Logo */}
       <Link
-        href="/"
+        href="/beta"
         className="flex items-center font-bold transition-transform duration-200 hover:scale-[1.05]"
       >
         <Image
@@ -55,10 +55,6 @@ export default function Header({ username, avatar_url }) {
         <div className="hidden sm:flex items-center justify-between w-full gap-4">
           {/* Nav links */}
           <div className="flex flex-wrap justify-center sm:gap-12 md:gap-6 lg:gap-12 xl:gap-16 flex-1">
-            <Link href="/findGroups" className="flex flex-col items-center justify-center text-white text-2xl lg:text-3xl">
-              <i className='fa-solid fa-compass'></i>
-              <span className='hidden md:inline text-sm lg:text-base xl:text-lg cursor-pointer hover:underline'>Discover</span>
-            </Link>
             <Link href="/findGroups" className="flex flex-col items-center justify-center text-white text-2xl lg:text-3xl">
               <i className='fa-solid fa-search'></i>
               <span className='hidden md:inline text-sm lg:text-base xl:text-lg cursor-pointer hover:underline'>Find Groups</span>
@@ -108,7 +104,7 @@ export default function Header({ username, avatar_url }) {
 
         // Desktop unauthenticated buttons
         <div className="hidden sm:flex gap-4 ml-auto text-base lg:text-xl font-semibold">
-          <Link
+          {/* <Link
             href="/auth/login"
             className="bg-white text-blue-600 text-center px-4 py-4 font-semibold rounded-md"
           >
@@ -119,7 +115,7 @@ export default function Header({ username, avatar_url }) {
             className="bg-blue-600 text-white text-center px-4 py-4 font-semibold rounded-md"
           >
             Sign Up
-          </Link>
+          </Link> */}
         </div>
       )}
 
@@ -144,7 +140,7 @@ export default function Header({ username, avatar_url }) {
       </div>
     </div>
 
-    {/* Mobile dropdown menu (for unauthenticated users) */}
+    {/* Mobile dropdown menu (for unauthenticated users)
     {(menuOpen || !isAuthenticated) && (
       <div
         className={`sm:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
@@ -171,6 +167,6 @@ export default function Header({ username, avatar_url }) {
           </div>
         ) : null}
       </div>
-    )}
+    )} */}
   </header>
 )}
