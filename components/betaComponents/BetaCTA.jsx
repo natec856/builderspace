@@ -58,7 +58,7 @@ export default function BetaCTA() {
           >
             {loading ? 'Joining...' : 'Join the Waitlist Now!'}
           </button>
-          <p className='text-slate-900 font-semibold text-base md:text-lg'>We'll reach out as soon as groups are ready...</p>
+          <p className='text-slate-900 font-semibold text-base md:text-lg text-center'>We'll reach out as soon as groups are ready...</p>
           {errorMessage && (
             <div className="text-red-600 font-medium mt-2">Looks like your already signed up! We'll reach out when groups are ready.</div>
           )}

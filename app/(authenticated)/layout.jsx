@@ -1,24 +1,38 @@
 import "@/app/globals.css"
-import Head from "@/app/head";
 import Footer from "@/components/generalComponents/Footer";
-import { Inter } from "next/font/google";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap", // Optional for performance
-  variable: "--font-inter", // Optional: makes it easier to use with Tailwind
-});
-
-export const metadata = {
-  title: "Skocoh",
-  description: "Fast, easy networking for creators and entrepreneurs",
-};
 
 export default async function RootLayout({ children }) {
 
   return (
     <html lang="en" className="{inter.variable}">
-      <Head />
+      <Head>
+        {/* Font Awesome */}
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+          integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+
+        {/* Global SEO */}
+        <title>Skocoh — Connect with creators and entrepreneurs</title>
+        <meta
+          name="description"
+          content="Skocoh matches you into small, curated groups of creators and entrepreneurs to network fast, easy, and effectively."
+        />
+        <link rel="icon" href="/favicon.ico" />
+
+        {/* Open Graph / social preview */}
+        <meta property="og:title" content="Skocoh — Connect with creators and entrepreneurs" />
+        <meta
+          property="og:description"
+          content="Join Skocoh to network with small, curated groups of creators and entrepreneurs."
+        />
+        <meta property="og:image" content="/social-preview.png" />
+        <meta property="og:url" content="https://skocoh.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
       <body className="min-h-screen w-full mx-auto text-sm sm:text-base flex flex-col ">
         {children}
         <div className="flex-grow bg-slate-50"></div>
